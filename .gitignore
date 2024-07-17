@@ -8,6 +8,11 @@
 *.swo
 *~
 
+# Testing Output
+memoutput.txt
+treeoutput.txt
+checkeroutput.txt
+
 # Emacs
 \#*\#
 
