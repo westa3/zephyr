@@ -44,6 +44,7 @@ def callstruct(dwarf_info):
                         subprograms[name] = [name, address, DIE.attributes['DW_AT_decl_line'].value, DIE.attributes['DW_AT_decl_column'].value]
 
                     if DIE.has_children:
+                        # print(f'Function Name: {name}, Address: {address}')
                         childCalls(name, DIE, cuOffset)
 
                 except KeyError: # cases where something fails (usually subprogram doesn't have a name)
@@ -56,14 +57,15 @@ def callstruct(dwarf_info):
 def childCalls(parentName, target_DIE, cuOffset):
     for c in target_DIE.iter_children():
 
+        if c.tag == "DW_TAG_GNU_call_site": # Check if the child is a call site
+            c_origin = c.attributes['DW_AT_abstract_origin'].value # Get the call site abstract origin value to calculate the memory address
+            c_address = cuOffset + c_origin
+            # print(f'Parent Name: {parentName}, Child Address: {c_address}')
+            subprograms[parentName].append(c_address)
+
         if c.has_children:
             childCalls(parentName, c, cuOffset) # Recursive call to get to leaf nodes as some GNU_call_sites are nested
-        
-        else:
-            if c.tag == "DW_TAG_GNU_call_site": # Check if the child is a call site
-                c_origin = c.attributes['DW_AT_abstract_origin'].value # Get the call site abstract origin value to calculate the memory address
-                c_address = cuOffset + c_origin
-                subprograms[parentName].append(c_address)
+
 
 
 # Convert the addresses of child function calls in each subprogram key to the actual function name
@@ -160,6 +162,7 @@ def su_files(full_table):
         c_file = full_table[key][1] # Get the file name that called the function
         c_file = c_file.split('/')[-1] # Get just the file name without the path
         su_file = c_file + '.su' # Add the .su extension to the file name
+        # print(f'Looking for: {su_file}')
 
         for root, dirs, files in os.walk(root_search):
             if su_file in files:
@@ -174,6 +177,23 @@ def su_files(full_table):
                     break
 
                 else:
+                    # It might be .h instead of .c
+                    c_file = full_table[key][1] # Get the file name that called the function
+                    c_file = c_file.split('/')[-1]
+                    c_file = c_file.split('.')[0] + '.h' # Change the file extension to .h
+                    path_c_file = full_table[key][1].split('/')
+                    path_c_file[-1] = c_file
+                    path_c_file = '/'.join(path_c_file)
+                    exact_line = path_c_file + ':' + str(full_table[key][2]) + ':' + str(full_table[key][3]) + ':' + full_table[key][0]
+                    # print(exact_line)
+
+                    found_path = os.path.join(root, su_file)
+                    is_correct = confirm_su_file(found_path, exact_line, key, full_table)
+
+                    if is_correct:
+                        full_table[key].append(found_path)
+                        break
+
                     continue
             
             else:
@@ -193,9 +213,84 @@ def confirm_su_file(file_name, find_line, idx, full_table):
             
         return False
         
+# Get the memory usage of a function from the full_table dictionary
+def get_memory_usage(full_table, address):
+    if address in full_table:
+        if len(full_table[address]) > 4:
+            return int(full_table[address][4])
+        else:
+            return 0
+    else:
+        return 0
 
-# Adds up the memory usage of each function in the call tree
+
+# Finds the max memory usage path in each call tree
 def calltree_usage(full_table, trees):
+
+    tree_memory = {} # final dictionary to be returned. Format: {function name: [[function name, function depth, function memory usage, summated max memory usage till this point], ... ]}
+
+    for key in trees:
+        prev_stack = [] # stack to keep track of the maximum stack usage path of a call tree
+        curr_stack = [] # current call stack within call tree
+        curr_max_usage = 0 # current maximum memory usage of the current call stack
+        max_prev_usage = 0 # maximum memory usage of a call tree according to the maximum stack usage path (NOT the current call stack)
+
+        for i in range(0, len(trees[key]), 5):
+            # print(f'Start of for loop. Key is: {key} and i is: {i}')
+            curr_name = trees[key][i]
+            curr_address = trees[key][i+1]
+            curr_memory_usage = get_memory_usage(full_table, curr_address)
+            curr_depth = trees[key][i+4]
+            curr_max_usage += curr_memory_usage # Add the current memory usage to the current maximum memory usage from the previous loop (or 0 if it's the first loop or the previous stack got 'restarted')
+            ending_j = 0 # index to keep track of where the current stack last popped
+        
+            curr_stack.append([curr_name, curr_depth, curr_memory_usage, curr_max_usage]) # Append the function name, depth, memory usage and current maximum memory usage to the current call stack
+
+            # print(f'{key}: {curr_stack}')
+
+            # print(f'Beginning. curr_stack is: {curr_stack}')
+            # print(f'Beginning. prev_stack is: {prev_stack}')
+
+            if i+9 > len(trees[key]): # If the next depth is out of bounds, then check if the current stack is the maximum stack usage path
+                if len(prev_stack) != 0:
+                    if curr_max_usage > max_prev_usage: # if the stack with the maximum stack usage path (prev_stack) is greater than the current maximum usage for the call stack then we do NOT want to overwrite the prev_stack with the current call stack. If it's smaller then we do.
+                        prev_stack = curr_stack.copy()
+                else: # If the previous stack is empty, then the current stack is the maximum stack usage path and should be stored in the prev_stack
+                    prev_stack = curr_stack.copy()
+                break
+            else: 
+                next_depth = trees[key][i+9] 
+
+            # print(f'Next depth: {next_depth}')
+            # print(f'Current depth: {curr_depth}')
+
+            if next_depth > curr_depth: # If the next depth is greater than the current depth, then continue to the next loop because we want to keep going until we reach a leaf node
+                continue
+            else:
+                if len(prev_stack) != 0:
+                    max_prev_usage = prev_stack[-1][3] # Get the maximum memory usage of the maximum stack usage path for comparison to current max stack usage
+                else:
+                    max_prev_usage = 0
+                if curr_max_usage > max_prev_usage:
+                    prev_stack = curr_stack.copy() # If the current stack is the maximum stack usage path, then store it in the prev_stack
+                for j in range(len(curr_stack)-1, -1, -1): # Either way, now go through the current call stack and pop off every function that has a depth greater than or equal to the next depth (which in this case will be lower). We're essentially just retracting the call stack 
+                    # print(f'curr_stack of {j}: {curr_stack[j][1]}')
+                    if curr_stack[j][1] >= next_depth:
+                        curr_stack.pop(j)
+                        ending_j = j # Keep track of where the current stack last popped
+                if curr_stack:
+                    curr_max_usage = curr_stack[ending_j-1][3] # If the current stack is not empty, then the current maximum memory usage is the memory usage of the function ABOVE the one that was popped off last
+                else:
+                    curr_max_usage = 0 # If the current stack is empty, we retraced all the way to the root node and the current maximum memory usage is 0
+                # print(f'End. curr_stack is: {curr_stack}')
+
+        tree_memory[key] = prev_stack # Store the maximum stack usage path in the tree_memory dictionary for each function and repeat
+    
+    return tree_memory
+
+
+# For testing purposes
+def calltree_usage_checker(full_table, trees):
     tree_memory = {} # End result: {function name: [[function name, function address, memory usage], [function name, function address, memory usage], ...], function name: [[function name, function address, memory usage], [function name, function address, memory usage], ...], ...}
     
     for key in trees:
@@ -220,8 +315,7 @@ def calltree_usage(full_table, trees):
     # For testing purposes   
     for i in tree_memory:
         print(f'{i}: {tree_memory[i]}')
-
-
+    
 '''
 def calltree_depth():
     tree_memory = {}
@@ -246,16 +340,21 @@ def main():
     # for a in subprograms:
         # print(f'{a}: {subprograms[a]}')
     childNames(info) # Convert the addresses of child function calls in each subprogram key to the actual function name
+    # for a in subprograms:
+        # print(f'{a}: {subprograms[a]}')
     # print(subprograms)
     full_tree = consolidate() # Make the call tree for each function and delete cases where a function is both a root and child node within the entire tree dictionary
     # print(trees)
     su_files(table) # Find and store the .su files' paths for each function
     # print(full_table)
-    # for i in full_table:
-        # print(f'{i}: {full_table[i]}')
-    # for j in trees:
-        # print(f'{j}: {trees[j]}')
-    calltree_usage(table, full_tree) # Adds up the memory usage of each function in the call tree
+    # for i in table:
+        # print(f'{i}: {table[i]}')
+    # for j in full_tree:
+        # print(f'{j}: {full_tree[j]}')
+    final_tree = calltree_usage(table, full_tree) # Adds up the memory usage of each function in the call tree
+    for i in final_tree:
+        print(f'{i}: {final_tree[i]}')
+    # calltree_usage_checker(table, full_tree)
     # calltree_depth()
 
 
