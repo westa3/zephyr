@@ -9,9 +9,7 @@
 *~
 
 # Testing Output
-memoutput.txt
-treeoutput.txt
-checkeroutput.txt
+syscallsTree.txt
 dwarf.txt
 
 # Emacs

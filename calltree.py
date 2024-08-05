@@ -100,12 +100,16 @@ def consolidate():
     trees = {} # End result: {function name: [function name, 0, function1 name, depth1, function2 name, depth2, ...], function name: [function name, 0, function2 name, depth2, function3 name, depth3, ...], ...}
     visited = [] # Stack that keeps track of the visited subprograms - mini tree per function with a function followed by its depth. End result: deleted but right before: [function1, depth1, function2, depth2, function3, depth3, ...]
     to_remove = [] # list of functions that are child nodes of other functions and have a parent node (key) in subprorams. End result: deleted but right before: [function1 name, function2 name, ...]
+    parents = []
 
     for key in subprograms:
         visited.clear() # Clear the visited stack
+        parents.clear()
         trees[key] = [] # Add the key to the trees dictionary
         key_address = subprograms[key][1]
-        recursive(key, key_address, 0, key, key_address, trees, visited, to_remove) # Call the recursive function to create a call tree for subprograms[key]
+        recursive(key, key_address, 0, key, key_address, trees, visited, to_remove, parents) # Call the recursive function to create a call tree for subprograms[key]
+        # if key == 'z_x86_do_kernel_oops':
+            # print(f'Trees: {trees[key]}')
     
     for key in subprograms: # Remove the parent nodes that are child nodes in other functions
         if key in to_remove: 
@@ -115,7 +119,13 @@ def consolidate():
 
 
 # Create a call tree for a specified root node
-def recursive(target, target_address, depth, root_name, root_address, trees, visited, to_remove):
+def recursive(target, target_address, depth, root_name, root_address, trees, visited, to_remove, parents):
+    # print(f'Target: {target}, Target Address: {target_address}, Depth: {depth}, Root Name: {root_name}, Root Address: {root_address}')
+    # print(f'Target: {target}, Depth: {depth}')
+    # if root_name == 'z_impl_k_thread_join':
+        # print(f'Target: {target}, Depth: {depth}')
+        # print(f'Depth_List: {depth_list}')
+
     if depth != 0:
         to_remove.append(target) # If a function is being called by another function, then get rid of the child function's key and value in subprograms
 
@@ -124,31 +134,56 @@ def recursive(target, target_address, depth, root_name, root_address, trees, vis
     
     line = subprograms[target][2] # The line of the function in the .c file
     column = subprograms[target][3] # The column of the function in the .c file
+    visited.extend([target, target_address, line, column, depth])
+
+    # visited.extend([target, target_address, line, column, depth])
+    
+    # if target in depth_list:
+        # if depth == depth_list[target]:
+            # return
+        
+    # visited.extend([target, target_address, line, column, depth]) # Add the function name, address, line, column and depth to the visited stack
     
     if len(subprograms[target]) > 4: # If the function has other functions that it calls because any other function calls are listed at or after index 4 of subprograms[key]
         
         for idx in range(4, len(subprograms[target])):
-            if subprograms[target][idx][0] in visited: # If the function has already been visited, then check if it's at the same depth (meaning it could be making a tail recursive call)
-                
-                visited_depth = visited.index(subprograms[target][idx][0]) + 4  # subprograms[target][idx][0] is the function name. Get the index of the function name in the visited array and then get it's depth which is 4 indexes away from the name
-                
-                if visited_depth == depth:
-                    continue # If it is the same depth, I don't want to add it to the tree again
-
-                else:
-                    visited.extend([target, target_address, line, column, depth]) # If it's not the same depth, then add the function to the tree and call the function recursively with increased depth
-                    recursive(subprograms[target][idx][0], subprograms[target][idx][1], depth + 1, root_name, root_address, trees, visited, to_remove)
-
-            if subprograms[target][idx][0] not in visited: # If the function hasn't been visited, then add it to the tree and call the function recursively with increased depth
-                visited.extend([target, target_address, line, column, depth])
-                recursive(subprograms[target][idx][0], subprograms[target][idx][1], depth + 1, root_name, root_address, trees, visited, to_remove)
-
-            else:
+            print(f'Root Name: {root_name}')
+            print(f'Target: {target}, Depth: {depth}')
+            # print(f'Visited: {visited}')
+            # if root_name == 'arch_mem_domain_init':
+                # print(f'Functions: {subprograms[target]}')
+            func_name = subprograms[target][idx][0]
+            if func_name in parents:
                 continue
 
-    else: # Then the function doesn't call any other function and it's either at the end of the tree or it's simply a root with no leaves
-        visited.extend([target, target_address, line, column, depth])
+            if func_name == root_name or func_name == target:
+                continue
 
+            '''
+            if func_name in visited:
+                index = visited.index(func_name)
+                func_name_depth = visited[index + 4]
+                target_index = visited.index(target)
+                target_depth = visited[target_index + 4]
+                # print(f'Func Name: {func_name}, Func Name Depth: {func_name_depth}, Target: {target}, Target Depth: {target_depth}, Depth: {depth}, Visited: {visited}')
+                if target_depth != depth:
+                    for i in range(index + 5, len(visited), 5):
+                        if visited[i + 4] > func_name_depth:
+                            visited.extend(visited[i:i+5])
+                        else:
+                            break
+                    continue
+                    # print(f'Visited: {visited}')
+            else:
+            # func_name = subprograms[target][idx][0]
+            # if subprograms[target][idx][0] not in visited:
+            '''
+            parents.append(target)
+            recursive(func_name, subprograms[target][idx][1], depth + 1, root_name, root_address, trees, visited, to_remove, parents)
+            parents.pop()
+    # else:
+        # visited.extend([target, target_address, line, column, depth])
+    
     trees[root_name] = visited.copy()  # Store the tree in the trees dictionary
 
 
@@ -349,8 +384,8 @@ def main():
     # print(full_table)
     # for i in table:
         # print(f'{i}: {table[i]}')
-    # for j in full_tree:
-        # print(f'{j}: {full_tree[j]}')
+    for j in full_tree:
+        print(f'{j}: {full_tree[j]}')
     final_tree = calltree_usage(table, full_tree) # Adds up the memory usage of each function in the call tree
     for i in final_tree:
         print(f'{i}: {final_tree[i]}')
