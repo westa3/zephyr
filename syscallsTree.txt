@@ -1,20 +1,235 @@
-File: /home/awest/zephyrproject/zephyr/arch/x86/core/offsets/offsets.c
+File: /home/awest/zephyrproject/zephyr/build/zephyr/isr_tables.c
 
 
 
-File: /home/awest/zephyrproject/zephyr/tests/kernel/pending/src/main.c
+File: /home/awest/zephyrproject/zephyr/arch/arm/core/offsets/offsets.c
 
+
+
+File: /home/awest/zephyrproject/zephyr/tests/drivers/uart/uart_elementary/src/main.c
+
++z_impl_device_is_ready   0   no data
 +z_impl_k_sleep   0   no data
-+z_impl_k_thread_priority_set   0   no data
-+z_impl_k_sem_give   0   no data
-+z_impl_k_uptime_ticks   0   no data
-+z_impl_k_timer_status_sync   0   no data
-+z_impl_k_timer_start   0   no data
-+z_impl_k_thread_create   0   no data
-+z_impl_k_sem_init   0   no data
-+z_impl_k_queue_init   0   no data
-+z_impl_k_sem_take   0   no data
-+z_impl_k_queue_get   0   no data
++z_impl_uart_irq_update   0   no data
+   +poll_in   0   pointer, no data
+    poll_out   0   pointer, no data
+    err_check   0   pointer, no data
+    configure   0   pointer, no data
+    config_get   0   pointer, no data
+    fifo_fill   0   pointer, no data
+    fifo_read   0   pointer, no data
+    irq_tx_enable   0   pointer, no data
+    irq_tx_disable   0   pointer, no data
+    irq_tx_ready   0   pointer, no data
+    irq_rx_enable   0   pointer, no data
+    irq_rx_disable   0   pointer, no data
+    irq_tx_complete   0   pointer, no data
+    irq_rx_ready   0   pointer, no data
+    irq_err_enable   0   pointer, no data
+    irq_err_disable   0   pointer, no data
+    irq_is_pending   0   pointer, no data
+    irq_update   0   pointer, no data
+    irq_callback_set   0   pointer, no data
++z_impl_uart_irq_is_pending   0   no data
+   +poll_in   0   pointer, no data
+    poll_out   0   pointer, no data
+    err_check   0   pointer, no data
+    configure   0   pointer, no data
+    config_get   0   pointer, no data
+    fifo_fill   0   pointer, no data
+    fifo_read   0   pointer, no data
+    irq_tx_enable   0   pointer, no data
+    irq_tx_disable   0   pointer, no data
+    irq_tx_ready   0   pointer, no data
+    irq_rx_enable   0   pointer, no data
+    irq_rx_disable   0   pointer, no data
+    irq_tx_complete   0   pointer, no data
+    irq_rx_ready   0   pointer, no data
+    irq_err_enable   0   pointer, no data
+    irq_err_disable   0   pointer, no data
+    irq_is_pending   0   pointer, no data
+    irq_update   0   pointer, no data
+    irq_callback_set   0   pointer, no data
++z_impl_uart_irq_err_disable   0   no data
+   +poll_in   0   pointer, no data
+    poll_out   0   pointer, no data
+    err_check   0   pointer, no data
+    configure   0   pointer, no data
+    config_get   0   pointer, no data
+    fifo_fill   0   pointer, no data
+    fifo_read   0   pointer, no data
+    irq_tx_enable   0   pointer, no data
+    irq_tx_disable   0   pointer, no data
+    irq_tx_ready   0   pointer, no data
+    irq_rx_enable   0   pointer, no data
+    irq_rx_disable   0   pointer, no data
+    irq_tx_complete   0   pointer, no data
+    irq_rx_ready   0   pointer, no data
+    irq_err_enable   0   pointer, no data
+    irq_err_disable   0   pointer, no data
+    irq_is_pending   0   pointer, no data
+    irq_update   0   pointer, no data
+    irq_callback_set   0   pointer, no data
++z_impl_uart_irq_err_enable   0   no data
+   +poll_in   0   pointer, no data
+    poll_out   0   pointer, no data
+    err_check   0   pointer, no data
+    configure   0   pointer, no data
+    config_get   0   pointer, no data
+    fifo_fill   0   pointer, no data
+    fifo_read   0   pointer, no data
+    irq_tx_enable   0   pointer, no data
+    irq_tx_disable   0   pointer, no data
+    irq_tx_ready   0   pointer, no data
+    irq_rx_enable   0   pointer, no data
+    irq_rx_disable   0   pointer, no data
+    irq_tx_complete   0   pointer, no data
+    irq_rx_ready   0   pointer, no data
+    irq_err_enable   0   pointer, no data
+    irq_err_disable   0   pointer, no data
+    irq_is_pending   0   pointer, no data
+    irq_update   0   pointer, no data
+    irq_callback_set   0   pointer, no data
++z_impl_uart_irq_rx_disable   0   no data
+   +poll_in   0   pointer, no data
+    poll_out   0   pointer, no data
+    err_check   0   pointer, no data
+    configure   0   pointer, no data
+    config_get   0   pointer, no data
+    fifo_fill   0   pointer, no data
+    fifo_read   0   pointer, no data
+    irq_tx_enable   0   pointer, no data
+    irq_tx_disable   0   pointer, no data
+    irq_tx_ready   0   pointer, no data
+    irq_rx_enable   0   pointer, no data
+    irq_rx_disable   0   pointer, no data
+    irq_tx_complete   0   pointer, no data
+    irq_rx_ready   0   pointer, no data
+    irq_err_enable   0   pointer, no data
+    irq_err_disable   0   pointer, no data
+    irq_is_pending   0   pointer, no data
+    irq_update   0   pointer, no data
+    irq_callback_set   0   pointer, no data
++z_impl_uart_irq_rx_enable   0   no data
+   +poll_in   0   pointer, no data
+    poll_out   0   pointer, no data
+    err_check   0   pointer, no data
+    configure   0   pointer, no data
+    config_get   0   pointer, no data
+    fifo_fill   0   pointer, no data
+    fifo_read   0   pointer, no data
+    irq_tx_enable   0   pointer, no data
+    irq_tx_disable   0   pointer, no data
+    irq_tx_ready   0   pointer, no data
+    irq_rx_enable   0   pointer, no data
+    irq_rx_disable   0   pointer, no data
+    irq_tx_complete   0   pointer, no data
+    irq_rx_ready   0   pointer, no data
+    irq_err_enable   0   pointer, no data
+    irq_err_disable   0   pointer, no data
+    irq_is_pending   0   pointer, no data
+    irq_update   0   pointer, no data
+    irq_callback_set   0   pointer, no data
++z_impl_uart_irq_tx_disable   0   static
+   +poll_in   0   pointer, no data
+    poll_out   0   pointer, no data
+    err_check   0   pointer, no data
+    configure   0   pointer, no data
+    config_get   0   pointer, no data
+    fifo_fill   0   pointer, no data
+    fifo_read   0   pointer, no data
+    irq_tx_enable   0   pointer, no data
+    irq_tx_disable   0   pointer, no data
+    irq_tx_ready   0   pointer, no data
+    irq_rx_enable   0   pointer, no data
+    irq_rx_disable   0   pointer, no data
+    irq_tx_complete   0   pointer, no data
+    irq_rx_ready   0   pointer, no data
+    irq_err_enable   0   pointer, no data
+    irq_err_disable   0   pointer, no data
+    irq_is_pending   0   pointer, no data
+    irq_update   0   pointer, no data
+    irq_callback_set   0   pointer, no data
++z_impl_uart_irq_tx_enable   0   no data
+   +poll_in   0   pointer, no data
+    poll_out   0   pointer, no data
+    err_check   0   pointer, no data
+    configure   0   pointer, no data
+    config_get   0   pointer, no data
+    fifo_fill   0   pointer, no data
+    fifo_read   0   pointer, no data
+    irq_tx_enable   0   pointer, no data
+    irq_tx_disable   0   pointer, no data
+    irq_tx_ready   0   pointer, no data
+    irq_rx_enable   0   pointer, no data
+    irq_rx_disable   0   pointer, no data
+    irq_tx_complete   0   pointer, no data
+    irq_rx_ready   0   pointer, no data
+    irq_err_enable   0   pointer, no data
+    irq_err_disable   0   pointer, no data
+    irq_is_pending   0   pointer, no data
+    irq_update   0   pointer, no data
+    irq_callback_set   0   pointer, no data
++z_impl_uart_config_get   0   no data
+   +poll_in   0   pointer, no data
+    poll_out   0   pointer, no data
+    err_check   0   pointer, no data
+    configure   0   pointer, no data
+    config_get   0   pointer, no data
+    fifo_fill   0   pointer, no data
+    fifo_read   0   pointer, no data
+    irq_tx_enable   0   pointer, no data
+    irq_tx_disable   0   pointer, no data
+    irq_tx_ready   0   pointer, no data
+    irq_rx_enable   0   pointer, no data
+    irq_rx_disable   0   pointer, no data
+    irq_tx_complete   0   pointer, no data
+    irq_rx_ready   0   pointer, no data
+    irq_err_enable   0   pointer, no data
+    irq_err_disable   0   pointer, no data
+    irq_is_pending   0   pointer, no data
+    irq_update   0   pointer, no data
+    irq_callback_set   0   pointer, no data
++z_impl_uart_configure   0   no data
+   +poll_in   0   pointer, no data
+    poll_out   0   pointer, no data
+    err_check   0   pointer, no data
+    configure   0   pointer, no data
+    config_get   0   pointer, no data
+    fifo_fill   0   pointer, no data
+    fifo_read   0   pointer, no data
+    irq_tx_enable   0   pointer, no data
+    irq_tx_disable   0   pointer, no data
+    irq_tx_ready   0   pointer, no data
+    irq_rx_enable   0   pointer, no data
+    irq_rx_disable   0   pointer, no data
+    irq_tx_complete   0   pointer, no data
+    irq_rx_ready   0   pointer, no data
+    irq_err_enable   0   pointer, no data
+    irq_err_disable   0   pointer, no data
+    irq_is_pending   0   pointer, no data
+    irq_update   0   pointer, no data
+    irq_callback_set   0   pointer, no data
++z_impl_uart_err_check   0   no data
+   +poll_in   0   pointer, no data
+    poll_out   0   pointer, no data
+    err_check   0   pointer, no data
+    configure   0   pointer, no data
+    config_get   0   pointer, no data
+    fifo_fill   0   pointer, no data
+    fifo_read   0   pointer, no data
+    irq_tx_enable   0   pointer, no data
+    irq_tx_disable   0   pointer, no data
+    irq_tx_ready   0   pointer, no data
+    irq_rx_enable   0   pointer, no data
+    irq_rx_disable   0   pointer, no data
+    irq_tx_complete   0   pointer, no data
+    irq_rx_ready   0   pointer, no data
+    irq_err_enable   0   pointer, no data
+    irq_err_disable   0   pointer, no data
+    irq_is_pending   0   pointer, no data
+    irq_update   0   pointer, no data
+    irq_callback_set   0   pointer, no data
 
 
 File: /home/awest/zephyrproject/zephyr/lib/heap/heap.c
@@ -27,7 +242,7 @@ File: /home/awest/zephyrproject/zephyr/lib/os/cbprintf_packaged.c
 
 File: /home/awest/zephyrproject/zephyr/lib/os/printk.c
 
-+z_impl_k_str_out   20   dynamic,bounded
++z_impl_k_str_out   16   static
 
 
 File: /home/awest/zephyrproject/zephyr/lib/os/thread_entry.c
@@ -40,14 +255,6 @@ File: /home/awest/zephyrproject/zephyr/lib/os/assert.c
 
 
 
-File: /home/awest/zephyrproject/zephyr/lib/utils/rb.c
-
-
-
-File: /home/awest/zephyrproject/zephyr/lib/utils/bitarray.c
-
-
-
 File: /home/awest/zephyrproject/zephyr/build/zephyr/misc/generated/configs.c
 
 
@@ -56,71 +263,79 @@ File: /home/awest/zephyrproject/zephyr/subsys/logging/log_minimal.c
 
 
 
-File: /home/awest/zephyrproject/zephyr/subsys/tracing/tracing_none.c
+File: /home/awest/zephyrproject/zephyr/arch/arm/core/fatal.c
 
 
 
-File: /home/awest/zephyrproject/zephyr/arch/x86/core/cpuhalt.c
+File: /home/awest/zephyrproject/zephyr/arch/arm/core/nmi.c
 
 
 
-File: /home/awest/zephyrproject/zephyr/arch/x86/core/prep_c.c
+File: /home/awest/zephyrproject/zephyr/arch/arm/core/nmi_on_reset.S
 
 
 
-File: /home/awest/zephyrproject/zephyr/arch/x86/core/fatal.c
+File: /home/awest/zephyrproject/zephyr/arch/arm/core/tls.c
 
 
 
-File: /home/awest/zephyrproject/zephyr/arch/x86/core/memmap.c
+File: /home/awest/zephyrproject/zephyr/arch/arm/core/cortex_m/exc_exit.c
 
 
 
-File: /home/awest/zephyrproject/zephyr/arch/x86/core/multiboot.c
+File: /home/awest/zephyrproject/zephyr/arch/arm/core/cortex_m/fault.c
 
 
 
-File: /home/awest/zephyrproject/zephyr/arch/x86/core/x86_mmu.c
+File: /home/awest/zephyrproject/zephyr/arch/arm/core/cortex_m/fault_s.S
 
 
 
-File: /home/awest/zephyrproject/zephyr/arch/x86/core/early_serial.c
+File: /home/awest/zephyrproject/zephyr/arch/arm/core/cortex_m/reset.S
 
 
 
-File: /home/awest/zephyrproject/zephyr/arch/x86/core/tls.c
+File: /home/awest/zephyrproject/zephyr/arch/arm/core/cortex_m/thread_abort.c
+
++z_impl_k_thread_abort   0   static
+   +arch_is_in_isr   0   inlined, no data
+    __get_IPSR   0   inlined, no data
+    z_thread_abort   0   no data
+
+
+File: /home/awest/zephyrproject/zephyr/arch/arm/core/cortex_m/swap.c
 
 
 
-File: /home/awest/zephyrproject/zephyr/arch/x86/core/ia32/../common.S
+File: /home/awest/zephyrproject/zephyr/arch/arm/core/cortex_m/swap_helper.S
 
 
 
-File: /home/awest/zephyrproject/zephyr/arch/x86/core/ia32/excstub.S
+File: /home/awest/zephyrproject/zephyr/arch/arm/core/cortex_m/irq_manage.c
 
 
 
-File: /home/awest/zephyrproject/zephyr/arch/x86/core/ia32/intstub.S
+File: /home/awest/zephyrproject/zephyr/arch/arm/core/cortex_m/prep_c.c
 
 
 
-File: /home/awest/zephyrproject/zephyr/arch/x86/core/ia32/irq_manage.c
+File: /home/awest/zephyrproject/zephyr/arch/arm/core/cortex_m/thread.c
 
 
 
-File: /home/awest/zephyrproject/zephyr/arch/x86/core/ia32/swap.S
+File: /home/awest/zephyrproject/zephyr/arch/arm/core/cortex_m/cpu_idle.c
 
 
 
-File: /home/awest/zephyrproject/zephyr/arch/x86/core/ia32/thread.c
+File: /home/awest/zephyrproject/zephyr/arch/arm/core/cortex_m/irq_init.c
 
 
 
-File: /home/awest/zephyrproject/zephyr/arch/x86/core/ia32/tls.c
+File: /home/awest/zephyrproject/zephyr/arch/arm/core/cortex_m/isr_wrapper.c
 
 
 
-File: /home/awest/zephyrproject/zephyr/arch/x86/core/ia32/fatal.c
+File: /home/awest/zephyrproject/zephyr/arch/arm/core/cortex_m/__aeabi_read_tp.S
 
 
 
@@ -129,13 +344,17 @@ File: /home/awest/zephyrproject/zephyr/lib/libc/picolibc/libc-hooks.c
 +z_impl_k_mutex_unlock   0   no data
 +z_impl_k_mutex_lock   0   no data
 +z_impl_k_mutex_init   0   no data
-+z_impl_zephyr_fputc   12   dynamic,bounded
++z_impl_zephyr_fputc   8   static
 
 
 File: /home/awest/zephyrproject/zephyr/lib/libc/common/source/stdlib/malloc.c
 
 +z_impl_k_mutex_unlock   0   no data
 +z_impl_k_mutex_lock   0   no data
+
+
+File: /home/awest/zephyrproject/zephyr/soc/ti/lm3s6965/soc_config.c
+
 
 
 File: /home/awest/zephyrproject/zephyr/subsys/testsuite/ztest/src/ztest.c
@@ -145,71 +364,12 @@ File: /home/awest/zephyrproject/zephyr/subsys/testsuite/ztest/src/ztest.c
 +z_impl_k_thread_name_set   0   no data
 +z_impl_k_thread_create   0   no data
 +z_impl_k_thread_abort   0   no data
-+z_impl___ztest_set_test_phase   8   inlined, static
-+z_impl___ztest_set_test_result   8   inlined, static
-+z_impl_ztest_run_test_suites   36   dynamic,bounded
-   +__ztest_init_unit_test_result_for_suite   0   inlined, no data
-    z_ztest_get_next_test   20   dynamic,bounded
-      +strcmp   0   no data
-    __ztest_run_test_suite   0   inlined, no data
-    NA   0
-      +__ztest_set_test_result   8   inlined, static
-       z_impl___ztest_set_test_result   8   inlined, static
-       __ztest_set_test_phase   8   inlined, static
-       z_impl___ztest_set_test_phase   8   inlined, static
-       run_test   32   inlined, dynamic,bounded
-       __ztest_set_test_phase   8   inlined, static
-       z_impl___ztest_set_test_phase   8   inlined, static
-       get_start_time_cyc   0   inlined, no data
-       k_cycle_get_32   0   inlined, no data
-       arch_k_cycle_get_32   0   inlined, no data
-       sys_clock_cycle_get_32   0   no data
-       k_thread_create   0   inlined, no data
-       z_impl_k_thread_create   0   no data
-       k_object_access_grant   0   inlined, no data
-       k_object_access_grant   0   inlined, no data
-       k_object_access_grant   0   inlined, no data
-       k_thread_name_set   0   inlined, no data
-       z_impl_k_thread_name_set   0   no data
-       k_thread_start   0   inlined, no data
-       z_impl_k_thread_start   0   no data
-       k_thread_join   0   inlined, no data
-       z_impl_k_thread_join   0   no data
-       __ztest_set_test_phase   8   inlined, static
-       z_impl___ztest_set_test_phase   8   inlined, static
-       get_test_duration_ms   0   inlined, no data
-       k_cycle_get_32   0   inlined, no data
-       arch_k_cycle_get_32   0   inlined, no data
-       sys_clock_cycle_get_32   0   no data
-       sys_clock_hw_cycles_per_sec_runtime_get   0   inlined, no data
-       z_impl_sys_clock_hw_cycles_per_sec_runtime_get   0   inlined, no data
-       sys_clock_hw_cycles_per_sec_runtime_get   0   inlined, no data
-       z_impl_sys_clock_hw_cycles_per_sec_runtime_get   0   inlined, no data
-       __udivdi3   0   no data
-       __ztest_set_test_phase   8   inlined, static
-       z_impl___ztest_set_test_phase   8   inlined, static
-       cleanup_test   0   inlined, no data
-       k_thread_abort   0   inlined, no data
-       z_impl_k_thread_abort   0   no data
-       get_final_test_result   0   inlined, no data
-       strcmp   0   no data
-       strcmp   0   no data
-       TC_RESULT_TO_STR   0   inlined, no data
-       printk   0   no data
-       run_test_rules   32   dynamic,bounded
-       printk   0   no data
-       printk   0   no data
-       z_ztest_get_next_test   20   dynamic,bounded
-         +strcmp   0   no data
-       __ztest_set_test_phase   8   inlined, static
-       z_impl___ztest_set_test_phase   8   inlined, static
-       printk   0   no data
-       printk   0   no data
-       printk   0   no data
-+z_impl_z_test_1cpu_stop   4   static
-+z_impl_z_test_1cpu_start   4   static
++z_impl___ztest_set_test_phase   0   static
++z_impl___ztest_set_test_result   0   static
++z_impl_ztest_run_test_suites   48   static
++z_impl_z_test_1cpu_stop   0   static
++z_impl_z_test_1cpu_start   0   static
 +z_impl_k_object_access_grant   0   no data
-+z_impl_sys_clock_hw_cycles_per_sec_runtime_get   0   inlined, no data
 
 
 File: /home/awest/zephyrproject/zephyr/subsys/testsuite/ztest/src/ztest_defaults.c
@@ -217,49 +377,43 @@ File: /home/awest/zephyrproject/zephyr/subsys/testsuite/ztest/src/ztest_defaults
 +z_impl_ztest_run_test_suites   0   no data
 
 
-File: /home/awest/zephyrproject/zephyr/drivers/interrupt_controller/intc_ioapic.c
-
-
-
-File: /home/awest/zephyrproject/zephyr/drivers/interrupt_controller/intc_loapic.c
-
-
-
-File: /home/awest/zephyrproject/zephyr/drivers/interrupt_controller/intc_system_apic.c
-
-
-
 File: /home/awest/zephyrproject/zephyr/drivers/console/uart_console.c
 
 +z_impl_device_is_ready   0   no data
 +z_impl_uart_poll_out   0   no data
+   +poll_in   0   pointer, no data
+    poll_out   0   pointer, no data
+    err_check   0   pointer, no data
+    configure   0   pointer, no data
+    config_get   0   pointer, no data
+    fifo_fill   0   pointer, no data
+    fifo_read   0   pointer, no data
+    irq_tx_enable   0   pointer, no data
+    irq_tx_disable   0   pointer, no data
+    irq_tx_ready   0   pointer, no data
+    irq_rx_enable   0   pointer, no data
+    irq_rx_disable   0   pointer, no data
+    irq_tx_complete   0   pointer, no data
+    irq_rx_ready   0   pointer, no data
+    irq_err_enable   0   pointer, no data
+    irq_err_disable   0   pointer, no data
+    irq_is_pending   0   pointer, no data
+    irq_update   0   pointer, no data
+    irq_callback_set   0   pointer, no data
 
 
-File: /home/awest/zephyrproject/zephyr/drivers/serial/uart_ns16550.c
-
-+z_impl_device_is_ready   0   no data
+File: /home/awest/zephyrproject/zephyr/drivers/serial/uart_stellaris.c
 
 
-File: /home/awest/zephyrproject/zephyr/drivers/timer/hpet.c
+
+File: /home/awest/zephyrproject/zephyr/drivers/timer/cortex_m_systick.c
 
 
 
 File: /home/awest/zephyrproject/zephyr/kernel/device.c
 
-+z_impl_device_is_ready   8   static
-+z_impl_device_get_binding   32   dynamic,bounded
-   +assert_print   0   no data
-    assert_print   0   no data
-    z_impl_device_is_ready   8   static
-    assert_print   0   no data
-    assert_print   0   no data
-    assert_post_action   0   no data
-    z_impl_device_is_ready   8   static
-    strcmp   0   no data
-
-
-File: /home/awest/zephyrproject/zephyr/kernel/errno.c
-
++z_impl_device_is_ready   0   static
++z_impl_device_get_binding   16   static
 
 
 File: /home/awest/zephyrproject/zephyr/kernel/fatal.c
@@ -270,11 +424,7 @@ File: /home/awest/zephyrproject/zephyr/kernel/fatal.c
 File: /home/awest/zephyrproject/zephyr/kernel/init.c
 
 +z_impl_k_thread_start   0   no data
-+z_impl_device_init   24   dynamic,bounded
-   +assert_print   0   no data
-    assert_print   0   no data
-    assert_post_action   0   no data
-    do_device_init   16   dynamic,bounded
++z_impl_device_init   8   static
 
 
 File: /home/awest/zephyrproject/zephyr/kernel/init_static.c
@@ -285,489 +435,157 @@ File: /home/awest/zephyrproject/zephyr/kernel/idle.c
 
 
 
-File: /home/awest/zephyrproject/zephyr/kernel/queue.c
-
-+z_impl_k_queue_peek_tail   16   dynamic,bounded
-   +sys_sflist_peek_tail   0   inlined, no data
-    z_queue_node_peek   16   dynamic,bounded
-+z_impl_k_queue_peek_head   16   dynamic,bounded
-   +sys_sflist_peek_head   0   inlined, no data
-    z_queue_node_peek   16   dynamic,bounded
-+z_impl_k_queue_get   44   dynamic,bounded
-   +sys_sflist_get_not_empty   0   inlined, no data
-    z_sfnode_next_peek   0   inlined, no data
-    z_sflist_head_set   0   inlined, no data
-    sys_sflist_peek_tail   0   inlined, no data
-    z_sflist_tail_set   0   inlined, no data
-    k_spin_unlock   0   inlined, no data
-    z_spin_unlock_valid   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    assert_post_action   0   no data
-    z_queue_node_peek   16   dynamic,bounded
-    k_spin_lock   0   inlined, no data
-    arch_irq_lock   0   inlined, no data
-    z_spinlock_validate_pre   0   inlined, no data
-    z_spin_lock_valid   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    z_spinlock_validate_post   0   inlined, no data
-    z_spin_lock_set_owner   0   no data
-    sys_sflist_is_empty   0   inlined, no data
-    sys_sflist_peek_head   0   inlined, no data
-    k_spin_unlock   0   inlined, no data
-    arch_irq_unlock   0   inlined, no data
-    z_pend_curr   0   no data
-+z_impl_k_queue_alloc_prepend   8   static
-   +queue_insert   52   dynamic,bounded
-      +z_thread_malloc   0   inlined, no data
-       z_thread_aligned_alloc   0   no data
-       k_spin_unlock   0   inlined, no data
-       arch_irq_unlock   0   inlined, no data
-       z_spin_unlock_valid   0   no data
-       assert_print   0   no data
-       assert_print   0   no data
-       assert_post_action   0   no data
-       sys_sfnode_init   0   inlined, no data
-       k_spin_lock   0   inlined, no data
-       arch_irq_lock   0   inlined, no data
-       z_spinlock_validate_pre   0   inlined, no data
-       z_spin_lock_valid   0   no data
-       assert_print   0   no data
-       assert_print   0   no data
-       z_spinlock_validate_post   0   inlined, no data
-       z_spin_lock_set_owner   0   no data
-       sys_sflist_peek_tail   0   inlined, no data
-       prepare_thread_to_run   0   inlined, no data
-       z_thread_return_value_set_with_data   0   inlined, no data
-       arch_thread_return_value_set   0   inlined, no data
-       z_ready_thread   0   no data
-       sys_sfnode_init   0   inlined, no data
-       sys_sflist_insert   0   inlined, no data
-       sys_sflist_prepend   0   inlined, no data
-       z_sfnode_next_set   0   inlined, no data
-       sys_sfnode_flags_get   0   inlined, no data
-       sys_sflist_peek_head   0   inlined, no data
-       z_sflist_head_set   0   inlined, no data
-       sys_sflist_peek_tail   0   inlined, no data
-       z_sfnode_next_peek   0   inlined, no data
-       sys_sflist_append   0   inlined, no data
-       z_sfnode_next_set   0   inlined, no data
-       sys_sflist_peek_tail   0   inlined, no data
-       z_sflist_tail_set   0   inlined, no data
-       z_sflist_head_set   0   inlined, no data
-       z_sfnode_next_set   0   inlined, no data
-       sys_sfnode_flags_get   0   inlined, no data
-       z_sflist_tail_set   0   inlined, no data
-       z_sfnode_next_set   0   inlined, no data
-       z_sfnode_next_set   0   inlined, no data
-       sys_sfnode_flags_get   0   inlined, no data
-       z_unpend_first_thread   0   no data
-       z_reschedule   0   no data
-+z_impl_k_queue_alloc_append   8   static
-   +queue_insert   52   dynamic,bounded
-      +z_thread_malloc   0   inlined, no data
-       z_thread_aligned_alloc   0   no data
-       k_spin_unlock   0   inlined, no data
-       arch_irq_unlock   0   inlined, no data
-       z_spin_unlock_valid   0   no data
-       assert_print   0   no data
-       assert_print   0   no data
-       assert_post_action   0   no data
-       sys_sfnode_init   0   inlined, no data
-       k_spin_lock   0   inlined, no data
-       arch_irq_lock   0   inlined, no data
-       z_spinlock_validate_pre   0   inlined, no data
-       z_spin_lock_valid   0   no data
-       assert_print   0   no data
-       assert_print   0   no data
-       z_spinlock_validate_post   0   inlined, no data
-       z_spin_lock_set_owner   0   no data
-       sys_sflist_peek_tail   0   inlined, no data
-       prepare_thread_to_run   0   inlined, no data
-       z_thread_return_value_set_with_data   0   inlined, no data
-       arch_thread_return_value_set   0   inlined, no data
-       z_ready_thread   0   no data
-       sys_sfnode_init   0   inlined, no data
-       sys_sflist_insert   0   inlined, no data
-       sys_sflist_prepend   0   inlined, no data
-       z_sfnode_next_set   0   inlined, no data
-       sys_sfnode_flags_get   0   inlined, no data
-       sys_sflist_peek_head   0   inlined, no data
-       z_sflist_head_set   0   inlined, no data
-       sys_sflist_peek_tail   0   inlined, no data
-       z_sfnode_next_peek   0   inlined, no data
-       sys_sflist_append   0   inlined, no data
-       z_sfnode_next_set   0   inlined, no data
-       sys_sflist_peek_tail   0   inlined, no data
-       z_sflist_tail_set   0   inlined, no data
-       z_sflist_head_set   0   inlined, no data
-       z_sfnode_next_set   0   inlined, no data
-       sys_sfnode_flags_get   0   inlined, no data
-       z_sflist_tail_set   0   inlined, no data
-       z_sfnode_next_set   0   inlined, no data
-       z_sfnode_next_set   0   inlined, no data
-       sys_sfnode_flags_get   0   inlined, no data
-       z_unpend_first_thread   0   no data
-       z_reschedule   0   no data
-+z_impl_k_queue_cancel_wait   36   dynamic,bounded
-   +k_spin_lock   0   inlined, no data
-    arch_irq_lock   0   inlined, no data
-    z_spinlock_validate_pre   0   inlined, no data
-    z_spin_lock_valid   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    assert_post_action   0   no data
-    z_spinlock_validate_post   0   inlined, no data
-    z_spin_lock_set_owner   0   no data
-    prepare_thread_to_run   0   inlined, no data
-    z_thread_return_value_set_with_data   0   inlined, no data
-    arch_thread_return_value_set   0   inlined, no data
-    z_ready_thread   0   no data
-    z_unpend_first_thread   0   no data
-    z_reschedule   0   no data
-+z_impl_k_queue_init   12   static
-   +sys_sflist_init   0   inlined, no data
-    z_waitq_init   0   inlined, no data
-
-
-File: /home/awest/zephyrproject/zephyr/kernel/sem.c
-
-+z_impl_k_sem_reset   32   dynamic,bounded
-   +k_spin_lock   0   inlined, no data
-    arch_irq_lock   0   inlined, no data
-    z_spinlock_validate_pre   0   inlined, no data
-    z_spin_lock_valid   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    assert_post_action   0   no data
-    z_spinlock_validate_post   0   inlined, no data
-    z_spin_lock_set_owner   0   no data
-    arch_thread_return_value_set   0   inlined, no data
-    z_unpend_first_thread   0   no data
-    z_ready_thread   0   no data
-    z_reschedule   0   no data
-+z_impl_k_sem_take   40   dynamic,bounded
-   +arch_is_in_isr   0   inlined, no data
-    k_spin_lock   0   inlined, no data
-    arch_irq_lock   0   inlined, no data
-    z_spinlock_validate_pre   0   inlined, no data
-    z_spin_lock_valid   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    assert_post_action   0   no data
-    z_spinlock_validate_post   0   inlined, no data
-    z_spin_lock_set_owner   0   no data
-    k_spin_unlock   0   inlined, no data
-    arch_irq_unlock   0   inlined, no data
-    z_spin_unlock_valid   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    k_spin_unlock   0   inlined, no data
-    arch_irq_unlock   0   inlined, no data
-    z_spin_unlock_valid   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    z_pend_curr   0   no data
-+z_impl_k_sem_give   32   dynamic,bounded
-   +k_spin_lock   0   inlined, no data
-    arch_irq_lock   0   inlined, no data
-    z_spinlock_validate_pre   0   inlined, no data
-    z_spin_lock_valid   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    z_spinlock_validate_post   0   inlined, no data
-    z_spin_lock_set_owner   0   no data
-    arch_thread_return_value_set   0   inlined, no data
-    k_spin_unlock   0   inlined, no data
-    arch_irq_unlock   0   inlined, no data
-    z_spin_unlock_valid   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    assert_post_action   0   no data
-    z_unpend_first_thread   0   no data
-    z_ready_thread   0   no data
-    z_reschedule   0   no data
-+z_impl_k_sem_init   12   static
-   +z_waitq_init   0   inlined, no data
-
-
-File: /home/awest/zephyrproject/zephyr/kernel/work.c
-
-+z_impl_k_thread_start   0   no data
-+z_impl_k_thread_name_set   0   no data
-+z_impl_k_thread_create   0   no data
-+z_impl_k_yield   0   no data
-+z_impl_k_sem_give   0   no data
-+z_impl_k_sem_take   0   no data
-+z_impl_k_sem_init   0   no data
-
-
-File: /home/awest/zephyrproject/zephyr/kernel/priority_queues.c
-
-
-
 File: /home/awest/zephyrproject/zephyr/kernel/thread.c
 
-+z_impl_k_thread_create   60   no data, dynamic,bounded
++z_impl_k_thread_create   0   no data
    +arch_is_in_isr   0   inlined, no data
+    __get_IPSR   0   inlined, no data
     thread_schedule_new   0   inlined, no data
-    k_thread_start   4   inlined, no data, static
-    z_impl_k_thread_start   4   inlined, no data, static
+    k_thread_start   0   inlined, no data
+    z_impl_k_thread_start   0   inlined, no data
     z_sched_start   0   no data
     z_add_thread_timeout   0   inlined, no data
     z_add_timeout   0   no data
     assert_print   0   no data
     assert_print   0   no data
     assert_post_action   0   no data
-    z_setup_new_thread   56   no data, dynamic,bounded
+    z_setup_new_thread   0   no data
       +z_is_idle_thread_entry   0   inlined, no data
        z_waitq_init   0   inlined, no data
-       z_init_thread_base   8   inlined, no data, static
+       sys_dlist_init   0   inlined, no data
+       z_init_thread_base   0   inlined, no data
        z_init_thread_timeout   0   inlined, no data
        z_init_timeout   0   inlined, no data
        sys_dnode_init   0   inlined, no data
        setup_thread_stack   0   inlined, no data
-       K_KERNEL_STACK_BUFFER   0   inlined, no data
-       k_mem_map_phys_guard   0   no data
+       arch_new_thread   0   no data
+       strncpy   0   no data
+       assert_print   0   no data
        assert_print   0   no data
        assert_post_action   0   no data
-       arch_tls_stack_setup   0   no data
-       assert_print   0   no data
-       assert_print   0   no data
-       k_thread_abort_cleanup_check_reuse   28   no data, dynamic,bounded
-         +k_spin_lock   0   inlined, no data
-          arch_irq_lock   0   inlined, no data
-          z_spinlock_validate_pre   0   inlined, no data
-          z_spin_lock_valid   0   no data
-          assert_print   0   no data
-          assert_print   0   no data
-          z_spinlock_validate_post   0   inlined, no data
-          z_spin_lock_set_owner   0   no data
-          k_spin_unlock   0   inlined, no data
-          arch_irq_unlock   0   inlined, no data
-          z_spin_unlock_valid   0   no data
-          assert_print   0   no data
-          assert_print   0   no data
-          assert_post_action   0   no data
-          do_thread_cleanup   20   no data, dynamic,bounded
-            +k_mem_unmap_phys_guard   0   no data
-       arch_new_thread   8   static
-       strncpy   0   no data
-+z_impl_k_thread_start   4   inlined, no data, static
-+z_impl_k_thread_name_copy   20   no data, dynamic,bounded
++z_impl_k_thread_start   0   inlined, no data
++z_impl_k_thread_name_copy   0   no data
    +strncpy   0   no data
-+z_impl_k_thread_name_set   24   no data, dynamic,bounded
++z_impl_k_thread_name_set   0   no data
    +strncpy   0   no data
-+z_impl_k_thread_priority_get   8   no data, static
-+z_impl_k_is_preempt_thread   4   no data, static
++z_impl_k_thread_priority_get   0   no data
++z_impl_k_is_preempt_thread   0   no data
    +arch_is_in_isr   0   inlined, no data
+    __get_IPSR   0   inlined, no data
     thread_is_preemptible   0   inlined, no data
 
 
 File: /home/awest/zephyrproject/zephyr/kernel/sched.c
 
-+z_impl_k_thread_join   40   dynamic,bounded
++z_impl_k_thread_join   24   static
    +k_spin_lock   0   inlined, no data
-    arch_irq_lock   0   inlined, no data
-    z_spinlock_validate_pre   0   inlined, no data
-    z_spin_lock_valid   0   no data
+    k_spin_unlock   0   inlined, no data
+    arch_irq_unlock   0   inlined, no data
+    __set_BASEPRI   0   inlined, no data
+    __ISB   0   inlined, no data
+    z_spin_unlock_valid   0   no data
     assert_print   0   no data
     assert_print   0   no data
-    z_spinlock_validate_post   0   inlined, no data
-    z_spin_lock_set_owner   0   no data
     arch_is_in_isr   0   inlined, no data
+    __get_IPSR   0   inlined, no data
     add_thread_timeout   0   inlined, no data
     z_add_thread_timeout   0   inlined, no data
     z_add_timeout   0   no data
-    z_swap   4   inlined, static
+    z_swap   0   inlined, no data
     k_spin_release   0   inlined, no data
     z_spin_unlock_valid   0   no data
     assert_print   0   no data
     assert_print   0   no data
     z_swap_irqlock   0   inlined, no data
-    arch_swap   0   no data
-    k_spin_unlock   0   inlined, no data
-    arch_irq_unlock   0   inlined, no data
-    z_spin_unlock_valid   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
     assert_print   0   no data
     assert_print   0   no data
     assert_post_action   0   no data
-    add_to_waitq_locked   60   dynamic
+    add_to_waitq_locked   16   static
       +z_mark_thread_as_pending   0   inlined, no data
-       z_priq_rb_add   0   inlined, no data
-       z_rb_foreach_next   0   no data
-       rb_insert   0   no data
-       unready_thread   28   dynamic,bounded
-+z_impl_k_thread_abort   28   dynamic,bounded
-   +z_thread_abort   32   dynamic,bounded
-      +k_spin_lock   0   inlined, no data
-       arch_irq_lock   0   inlined, no data
-       z_spinlock_validate_pre   0   inlined, no data
-       z_spin_lock_valid   0   no data
-       assert_print   0   no data
-       assert_print   0   no data
-       z_spinlock_validate_post   0   inlined, no data
-       z_spin_lock_set_owner   0   no data
-       z_is_thread_essential   0   inlined, no data
-       k_spin_unlock   0   inlined, no data
-       arch_irq_unlock   0   inlined, no data
-       z_spin_unlock_valid   0   no data
-       assert_print   0   no data
-       assert_print   0   no data
-       assert_post_action   0   no data
-       k_spin_unlock   0   inlined, no data
-       arch_irq_unlock   0   inlined, no data
-       z_spin_unlock_valid   0   no data
-       assert_print   0   no data
-       assert_print   0   no data
-       z_thread_halt   44   dynamic,bounded
-         +halt_thread   0   inlined, no data
+       z_priq_dumb_add   0   inlined, no data
+       unready_thread   16   static
+         +z_is_thread_queued   0   inlined, no data
+          z_is_thread_state_set   0   inlined, no data
           dequeue_thread   0   inlined, no data
           runq_remove   0   inlined, no data
           z_is_idle_thread_object   0   inlined, no data
-          z_priq_rb_remove   0   inlined, no data
-          rb_remove   0   no data
-          assert_print   0   no data
-          clear_halting   0   inlined, no data
-          z_abort_thread_timeout   0   inlined, no data
-          z_abort_timeout   0   no data
-          unpend_all   16   inlined, dynamic,bounded
-          z_waitq_head   0   inlined, no data
-          z_waitq_head   0   inlined, no data
-          rb_get_min   16   dynamic,bounded
-            +z_rb_get_minmax   0   no data
-          z_abort_thread_timeout   0   inlined, no data
-          z_abort_timeout   0   no data
-          arch_thread_return_value_set   0   inlined, no data
-          unpend_thread_no_timeout   32   dynamic,bounded
-            +pended_on_thread   0   inlined, no data
-             assert_print   0   no data
-             assert_post_action   0   no data
-             z_priq_rb_remove   0   inlined, no data
-             rb_remove   0   no data
-             z_mark_thread_as_not_pending   0   inlined, no data
-          ready_thread   56   dynamic
-          arch_is_in_isr   0   inlined, no data
-          z_dummy_thread_init   0   inlined, no data
-          clear_halting   0   inlined, no data
-          update_cache   32   dynamic,bounded
-            +next_up   0   inlined, no data
-             runq_best   0   inlined, no data
-             z_priq_rb_best   0   inlined, no data
-             rb_get_min   16   dynamic,bounded
-               +z_rb_get_minmax   0   no data
-             should_preempt   0   inlined, no data
-             z_is_thread_prevented_from_running   0   inlined, no data
-             thread_is_preemptible   0   inlined, no data
-             assert_print   0   no data
-             assert_print   0   no data
-             assert_post_action   0   no data
-             z_reset_time_slice   0   no data
-          unpend_thread_no_timeout   32   dynamic,bounded
-            +pended_on_thread   0   inlined, no data
-             assert_print   0   no data
-             assert_post_action   0   no data
-             z_priq_rb_remove   0   inlined, no data
-             rb_remove   0   no data
-             z_mark_thread_as_not_pending   0   inlined, no data
-          update_cache   32   dynamic,bounded
-            +next_up   0   inlined, no data
-             runq_best   0   inlined, no data
-             z_priq_rb_best   0   inlined, no data
-             rb_get_min   16   dynamic,bounded
-               +z_rb_get_minmax   0   no data
-             should_preempt   0   inlined, no data
-             z_is_thread_prevented_from_running   0   inlined, no data
-             thread_is_preemptible   0   inlined, no data
-             assert_print   0   no data
-             assert_print   0   no data
-             assert_post_action   0   no data
-             z_reset_time_slice   0   no data
-          k_thread_abort_cleanup   0   no data
-          update_cache   32   dynamic,bounded
-            +next_up   0   inlined, no data
-             runq_best   0   inlined, no data
-             z_priq_rb_best   0   inlined, no data
-             rb_get_min   16   dynamic,bounded
-               +z_rb_get_minmax   0   no data
-             should_preempt   0   inlined, no data
-             z_is_thread_prevented_from_running   0   inlined, no data
-             thread_is_preemptible   0   inlined, no data
-             assert_print   0   no data
-             assert_print   0   no data
-             assert_post_action   0   no data
-             z_reset_time_slice   0   no data
-          k_thread_abort_cleanup   0   no data
-          arch_is_in_isr   0   inlined, no data
-          z_swap   4   inlined, static
-          k_spin_release   0   inlined, no data
-          z_spin_unlock_valid   0   no data
-          assert_print   0   no data
+          z_priq_mq_remove   0   inlined, no data
+          get_prio_info   0   inlined, no data
+          sys_dlist_is_empty   0   inlined, no data
+          sys_dlist_remove   0   static
+            +sys_dnode_init   0   inlined, no data
           assert_print   0   no data
           assert_post_action   0   no data
-          z_swap_irqlock   0   inlined, no data
-          arch_swap   0   no data
-          k_spin_unlock   0   inlined, no data
-          arch_irq_unlock   0   inlined, no data
-          z_spin_unlock_valid   0   no data
-          assert_print   0   no data
-          assert_print   0   no data
-          assert_print   0   no data
-          assert_print   0   no data
-    assert_print   0   no data
-    assert_post_action   0   no data
-+z_impl_k_sched_current_thread_query   4   static
-+z_impl_k_wakeup   32   dynamic,bounded
+          update_cache   16   static
+            +next_up   0   inlined, no data
+             should_preempt   0   inlined, no data
+             z_is_thread_prevented_from_running   0   inlined, no data
+             z_is_thread_timeout_active   0   inlined, no data
+             z_is_inactive_timeout   0   inlined, no data
+             sys_dnode_is_linked   0   inlined, no data
+             thread_is_preemptible   0   inlined, no data
+             assert_print   0   no data
+             assert_print   0   no data
+             assert_post_action   0   no data
+             z_reset_time_slice   0   no data
++z_impl_k_sched_current_thread_query   0   static
++z_impl_k_wakeup   16   static
    +z_is_thread_pending   0   inlined, no data
     z_abort_thread_timeout   0   inlined, no data
     z_abort_timeout   0   no data
     k_spin_lock   0   inlined, no data
-    arch_irq_lock   0   inlined, no data
-    z_spinlock_validate_pre   0   inlined, no data
-    z_spin_lock_valid   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    z_spinlock_validate_post   0   inlined, no data
-    z_spin_lock_set_owner   0   no data
-    z_mark_thread_as_not_suspended   0   inlined, no data
-    arch_is_in_isr   0   inlined, no data
     k_spin_unlock   0   inlined, no data
     arch_irq_unlock   0   inlined, no data
+    __set_BASEPRI   0   inlined, no data
+    __ISB   0   inlined, no data
+    assert_post_action   0   no data
     z_spin_unlock_valid   0   no data
     assert_print   0   no data
     assert_print   0   no data
-    assert_post_action   0   no data
-    ready_thread   56   dynamic
-    z_reschedule   32   dynamic,bounded
-      +resched   32   inlined, dynamic,bounded
+    z_mark_thread_as_not_suspended   0   inlined, no data
+    arch_is_in_isr   0   inlined, no data
+    __get_IPSR   0   inlined, no data
+    ready_thread   16   static
+    z_reschedule   16   static
+      +resched   0   inlined, no data
        arch_is_in_isr   0   inlined, no data
+       __get_IPSR   0   inlined, no data
        need_swap   0   inlined, no data
-       z_swap   4   inlined, static
+       z_swap   0   inlined, no data
        k_spin_release   0   inlined, no data
        z_spin_unlock_valid   0   no data
        assert_print   0   no data
        assert_print   0   no data
        z_swap_irqlock   0   inlined, no data
-       arch_swap   0   no data
        k_spin_unlock   0   inlined, no data
        arch_irq_unlock   0   inlined, no data
-       z_spin_unlock_valid   0   no data
-       assert_print   0   no data
-       assert_print   0   no data
+       __set_BASEPRI   0   inlined, no data
+       __ISB   0   inlined, no data
        assert_post_action   0   no data
        z_spin_unlock_valid   0   no data
-+z_impl_k_usleep   24   dynamic,bounded
-   +__udivdi3   0   no data
-    z_tick_sleep   40   dynamic,bounded
+       assert_print   0   no data
+       assert_print   0   no data
++z_impl_k_usleep   8   static
+   +__aeabi_uldivmod   0
+    z_tick_sleep   24   static
       +arch_is_in_isr   0   inlined, no data
-       k_yield   68   inlined, dynamic
-       z_impl_k_yield   68   dynamic
+       __get_IPSR   0   inlined, no data
+       k_yield   0   inlined, no data
+       z_impl_k_yield   16   static
          +arch_is_in_isr   0   inlined, no data
+          __get_IPSR   0   inlined, no data
+          queue_thread   0   inlined, no data
+          runq_add   0   inlined, no data
+          z_is_idle_thread_object   0   inlined, no data
+          z_priq_mq_add   0   inlined, no data
+          get_prio_info   0   inlined, no data
+          sys_dlist_append   0   inlined, no data
+          assert_print   0   no data
           k_spin_lock   0   inlined, no data
           arch_irq_lock   0   inlined, no data
+          __get_BASEPRI   0   inlined, no data
+          __set_BASEPRI_MAX   0   inlined, no data
+          __ISB   0   inlined, no data
           z_spinlock_validate_pre   0   inlined, no data
           z_spin_lock_valid   0   no data
           assert_print   0   no data
@@ -778,51 +596,37 @@ File: /home/awest/zephyrproject/zephyr/kernel/sched.c
           dequeue_thread   0   inlined, no data
           runq_remove   0   inlined, no data
           z_is_idle_thread_object   0   inlined, no data
-          z_priq_rb_remove   0   inlined, no data
-          rb_remove   0   no data
+          z_priq_mq_remove   0   inlined, no data
+          get_prio_info   0   inlined, no data
+          sys_dlist_is_empty   0   inlined, no data
+          sys_dlist_remove   0   static
+            +sys_dnode_init   0   inlined, no data
           assert_print   0   no data
-          queue_thread   0   inlined, no data
-          runq_add   0   inlined, no data
-          z_is_idle_thread_object   0   inlined, no data
-          z_priq_rb_add   0   inlined, no data
-          z_rb_foreach_next   0   no data
-          rb_insert   0   no data
-          assert_print   0   no data
-          z_swap   4   inlined, static
+          z_swap   0   inlined, no data
           k_spin_release   0   inlined, no data
           z_spin_unlock_valid   0   no data
           assert_print   0   no data
           assert_print   0   no data
           z_swap_irqlock   0   inlined, no data
-          arch_swap   0   no data
           assert_print   0   no data
           assert_print   0   no data
-          update_cache   32   dynamic,bounded
+          update_cache   16   static
             +next_up   0   inlined, no data
-             runq_best   0   inlined, no data
-             z_priq_rb_best   0   inlined, no data
-             rb_get_min   16   dynamic,bounded
-               +z_rb_get_minmax   0   no data
              should_preempt   0   inlined, no data
              z_is_thread_prevented_from_running   0   inlined, no data
+             z_is_thread_timeout_active   0   inlined, no data
+             z_is_inactive_timeout   0   inlined, no data
+             sys_dnode_is_linked   0   inlined, no data
              thread_is_preemptible   0   inlined, no data
              assert_print   0   no data
              assert_print   0   no data
              assert_post_action   0   no data
              z_reset_time_slice   0   no data
        k_spin_lock   0   inlined, no data
-       arch_irq_lock   0   inlined, no data
-       z_spinlock_validate_pre   0   inlined, no data
-       z_spin_lock_valid   0   no data
-       assert_print   0   no data
-       assert_print   0   no data
-       assert_post_action   0   no data
-       z_spinlock_validate_post   0   inlined, no data
-       z_spin_lock_set_owner   0   no data
        z_add_thread_timeout   0   inlined, no data
        z_add_timeout   0   no data
        z_mark_thread_as_suspended   0   inlined, no data
-       z_swap   4   inlined, static
+       z_swap   0   inlined, no data
        k_spin_release   0   inlined, no data
        z_spin_unlock_valid   0   no data
        assert_print   0   no data
@@ -833,110 +637,55 @@ File: /home/awest/zephyrproject/zephyr/kernel/sched.c
        assert_print   0   no data
        assert_print   0   no data
        sys_clock_tick_get_32   0   no data
-       unready_thread   28   dynamic,bounded
-       assert_print   0   no data
-       assert_print   0   no data
-       sys_clock_tick_get_32   0   no data
-+z_impl_k_sleep   24   dynamic,bounded
-   +arch_is_in_isr   0   inlined, no data
-    k_thread_suspend   32   inlined, dynamic,bounded
-    z_impl_k_thread_suspend   32   dynamic,bounded
-      +z_abort_thread_timeout   0   inlined, no data
-       z_abort_timeout   0   no data
-       k_spin_lock   0   inlined, no data
-       arch_irq_lock   0   inlined, no data
-       z_spinlock_validate_pre   0   inlined, no data
-       z_spin_lock_valid   0   no data
-       assert_print   0   no data
-       assert_print   0   no data
-       z_spinlock_validate_post   0   inlined, no data
-       z_spin_lock_set_owner   0   no data
-       k_spin_unlock   0   inlined, no data
-       arch_irq_unlock   0   inlined, no data
-       z_spin_unlock_valid   0   no data
-       assert_print   0   no data
-       assert_print   0   no data
-       assert_post_action   0   no data
-       z_thread_halt   44   dynamic,bounded
-         +halt_thread   0   inlined, no data
+       unready_thread   16   static
+         +z_is_thread_queued   0   inlined, no data
+          z_is_thread_state_set   0   inlined, no data
           dequeue_thread   0   inlined, no data
           runq_remove   0   inlined, no data
           z_is_idle_thread_object   0   inlined, no data
-          z_priq_rb_remove   0   inlined, no data
-          rb_remove   0   no data
+          z_priq_mq_remove   0   inlined, no data
+          get_prio_info   0   inlined, no data
+          sys_dlist_is_empty   0   inlined, no data
+          sys_dlist_remove   0   static
+            +sys_dnode_init   0   inlined, no data
           assert_print   0   no data
-          clear_halting   0   inlined, no data
-          z_abort_thread_timeout   0   inlined, no data
-          z_abort_timeout   0   no data
-          unpend_all   16   inlined, dynamic,bounded
-          z_waitq_head   0   inlined, no data
-          z_waitq_head   0   inlined, no data
-          rb_get_min   16   dynamic,bounded
-            +z_rb_get_minmax   0   no data
-          z_abort_thread_timeout   0   inlined, no data
-          z_abort_timeout   0   no data
-          arch_thread_return_value_set   0   inlined, no data
-          unpend_thread_no_timeout   32   dynamic,bounded
-            +pended_on_thread   0   inlined, no data
+          assert_post_action   0   no data
+          update_cache   16   static
+            +next_up   0   inlined, no data
+             should_preempt   0   inlined, no data
+             z_is_thread_prevented_from_running   0   inlined, no data
+             z_is_thread_timeout_active   0   inlined, no data
+             z_is_inactive_timeout   0   inlined, no data
+             sys_dnode_is_linked   0   inlined, no data
+             thread_is_preemptible   0   inlined, no data
+             assert_print   0   no data
              assert_print   0   no data
              assert_post_action   0   no data
-             z_priq_rb_remove   0   inlined, no data
-             rb_remove   0   no data
-             z_mark_thread_as_not_pending   0   inlined, no data
-          ready_thread   56   dynamic
+             z_reset_time_slice   0   no data
+       assert_print   0   no data
+       assert_print   0   no data
+       sys_clock_tick_get_32   0   no data
++z_impl_k_sleep   8   static
+   +arch_is_in_isr   0   inlined, no data
+    __get_IPSR   0   inlined, no data
+    k_thread_suspend   0   inlined, no data
+    z_impl_k_thread_suspend   16   static
+      +z_abort_thread_timeout   0   inlined, no data
+       z_abort_timeout   0   no data
+       k_spin_lock   0   inlined, no data
+       k_spin_unlock   0   inlined, no data
+       arch_irq_unlock   0   inlined, no data
+       __set_BASEPRI   0   inlined, no data
+       __ISB   0   inlined, no data
+       assert_post_action   0   no data
+       z_spin_unlock_valid   0   no data
+       assert_print   0   no data
+       assert_print   0   no data
+       z_thread_halt   32   static
+         +halt_thread   0   inlined, no data
           arch_is_in_isr   0   inlined, no data
-          z_dummy_thread_init   0   inlined, no data
-          clear_halting   0   inlined, no data
-          update_cache   32   dynamic,bounded
-            +next_up   0   inlined, no data
-             runq_best   0   inlined, no data
-             z_priq_rb_best   0   inlined, no data
-             rb_get_min   16   dynamic,bounded
-               +z_rb_get_minmax   0   no data
-             should_preempt   0   inlined, no data
-             z_is_thread_prevented_from_running   0   inlined, no data
-             thread_is_preemptible   0   inlined, no data
-             assert_print   0   no data
-             assert_print   0   no data
-             assert_post_action   0   no data
-             z_reset_time_slice   0   no data
-          unpend_thread_no_timeout   32   dynamic,bounded
-            +pended_on_thread   0   inlined, no data
-             assert_print   0   no data
-             assert_post_action   0   no data
-             z_priq_rb_remove   0   inlined, no data
-             rb_remove   0   no data
-             z_mark_thread_as_not_pending   0   inlined, no data
-          update_cache   32   dynamic,bounded
-            +next_up   0   inlined, no data
-             runq_best   0   inlined, no data
-             z_priq_rb_best   0   inlined, no data
-             rb_get_min   16   dynamic,bounded
-               +z_rb_get_minmax   0   no data
-             should_preempt   0   inlined, no data
-             z_is_thread_prevented_from_running   0   inlined, no data
-             thread_is_preemptible   0   inlined, no data
-             assert_print   0   no data
-             assert_print   0   no data
-             assert_post_action   0   no data
-             z_reset_time_slice   0   no data
-          k_thread_abort_cleanup   0   no data
-          update_cache   32   dynamic,bounded
-            +next_up   0   inlined, no data
-             runq_best   0   inlined, no data
-             z_priq_rb_best   0   inlined, no data
-             rb_get_min   16   dynamic,bounded
-               +z_rb_get_minmax   0   no data
-             should_preempt   0   inlined, no data
-             z_is_thread_prevented_from_running   0   inlined, no data
-             thread_is_preemptible   0   inlined, no data
-             assert_print   0   no data
-             assert_print   0   no data
-             assert_post_action   0   no data
-             z_reset_time_slice   0   no data
-          k_thread_abort_cleanup   0   no data
-          arch_is_in_isr   0   inlined, no data
-          z_swap   4   inlined, static
+          __get_IPSR   0   inlined, no data
+          z_swap   0   inlined, no data
           k_spin_release   0   inlined, no data
           z_spin_unlock_valid   0   no data
           assert_print   0   no data
@@ -946,6 +695,8 @@ File: /home/awest/zephyrproject/zephyr/kernel/sched.c
           arch_swap   0   no data
           k_spin_unlock   0   inlined, no data
           arch_irq_unlock   0   inlined, no data
+          __set_BASEPRI   0   inlined, no data
+          __ISB   0   inlined, no data
           z_spin_unlock_valid   0   no data
           assert_print   0   no data
           assert_print   0   no data
@@ -954,13 +705,25 @@ File: /home/awest/zephyrproject/zephyr/kernel/sched.c
     assert_print   0   no data
     assert_print   0   no data
     assert_post_action   0   no data
-    z_tick_sleep   40   dynamic,bounded
+    z_tick_sleep   24   static
       +arch_is_in_isr   0   inlined, no data
-       k_yield   68   inlined, dynamic
-       z_impl_k_yield   68   dynamic
+       __get_IPSR   0   inlined, no data
+       k_yield   0   inlined, no data
+       z_impl_k_yield   16   static
          +arch_is_in_isr   0   inlined, no data
+          __get_IPSR   0   inlined, no data
+          queue_thread   0   inlined, no data
+          runq_add   0   inlined, no data
+          z_is_idle_thread_object   0   inlined, no data
+          z_priq_mq_add   0   inlined, no data
+          get_prio_info   0   inlined, no data
+          sys_dlist_append   0   inlined, no data
+          assert_print   0   no data
           k_spin_lock   0   inlined, no data
           arch_irq_lock   0   inlined, no data
+          __get_BASEPRI   0   inlined, no data
+          __set_BASEPRI_MAX   0   inlined, no data
+          __ISB   0   inlined, no data
           z_spinlock_validate_pre   0   inlined, no data
           z_spin_lock_valid   0   no data
           assert_print   0   no data
@@ -971,51 +734,37 @@ File: /home/awest/zephyrproject/zephyr/kernel/sched.c
           dequeue_thread   0   inlined, no data
           runq_remove   0   inlined, no data
           z_is_idle_thread_object   0   inlined, no data
-          z_priq_rb_remove   0   inlined, no data
-          rb_remove   0   no data
+          z_priq_mq_remove   0   inlined, no data
+          get_prio_info   0   inlined, no data
+          sys_dlist_is_empty   0   inlined, no data
+          sys_dlist_remove   0   static
+            +sys_dnode_init   0   inlined, no data
           assert_print   0   no data
-          queue_thread   0   inlined, no data
-          runq_add   0   inlined, no data
-          z_is_idle_thread_object   0   inlined, no data
-          z_priq_rb_add   0   inlined, no data
-          z_rb_foreach_next   0   no data
-          rb_insert   0   no data
-          assert_print   0   no data
-          z_swap   4   inlined, static
+          z_swap   0   inlined, no data
           k_spin_release   0   inlined, no data
           z_spin_unlock_valid   0   no data
           assert_print   0   no data
           assert_print   0   no data
           z_swap_irqlock   0   inlined, no data
-          arch_swap   0   no data
           assert_print   0   no data
           assert_print   0   no data
-          update_cache   32   dynamic,bounded
+          update_cache   16   static
             +next_up   0   inlined, no data
-             runq_best   0   inlined, no data
-             z_priq_rb_best   0   inlined, no data
-             rb_get_min   16   dynamic,bounded
-               +z_rb_get_minmax   0   no data
              should_preempt   0   inlined, no data
              z_is_thread_prevented_from_running   0   inlined, no data
+             z_is_thread_timeout_active   0   inlined, no data
+             z_is_inactive_timeout   0   inlined, no data
+             sys_dnode_is_linked   0   inlined, no data
              thread_is_preemptible   0   inlined, no data
              assert_print   0   no data
              assert_print   0   no data
              assert_post_action   0   no data
              z_reset_time_slice   0   no data
        k_spin_lock   0   inlined, no data
-       arch_irq_lock   0   inlined, no data
-       z_spinlock_validate_pre   0   inlined, no data
-       z_spin_lock_valid   0   no data
-       assert_print   0   no data
-       assert_print   0   no data
-       assert_post_action   0   no data
-       z_spinlock_validate_post   0   inlined, no data
-       z_spin_lock_set_owner   0   no data
        z_add_thread_timeout   0   inlined, no data
        z_add_timeout   0   no data
        z_mark_thread_as_suspended   0   inlined, no data
-       z_swap   4   inlined, static
+       z_swap   0   inlined, no data
        k_spin_release   0   inlined, no data
        z_spin_unlock_valid   0   no data
        assert_print   0   no data
@@ -1026,14 +775,49 @@ File: /home/awest/zephyrproject/zephyr/kernel/sched.c
        assert_print   0   no data
        assert_print   0   no data
        sys_clock_tick_get_32   0   no data
-       unready_thread   28   dynamic,bounded
+       unready_thread   16   static
+         +z_is_thread_queued   0   inlined, no data
+          z_is_thread_state_set   0   inlined, no data
+          dequeue_thread   0   inlined, no data
+          runq_remove   0   inlined, no data
+          z_is_idle_thread_object   0   inlined, no data
+          z_priq_mq_remove   0   inlined, no data
+          get_prio_info   0   inlined, no data
+          sys_dlist_is_empty   0   inlined, no data
+          sys_dlist_remove   0   static
+            +sys_dnode_init   0   inlined, no data
+          assert_print   0   no data
+          assert_post_action   0   no data
+          update_cache   16   static
+            +next_up   0   inlined, no data
+             should_preempt   0   inlined, no data
+             z_is_thread_prevented_from_running   0   inlined, no data
+             z_is_thread_timeout_active   0   inlined, no data
+             z_is_inactive_timeout   0   inlined, no data
+             sys_dnode_is_linked   0   inlined, no data
+             thread_is_preemptible   0   inlined, no data
+             assert_print   0   no data
+             assert_print   0   no data
+             assert_post_action   0   no data
+             z_reset_time_slice   0   no data
        assert_print   0   no data
        assert_print   0   no data
        sys_clock_tick_get_32   0   no data
-+z_impl_k_yield   68   dynamic
++z_impl_k_yield   16   static
    +arch_is_in_isr   0   inlined, no data
+    __get_IPSR   0   inlined, no data
+    queue_thread   0   inlined, no data
+    runq_add   0   inlined, no data
+    z_is_idle_thread_object   0   inlined, no data
+    z_priq_mq_add   0   inlined, no data
+    get_prio_info   0   inlined, no data
+    sys_dlist_append   0   inlined, no data
+    assert_print   0   no data
     k_spin_lock   0   inlined, no data
     arch_irq_lock   0   inlined, no data
+    __get_BASEPRI   0   inlined, no data
+    __set_BASEPRI_MAX   0   inlined, no data
+    __ISB   0   inlined, no data
     z_spinlock_validate_pre   0   inlined, no data
     z_spin_lock_valid   0   no data
     assert_print   0   no data
@@ -1044,232 +828,105 @@ File: /home/awest/zephyrproject/zephyr/kernel/sched.c
     dequeue_thread   0   inlined, no data
     runq_remove   0   inlined, no data
     z_is_idle_thread_object   0   inlined, no data
-    z_priq_rb_remove   0   inlined, no data
-    rb_remove   0   no data
+    z_priq_mq_remove   0   inlined, no data
+    get_prio_info   0   inlined, no data
+    sys_dlist_is_empty   0   inlined, no data
+    sys_dlist_remove   0   static
+      +sys_dnode_init   0   inlined, no data
     assert_print   0   no data
-    queue_thread   0   inlined, no data
-    runq_add   0   inlined, no data
-    z_is_idle_thread_object   0   inlined, no data
-    z_priq_rb_add   0   inlined, no data
-    z_rb_foreach_next   0   no data
-    rb_insert   0   no data
-    assert_print   0   no data
-    z_swap   4   inlined, static
+    z_swap   0   inlined, no data
     k_spin_release   0   inlined, no data
     z_spin_unlock_valid   0   no data
     assert_print   0   no data
     assert_print   0   no data
     z_swap_irqlock   0   inlined, no data
-    arch_swap   0   no data
     assert_print   0   no data
     assert_print   0   no data
-    update_cache   32   dynamic,bounded
+    update_cache   16   static
       +next_up   0   inlined, no data
-       runq_best   0   inlined, no data
-       z_priq_rb_best   0   inlined, no data
-       rb_get_min   16   dynamic,bounded
-         +z_rb_get_minmax   0   no data
        should_preempt   0   inlined, no data
        z_is_thread_prevented_from_running   0   inlined, no data
+       z_is_thread_timeout_active   0   inlined, no data
+       z_is_inactive_timeout   0   inlined, no data
+       sys_dnode_is_linked   0   inlined, no data
        thread_is_preemptible   0   inlined, no data
        assert_print   0   no data
        assert_print   0   no data
        assert_post_action   0   no data
        z_reset_time_slice   0   no data
-+z_impl_k_thread_priority_set   28   dynamic,bounded
++z_impl_k_thread_priority_set   8   static
    +arch_is_in_isr   0   inlined, no data
+    __get_IPSR   0   inlined, no data
     z_reschedule_unlocked   0   inlined, no data
     arch_irq_lock   0   inlined, no data
-    z_reschedule_irqlock   8   static
-      +resched   32   inlined, dynamic,bounded
-       arch_irq_unlocked   0   inlined, no data
+    __get_BASEPRI   0   inlined, no data
+    __set_BASEPRI_MAX   0   inlined, no data
+    __ISB   0   inlined, no data
+    z_reschedule_irqlock   0   static
+      +resched   0   inlined, no data
        arch_is_in_isr   0   inlined, no data
+       __get_IPSR   0   inlined, no data
        need_swap   0   inlined, no data
        z_swap_irqlock   0   inlined, no data
        arch_swap   0   no data
        arch_irq_unlock   0   inlined, no data
-    assert_print   0   no data
-    assert_print   0   no data
+       __set_BASEPRI   0   inlined, no data
+       __ISB   0   inlined, no data
     assert_print   0   no data
     assert_print   0   no data
     assert_post_action   0   no data
-    z_thread_prio_set   72   dynamic
-      +k_spin_lock   0   inlined, no data
-       arch_irq_lock   0   inlined, no data
-       z_spinlock_validate_pre   0   inlined, no data
-       z_spin_lock_valid   0   no data
-       assert_print   0   no data
-       assert_print   0   no data
-       z_spinlock_validate_post   0   inlined, no data
-       z_spin_lock_set_owner   0   no data
-       z_is_thread_ready   0   inlined, no data
-       z_is_thread_prevented_from_running   0   inlined, no data
-       z_is_thread_timeout_active   0   inlined, no data
-       z_is_inactive_timeout   0   inlined, no data
-       sys_dnode_is_linked   0   inlined, no data
-       dequeue_thread   0   inlined, no data
-       runq_remove   0   inlined, no data
-       z_is_idle_thread_object   0   inlined, no data
-       z_priq_rb_remove   0   inlined, no data
-       rb_remove   0   no data
-       assert_print   0   no data
-       assert_post_action   0   no data
-       queue_thread   0   inlined, no data
-       runq_add   0   inlined, no data
-       z_priq_rb_add   0   inlined, no data
-       z_rb_foreach_next   0   no data
-       rb_insert   0   no data
-       k_spin_unlock   0   inlined, no data
-       arch_irq_unlock   0   inlined, no data
-       z_spin_unlock_valid   0   no data
-       assert_print   0   no data
-       assert_print   0   no data
-       update_cache   32   dynamic,bounded
-         +next_up   0   inlined, no data
-          runq_best   0   inlined, no data
-          z_priq_rb_best   0   inlined, no data
-          rb_get_min   16   dynamic,bounded
-            +z_rb_get_minmax   0   no data
-          should_preempt   0   inlined, no data
-          z_is_thread_prevented_from_running   0   inlined, no data
-          thread_is_preemptible   0   inlined, no data
-          assert_print   0   no data
-          assert_print   0   no data
-          assert_post_action   0   no data
-          z_reset_time_slice   0   no data
-+z_impl_k_thread_resume   32   dynamic,bounded
+    assert_print   0   no data
+    assert_print   0   no data
+    z_thread_prio_set   24   static
++z_impl_k_thread_resume   16   static
    +k_spin_lock   0   inlined, no data
-    arch_irq_lock   0   inlined, no data
-    z_spinlock_validate_pre   0   inlined, no data
-    z_spin_lock_valid   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    z_spinlock_validate_post   0   inlined, no data
-    z_spin_lock_set_owner   0   no data
-    z_is_thread_suspended   0   inlined, no data
     k_spin_unlock   0   inlined, no data
     arch_irq_unlock   0   inlined, no data
+    __set_BASEPRI   0   inlined, no data
+    __ISB   0   inlined, no data
+    assert_post_action   0   no data
     z_spin_unlock_valid   0   no data
     assert_print   0   no data
     assert_print   0   no data
-    assert_post_action   0   no data
+    z_is_thread_suspended   0   inlined, no data
     z_mark_thread_as_not_suspended   0   inlined, no data
-    ready_thread   56   dynamic
-    z_reschedule   32   dynamic,bounded
-      +resched   32   inlined, dynamic,bounded
+    ready_thread   16   static
+    z_reschedule   16   static
+      +resched   0   inlined, no data
        arch_is_in_isr   0   inlined, no data
+       __get_IPSR   0   inlined, no data
        need_swap   0   inlined, no data
-       z_swap   4   inlined, static
+       z_swap   0   inlined, no data
        k_spin_release   0   inlined, no data
        z_spin_unlock_valid   0   no data
        assert_print   0   no data
        assert_print   0   no data
        z_swap_irqlock   0   inlined, no data
-       arch_swap   0   no data
        k_spin_unlock   0   inlined, no data
        arch_irq_unlock   0   inlined, no data
-       z_spin_unlock_valid   0   no data
-       assert_print   0   no data
-       assert_print   0   no data
+       __set_BASEPRI   0   inlined, no data
+       __ISB   0   inlined, no data
        assert_post_action   0   no data
        z_spin_unlock_valid   0   no data
-+z_impl_k_thread_suspend   32   dynamic,bounded
+       assert_print   0   no data
+       assert_print   0   no data
++z_impl_k_thread_suspend   16   static
    +z_abort_thread_timeout   0   inlined, no data
     z_abort_timeout   0   no data
     k_spin_lock   0   inlined, no data
-    arch_irq_lock   0   inlined, no data
-    z_spinlock_validate_pre   0   inlined, no data
-    z_spin_lock_valid   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    z_spinlock_validate_post   0   inlined, no data
-    z_spin_lock_set_owner   0   no data
     k_spin_unlock   0   inlined, no data
     arch_irq_unlock   0   inlined, no data
+    __set_BASEPRI   0   inlined, no data
+    __ISB   0   inlined, no data
+    assert_post_action   0   no data
     z_spin_unlock_valid   0   no data
     assert_print   0   no data
     assert_print   0   no data
-    assert_post_action   0   no data
-    z_thread_halt   44   dynamic,bounded
+    z_thread_halt   32   static
       +halt_thread   0   inlined, no data
-       dequeue_thread   0   inlined, no data
-       runq_remove   0   inlined, no data
-       z_is_idle_thread_object   0   inlined, no data
-       z_priq_rb_remove   0   inlined, no data
-       rb_remove   0   no data
-       assert_print   0   no data
-       clear_halting   0   inlined, no data
-       z_abort_thread_timeout   0   inlined, no data
-       z_abort_timeout   0   no data
-       unpend_all   16   inlined, dynamic,bounded
-       z_waitq_head   0   inlined, no data
-       z_waitq_head   0   inlined, no data
-       rb_get_min   16   dynamic,bounded
-         +z_rb_get_minmax   0   no data
-       z_abort_thread_timeout   0   inlined, no data
-       z_abort_timeout   0   no data
-       arch_thread_return_value_set   0   inlined, no data
-       unpend_thread_no_timeout   32   dynamic,bounded
-         +pended_on_thread   0   inlined, no data
-          assert_print   0   no data
-          assert_post_action   0   no data
-          z_priq_rb_remove   0   inlined, no data
-          rb_remove   0   no data
-          z_mark_thread_as_not_pending   0   inlined, no data
-       ready_thread   56   dynamic
        arch_is_in_isr   0   inlined, no data
-       z_dummy_thread_init   0   inlined, no data
-       clear_halting   0   inlined, no data
-       update_cache   32   dynamic,bounded
-         +next_up   0   inlined, no data
-          runq_best   0   inlined, no data
-          z_priq_rb_best   0   inlined, no data
-          rb_get_min   16   dynamic,bounded
-            +z_rb_get_minmax   0   no data
-          should_preempt   0   inlined, no data
-          z_is_thread_prevented_from_running   0   inlined, no data
-          thread_is_preemptible   0   inlined, no data
-          assert_print   0   no data
-          assert_print   0   no data
-          assert_post_action   0   no data
-          z_reset_time_slice   0   no data
-       unpend_thread_no_timeout   32   dynamic,bounded
-         +pended_on_thread   0   inlined, no data
-          assert_print   0   no data
-          assert_post_action   0   no data
-          z_priq_rb_remove   0   inlined, no data
-          rb_remove   0   no data
-          z_mark_thread_as_not_pending   0   inlined, no data
-       update_cache   32   dynamic,bounded
-         +next_up   0   inlined, no data
-          runq_best   0   inlined, no data
-          z_priq_rb_best   0   inlined, no data
-          rb_get_min   16   dynamic,bounded
-            +z_rb_get_minmax   0   no data
-          should_preempt   0   inlined, no data
-          z_is_thread_prevented_from_running   0   inlined, no data
-          thread_is_preemptible   0   inlined, no data
-          assert_print   0   no data
-          assert_print   0   no data
-          assert_post_action   0   no data
-          z_reset_time_slice   0   no data
-       k_thread_abort_cleanup   0   no data
-       update_cache   32   dynamic,bounded
-         +next_up   0   inlined, no data
-          runq_best   0   inlined, no data
-          z_priq_rb_best   0   inlined, no data
-          rb_get_min   16   dynamic,bounded
-            +z_rb_get_minmax   0   no data
-          should_preempt   0   inlined, no data
-          z_is_thread_prevented_from_running   0   inlined, no data
-          thread_is_preemptible   0   inlined, no data
-          assert_print   0   no data
-          assert_print   0   no data
-          assert_post_action   0   no data
-          z_reset_time_slice   0   no data
-       k_thread_abort_cleanup   0   no data
-       arch_is_in_isr   0   inlined, no data
-       z_swap   4   inlined, static
+       __get_IPSR   0   inlined, no data
+       z_swap   0   inlined, no data
        k_spin_release   0   inlined, no data
        z_spin_unlock_valid   0   no data
        assert_print   0   no data
@@ -1279,6 +936,8 @@ File: /home/awest/zephyrproject/zephyr/kernel/sched.c
        arch_swap   0   no data
        k_spin_unlock   0   inlined, no data
        arch_irq_unlock   0   inlined, no data
+       __set_BASEPRI   0   inlined, no data
+       __ISB   0   inlined, no data
        z_spin_unlock_valid   0   no data
        assert_print   0   no data
        assert_print   0   no data
@@ -1294,119 +953,19 @@ File: /home/awest/zephyrproject/zephyr/kernel/spinlock_validate.c
 
 
 
+File: /home/awest/zephyrproject/zephyr/kernel/xip.c
+
+
+
 File: /home/awest/zephyrproject/zephyr/kernel/timeout.c
 
-+z_vrfy_sys_clock_tick_set   8   static
-+z_impl_sys_clock_tick_set   8   static
-+z_impl_k_uptime_ticks   4   static
-   +sys_clock_tick_get   40   dynamic,bounded
-      +k_spin_lock   0   inlined, no data
-       arch_irq_lock   0   inlined, no data
-       z_spinlock_validate_pre   0   inlined, no data
-       z_spin_lock_valid   0   no data
-       assert_print   0   no data
-       assert_print   0   no data
-       z_spinlock_validate_post   0   inlined, no data
-       z_spin_lock_set_owner   0   no data
-       k_spin_unlock   0   inlined, no data
-       arch_irq_unlock   0   inlined, no data
-       z_spin_unlock_valid   0   no data
-       assert_print   0   no data
-       assert_print   0   no data
-       assert_post_action   0   no data
-       elapsed   4   static
-         +sys_clock_elapsed   0   no data
-
-
-File: /home/awest/zephyrproject/zephyr/kernel/timer.c
-
-+z_impl_k_uptime_ticks   0   no data
-+z_impl_k_timer_status_sync   40   dynamic,bounded
-   +arch_is_in_isr   0   inlined, no data
-    k_spin_lock   0   inlined, no data
-    arch_irq_lock   0   inlined, no data
-    z_spinlock_validate_pre   0   inlined, no data
-    z_spin_lock_valid   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    assert_post_action   0   no data
-    z_spinlock_validate_post   0   inlined, no data
-    z_spin_lock_set_owner   0   no data
-    z_is_inactive_timeout   0   inlined, no data
-    sys_dnode_is_linked   0   inlined, no data
-    k_spin_lock   0   inlined, no data
-    arch_irq_lock   0   inlined, no data
-    z_spinlock_validate_pre   0   inlined, no data
-    z_spin_lock_valid   0   no data
-    z_spinlock_validate_post   0   inlined, no data
-    z_spin_lock_set_owner   0   no data
-    k_spin_unlock   0   inlined, no data
-    arch_irq_unlock   0   inlined, no data
-    z_spin_unlock_valid   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    z_pend_curr   0   no data
-+z_impl_k_timer_status_get   36   dynamic,bounded
-   +k_spin_lock   0   inlined, no data
-    arch_irq_lock   0   inlined, no data
-    z_spinlock_validate_pre   0   inlined, no data
-    z_spin_lock_valid   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    z_spinlock_validate_post   0   inlined, no data
-    z_spin_lock_set_owner   0   no data
-    k_spin_unlock   0   inlined, no data
-    arch_irq_unlock   0   inlined, no data
-    z_spin_unlock_valid   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    assert_post_action   0   no data
-+z_impl_k_timer_stop   16   dynamic,bounded
-   +z_reschedule_unlocked   0   inlined, no data
-    arch_irq_lock   0   inlined, no data
-    z_reschedule_irqlock   0   no data
-    z_unpend1_no_timeout   0   no data
-    z_ready_thread   0   no data
-    z_abort_timeout   0   no data
-+z_impl_k_timer_start   48   dynamic,bounded
-   +k_spin_lock   0   inlined, no data
-    arch_irq_lock   0   inlined, no data
-    z_spinlock_validate_pre   0   inlined, no data
-    z_spin_lock_valid   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    z_spinlock_validate_post   0   inlined, no data
-    z_spin_lock_set_owner   0   no data
-    k_spin_unlock   0   inlined, no data
-    z_spin_unlock_valid   0   no data
-    assert_print   0   no data
-    assert_print   0   no data
-    assert_post_action   0   no data
-    k_spin_unlock   0   inlined, no data
-    arch_irq_unlock   0   inlined, no data
-    z_abort_timeout   0   no data
-    z_add_timeout   0   no data
-
-
-File: /home/awest/zephyrproject/zephyr/kernel/mmu.c
-
-
-
-File: /home/awest/zephyrproject/zephyr/kernel/mempool.c
-
++z_vrfy_sys_clock_tick_set   0   static
++z_impl_sys_clock_tick_set   0   static
++z_impl_k_uptime_ticks   0   static
+   +sys_clock_tick_get   16   static
 
 
 File: /home/awest/zephyrproject/zephyr/kernel/banner.c
-
-
-
-File: /home/awest/zephyrproject/zephyr/kernel/kheap.c
-
-
-
-File: /home/awest/zephyrproject/zephyr/kernel/system_work_q.c
 
 
 
