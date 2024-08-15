@@ -1,5 +1,6 @@
 from elftools.elf.elffile import ELFFile # pip install pyelftools
 import os # pip install os
+import sys # pip install sys
 
 # Get the ELF file
 def getElf(elffile):
@@ -22,7 +23,7 @@ def get_syscalls(dwarf_info, cuOffsets, stack):
     for CU in dwarf_info.iter_CUs(): # Iterate over the compilation units
         
         cuOffset = CU.cu_offset # Get the compilation unit offset
-        
+
         # Get the file name and use it as a key for the syscall_table and cuOffsets dictionaries
         top_DIE = CU.get_top_DIE()
         file_name = top_DIE.attributes['DW_AT_name'].value.decode('utf-8')
@@ -329,13 +330,16 @@ def max_mem_usage(call_tree, max_usage):
                 continue
 
             curr_stack.append([curr_name, curr_depth, curr_address, curr_usage])
+            # print(f'Key: {key} Stack: {curr_stack}')
+            # print(f'Key: {key} Max_stack: {max_stack}')
 
-            if curr_depth > next_depth:
+            if curr_depth >= next_depth:
                 # print(f'Current stack: {curr_stack}')
                 # print(f'Max stack: {max_stack}')
                 max_stack = check_stacks(curr_stack, max_stack)
                 # print(f'Max stack usage for {key}: {max_stack}')
                 if next_depth == -1 or next_depth == 0:
+                    # print(f'Key: {key} Max_stack: {max_stack}')
                     for max in max_stack:
                         max_mem_used += max[3]
                     max_usage[key].append([root, max_mem_used])
@@ -347,36 +351,35 @@ def max_mem_usage(call_tree, max_usage):
                 else:
                     for func in curr_stack:
                         if func[1] >= next_depth:
+                            # print(f'Key: {key} Function: {func[0]}')
                             curr_stack.remove(func)
                 
 
 def check_stacks(curr_s, max_s):
+    # print(f'Max_s: {max_s}')
     max_mem = 0
     curr_mem = 0
-
-    if max_s == []:
-        max_s = curr_s
 
     for i in curr_s:
         curr_mem += i[3]
 
-    if curr_s == max_s:
-        return curr_s
-    else:
-        for i in max_s:
-            max_mem += i[3]
-
-        if curr_mem >= max_mem:
-            max_s = curr_s
+    for i in max_s:
+        max_mem += i[3]
+    
+    # print(f'curr_mem: {curr_mem}, max_mem: {max_mem}')
+    if curr_mem >= max_mem:
+            max_s = curr_s.copy()
     
     # print(f'Max stack: {max_s}')
     return max_s
 
 
 # Print the call tree with stack usage and informational flags
-def print_tree(call_tree, flags, max_usage, stack_size, mem_by_name, get_by_name):
+def print_tree(call_tree, flags, max_usage, stack_size, mem_by_name, get_by_name, output_file):
+    f = open(output_file, 'w')
     for key in call_tree:
-        print(f'File: {key}\n')
+        f.write(f'File: {key}\n')
+        # print(f'File: {key}\n')
         prev_depth = -1
         # print(f'Memory Usage: {memory_usage}\n')
         for function, depth, address, mem in call_tree[key]:
@@ -401,16 +404,57 @@ def print_tree(call_tree, flags, max_usage, stack_size, mem_by_name, get_by_name
                         if entry[1] > (.9 * stack_size):
                             print_string += '   ' + 'WARNING: STACK USAGE EXCEEDS 90% OF STACK SIZE'
 
-            print(print_string)
+            f.write(print_string + '\n')
+            # print(print_string)
             
             prev_depth = depth
         
-        print('\n')
+        f.write('\n')
+    
+    f.close()
     
 
 def main():
 
-    get_by_name = True
+    get_by_name = False
+
+    len_args = len(sys.argv)
+    if len_args > 1:
+        out_file = sys.argv[1]
+        if not out_file.endswith('.txt'):
+            print('Output file must be a .txt file')
+            return
+        if '.txt' in out_file and len(out_file) == 4:
+            print('Please specify output file name')
+            return
+        if '/' not in out_file:
+            print('Path not specified, output file will be saved in the current directory')
+        if len_args > 2:
+            flags = sys.argv[2:]
+            for i in range(0, len(flags)):
+                if flags[i] == '-v':
+                    get_by_name = True
+                elif flags[i] == '-h':
+                    print('A helpful message')
+                    return
+                elif '.txt' in flags[i]:
+                    print('Please specify output file as first argument')
+                    return
+                else:
+                    print('Invalid flag')
+                    return
+
+    else:
+        print('Please specify output file')
+        return
+        
+    for i in range(1, len_args):
+        if sys.argv[i] == '-h':
+            print('Usage: python3 syscallsTree.py')
+            print('Optional flags:')
+            print('-n: Get memory usage by function name')
+
+    # get_by_name = True
 
     flags = {} # Key = function address, Value = informational flags (string concatenation of all flags)
 
@@ -435,9 +479,9 @@ def main():
     
     stack_size = stack_size[-1]
 
-    print_tree(full_call_tree, flags, max_usage, stack_size, mem_by_name, get_by_name)
+    print_tree(full_call_tree, flags, max_usage, stack_size, mem_by_name, get_by_name, out_file)
 
-    print(f'Stack size: {stack_size}')
+    # print(f'Stack size: {stack_size}')
 
     # for i in table:
         # print(f'Key: {i}, Functions: {table[i]}')
