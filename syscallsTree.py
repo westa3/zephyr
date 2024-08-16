@@ -513,7 +513,7 @@ def check_stacks(curr_s, max_s):
 
 # No direct return but the output is a text file with the script's results.
 
-def print_tree(call_tree, flags, max_usage, stack_size, mem_by_name, get_by_name, output_file):
+def print_tree(call_tree, flags, max_usage, stack_size, mem_by_name, output_file, verbose):
     f = open(output_file, 'w')
     for key in call_tree:
         f.write(f'File: {key}\n')
@@ -521,6 +521,12 @@ def print_tree(call_tree, flags, max_usage, stack_size, mem_by_name, get_by_name
         prev_depth = -1
 
         for function, depth, address, mem in call_tree[key]:
+            if depth == 0:
+                f.write('\n')
+            if not verbose:
+                if depth != 0:
+                    continue
+
             print_string = '   ' * depth
 
             if depth > prev_depth or depth == 0:
@@ -529,10 +535,9 @@ def print_tree(call_tree, flags, max_usage, stack_size, mem_by_name, get_by_name
             print_string += function + '   ' + str(mem)
 
             if address in flags:
-                if get_by_name:
-                    if '*' in flags[address]:
-                        if mem_by_name[function] > 1:
-                            flags[address] = flags[address].replace('*', 'external')
+                if '*' in flags[address]:
+                    if mem_by_name[function] > 1:
+                        flags[address] = flags[address].replace('*', 'external')
                 print_string += '   ' + flags[address]
 
             if depth == 0:
@@ -547,9 +552,34 @@ def print_tree(call_tree, flags, max_usage, stack_size, mem_by_name, get_by_name
             prev_depth = depth
         
         f.write('\n')
+        f.write('-' * 50 + '\n')
     
     f.close()
     
+
+def print_help():
+    print('Usage: python3 syscallsTree.py <output_file.txt> [flags]' + '\n')
+    print('\t' + '<output_file.txt>: Specify the output file name as a .txt file. Ex. output.txt' + '\n')
+    print('Optional flags:' + '\n')
+    print('\t' + '-v: Include full call tree with individual memory usage and informational flags')
+    print('\t' + '-h: Get help message' + '\n')
+    print('Interpreting output:' + '\n')
+    print('\t' + 'Organized by file, each line below the file name represents a function call (if any)' + '\n')
+    print('\t' + 'If verbose option is turned off, output will be the top-most syscall (usually a z_mrsh function) followed by its maximum memory usage according to files generated with CONFIG_STACK_USAGE enabled.')
+    print('\t' + 'If verbose option is turned on, output will include the full call tree on a per-syscall basis with individual memory usage and informational flags.' + '\n')
+    print('\t' + 'Indentation and + symbols indicate depth of function calls. Depth is determined by how the function is linked in the ELF file.')
+    print('\t' + 'A function may be called within an inlined function but because the parent function was inlined, the function call will be linked to the root function who inlined the parent function.')
+    print('\t' + 'As such, the depth of the function call will be under the root function, not its parent function in source code.' + '\n')
+    print('\t' + 'If there are no function calls under a file, it means that the file does not contain any syscalls.' + '\n')
+    print('\t' + 'Memory usage is in bytes. If a function has multiple instances across several object files, the memory usage will be the maximum usage found across all instances.' + '\n')
+    print('Informational flags:' + '\n')
+    print('\t' + 'inlined: Function is inlined')
+    print('\t' + 'pointer: Function is called through a function pointer')
+    print('\t' + 'external: Function is not defined in the same object file')
+    print('\t' + 'static/dynamic/bounded: Flags determined by the .su file generated with -fstack-usage flag when CONFIG_STACK_USAGE is enabled.') 
+    print('\t' + '\t' + '\t' + '\t' + 'See https://gcc.gnu.org/onlinedocs/gnat_ugn/Static-Stack-Usage-Analysis.html for more information.')
+    print('\t' + '*: Function was not found in any .su file and has no data on maximum stack usage' + '\n')
+
 
 # This is the main function of the script.
 # It calls all the other functions to generate the output
@@ -558,43 +588,35 @@ def print_tree(call_tree, flags, max_usage, stack_size, mem_by_name, get_by_name
 
 def main():
 
-    get_by_name = False
+    verbose = False
+
+    out_file = ''
 
     len_args = len(sys.argv)
-    if len_args > 1:
-        out_file = sys.argv[1]
-        if not out_file.endswith('.txt'):
-            print('Output file must be a .txt file')
-            return
-        if '.txt' in out_file and len(out_file) == 4:
-            print('Please specify output file name')
-            return
-        if '/' not in out_file:
-            print('Path not specified, output file will be saved in the current directory')
-        if len_args > 2:
-            flags = sys.argv[2:]
-            for i in range(0, len(flags)):
-                if flags[i] == '-v':
-                    get_by_name = True
-                elif flags[i] == '-h':
-                    print('A helpful message')
-                    return
-                elif '.txt' in flags[i]:
-                    print('Please specify output file as first argument')
-                    return
-                else:
-                    print('Invalid flag')
-                    return
 
-    else:
-        print('Please specify output file')
-        return
-        
     for i in range(1, len_args):
         if sys.argv[i] == '-h':
-            print('Usage: python3 syscallsTree.py')
-            print('Optional flags:')
-            print('-n: Get memory usage by function name')
+            print_help()
+            return
+        elif sys.argv[i] == '-v':
+            verbose = True
+        elif '-' not in sys.argv[i]:
+            out_file = sys.argv[i]
+            if not out_file.endswith('.txt'):
+                print('Output file must be a .txt file')
+                print_help()
+                return
+            if '.txt' in out_file and len(out_file) == 4:
+                print('Please specify output file name')
+                print_help()
+                return
+            if '/' not in out_file:
+                print('Path not specified, output file will be saved in the current directory')
+
+    if out_file == '':
+        print('Please specify a .txt output file')
+        print_help()
+        return
 
     # flags structure:
     # Key = function address
@@ -619,15 +641,14 @@ def main():
     full_call_tree = get_call_tree(info, table, flags, cuOffsets)
     memory = get_memory_usage(info, full_call_tree, flags)
     
-    if get_by_name:
-        redo_memory(info, memory, mem_by_name)
+    redo_memory(info, memory, mem_by_name)
     
     get_names(full_call_tree, info, memory)
     max_mem_usage(full_call_tree, max_usage)
     
     stack_size = stack_size[-1]
 
-    print_tree(full_call_tree, flags, max_usage, stack_size, mem_by_name, get_by_name, out_file)
+    print_tree(full_call_tree, flags, max_usage, stack_size, mem_by_name, out_file, verbose)
 
     # print(f'Stack size: {stack_size}')
 

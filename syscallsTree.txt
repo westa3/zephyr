@@ -1,2375 +1,493 @@
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/offsets/offsets.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/build/zephyr/kobject_hash.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/tests/kernel/semaphore/sys_sem/src/main.c
-+z_impl_k_object_access_grant   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_thread_abort   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_thread_join   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_sleep   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_thread_create   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_sem_take   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_sem_give   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_sem_reset   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_sem_init   0   *   MAX MEMORY USAGE: 0
-+z_impl_ztest_set_fault_valid   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_sem_count_get   0   *   MAX MEMORY USAGE: 0
 
++z_impl_k_object_access_grant   0   external   MAX MEMORY USAGE: 0
+
++z_impl_k_thread_abort   28   external   MAX MEMORY USAGE: 28
+
++z_impl_k_thread_join   40   external   MAX MEMORY USAGE: 40
+
++z_impl_k_sleep   24   external   MAX MEMORY USAGE: 24
+
++z_impl_k_thread_create   0   external   MAX MEMORY USAGE: 0
+
++z_impl_k_sem_take   40   external   MAX MEMORY USAGE: 40
+
++z_impl_k_sem_give   32   external   MAX MEMORY USAGE: 32
+
++z_impl_k_sem_reset   32   external   MAX MEMORY USAGE: 32
+
++z_impl_k_sem_init   16   external   MAX MEMORY USAGE: 16
+
++z_impl_ztest_set_fault_valid   8   external   MAX MEMORY USAGE: 8
+
++z_impl_k_sem_count_get   0   external   MAX MEMORY USAGE: 0
+
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/lib/heap/heap.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/lib/os/cbprintf_packaged.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/lib/os/printk.c
+
 +z_mrsh_k_str_out   40   dynamic,bounded   MAX MEMORY USAGE: 60
-   +z_vrfy_k_str_out   0   inlined, *
-   z_log_minimal_printk   0   *
-   arch_buffer_validate   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_str_out   20   dynamic,bounded
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/lib/os/thread_entry.c
-+z_impl_k_thread_abort   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_sched_current_thread_query   0   *   MAX MEMORY USAGE: 0
 
++z_impl_k_thread_abort   28   external   MAX MEMORY USAGE: 28
+
++z_impl_k_sched_current_thread_query   4   external   MAX MEMORY USAGE: 4
+
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/lib/os/assert.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/lib/os/mutex.c
-+z_impl_k_mutex_unlock   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_mutex_lock   0   *   MAX MEMORY USAGE: 0
-+z_mrsh_z_sys_mutex_kernel_unlock   0   *   MAX MEMORY USAGE: 0
-   +z_vrfy_z_sys_mutex_kernel_unlock   0   inlined, *
-   check_sys_mutex_addr   0   *
-      +z_log_minimal_printk   0   *
-      arch_buffer_validate   0   *
-   z_impl_z_sys_mutex_kernel_unlock   0   *
-      +get_k_mutex   0   inlined, *
-      k_object_find   0   *
-      k_mutex_unlock   0   inlined, *
-      z_syscall_trap   0   inlined, *
-      arch_is_user_context   0   inlined, *
-      arch_syscall_invoke1   0   inlined, *
-      z_impl_k_mutex_unlock   0   *
-+z_mrsh_z_sys_mutex_kernel_lock   0   *   MAX MEMORY USAGE: 0
-   +z_vrfy_z_sys_mutex_kernel_lock   0   inlined, *
-   check_sys_mutex_addr   0   *
-      +z_log_minimal_printk   0   *
-      arch_buffer_validate   0   *
-   z_impl_z_sys_mutex_kernel_lock   0   *
-      +get_k_mutex   0   inlined, *
-      k_object_find   0   *
-      k_mutex_lock   0   inlined, *
-      z_syscall_trap   0   inlined, *
-      arch_is_user_context   0   inlined, *
-      arch_syscall_invoke3   0   inlined, *
-      z_impl_k_mutex_lock   0   *
 
++z_impl_k_mutex_unlock   32   external   MAX MEMORY USAGE: 32
+
++z_impl_k_mutex_lock   40   external   MAX MEMORY USAGE: 40
+
++z_mrsh_z_sys_mutex_kernel_unlock   0   *   MAX MEMORY USAGE: 32
+
++z_mrsh_z_sys_mutex_kernel_lock   0   *   MAX MEMORY USAGE: 40
+
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/lib/utils/rb.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/lib/utils/bitarray.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/build/zephyr/misc/generated/configs.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/subsys/logging/log_minimal.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/subsys/tracing/tracing_none.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/cpuhalt.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/prep_c.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/fatal.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/cpuid.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/spec_ctrl.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/memmap.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/multiboot.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/x86_mmu.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/userspace.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/early_serial.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/tls.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/ia32/../common.S
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/ia32/excstub.S
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/ia32/intstub.S
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/ia32/irq_manage.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/ia32/swap.S
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/ia32/thread.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/ia32/userspace.S
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/ia32/tls.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/arch/x86/core/ia32/fatal.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/lib/libc/picolibc/libc-hooks.c
-+z_impl_k_mutex_unlock   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_mutex_lock   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_object_release   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_mutex_init   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_object_alloc   0   *   MAX MEMORY USAGE: 0
+
++z_impl_k_mutex_unlock   32   external   MAX MEMORY USAGE: 32
+
++z_impl_k_mutex_lock   40   external   MAX MEMORY USAGE: 40
+
++z_impl_k_object_release   0   external   MAX MEMORY USAGE: 0
+
++z_impl_k_mutex_init   16   external   MAX MEMORY USAGE: 16
+
++z_impl_k_object_alloc   0   external   MAX MEMORY USAGE: 0
+
 +z_mrsh_zephyr_fputc   16   dynamic,bounded   MAX MEMORY USAGE: 28
-   +z_vrfy_zephyr_fputc   0   inlined, *
-   z_impl_zephyr_fputc   12   dynamic,bounded
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/lib/libc/common/source/stdlib/malloc.c
-+z_impl_z_sys_mutex_kernel_unlock   0   *   MAX MEMORY USAGE: 0
-+z_impl_z_sys_mutex_kernel_lock   0   *   MAX MEMORY USAGE: 0
 
++z_impl_z_sys_mutex_kernel_unlock   0   external   MAX MEMORY USAGE: 0
+
++z_impl_z_sys_mutex_kernel_lock   0   external   MAX MEMORY USAGE: 0
+
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/subsys/random/random_handlers.c
-+z_impl_sys_rand_get   0   *   MAX MEMORY USAGE: 0
-+z_mrsh_sys_rand_get   40   dynamic,bounded   MAX MEMORY USAGE: 40
-   +z_vrfy_sys_rand_get   0   inlined, *
-   z_log_minimal_printk   0   *
-   arch_buffer_validate   0   *
-   arch_syscall_oops   0   *
-   z_impl_sys_rand_get   0   *
 
++z_impl_sys_rand_get   48   external   MAX MEMORY USAGE: 48
+
++z_mrsh_sys_rand_get   40   dynamic,bounded   MAX MEMORY USAGE: 88
+
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/subsys/random/random_timer.c
-+z_impl_sys_rand_get   48   dynamic,bounded   MAX MEMORY USAGE: 48
-   +rand32_get   0   inlined, *
-   k_spin_lock   0   inlined, *
-   arch_irq_lock   0   inlined, *
-   z_spinlock_validate_pre   0   inlined, *
-   z_spin_lock_valid   0   *
-   assert_print   0   *
-   assert_print   0   *
-   z_spinlock_validate_post   0   inlined, *
-   z_spin_lock_set_owner   0   *
-   k_cycle_get_32   0   inlined, *
-   arch_k_cycle_get_32   0   inlined, *
-   sys_clock_cycle_get_32   0   *
-   k_spin_unlock   0   inlined, *
-   arch_irq_unlock   0   inlined, *
-   z_spin_unlock_valid   0   *
-   assert_print   0   *
-   assert_print   0   *
-   assert_post_action   0   *
 
++z_impl_sys_rand_get   48   dynamic,bounded   MAX MEMORY USAGE: 48
+
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/subsys/testsuite/ztest/src/ztest.c
-+z_impl_k_thread_join   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_thread_start   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_thread_name_set   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_object_access_grant   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_thread_create   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_thread_abort   0   *   MAX MEMORY USAGE: 0
+
++z_impl_k_thread_join   40   external   MAX MEMORY USAGE: 40
+
++z_impl_k_thread_start   0   external   MAX MEMORY USAGE: 0
+
++z_impl_k_thread_name_set   0   external   MAX MEMORY USAGE: 0
+
++z_impl_k_object_access_grant   0   external   MAX MEMORY USAGE: 0
+
++z_impl_k_thread_create   0   external   MAX MEMORY USAGE: 0
+
++z_impl_k_thread_abort   28   external   MAX MEMORY USAGE: 28
+
 +z_mrsh___ztest_set_test_phase   8   static   MAX MEMORY USAGE: 16
-   +z_vrfy___ztest_set_test_phase   8   inlined, static
-   z_impl___ztest_set_test_phase   8   inlined, static
+
 +z_mrsh___ztest_set_test_result   8   static   MAX MEMORY USAGE: 16
-   +z_vrfy___ztest_set_test_result   8   inlined, static
-   z_impl___ztest_set_test_result   8   inlined, static
+
 +z_impl_ztest_run_test_suites   36   dynamic,bounded   MAX MEMORY USAGE: 88
-   +__ztest_init_unit_test_result_for_suite   0   inlined, *
-      +test   0   pointer, *
-   z_ztest_get_next_test   20   dynamic,bounded
-      +test   0   pointer, *
-      test   0   pointer, *
-      strcmp   0   *
-   __ztest_run_test_suite   0   inlined, *
-   NA   0
-      +run_test   0   inlined, *
-         +test   0   pointer, *
-      get_start_time_cyc   0   inlined, *
-      k_cycle_get_32   0   inlined, *
-      arch_k_cycle_get_32   0   inlined, *
-      sys_clock_cycle_get_32   0   *
-      k_thread_create   0   inlined, *
-      z_syscall_trap   0   inlined, *
-      arch_is_user_context   0   inlined, *
-      arch_syscall_invoke6   0   inlined, *
-      z_impl_k_thread_create   0   *
-      k_thread_name_set   0   inlined, *
-      z_syscall_trap   0   inlined, *
-      arch_is_user_context   0   inlined, *
-      arch_syscall_invoke2   0   inlined, *
-      z_impl_k_thread_name_set   0   *
-      k_thread_start   0   inlined, *
-      z_syscall_trap   0   inlined, *
-      arch_is_user_context   0   inlined, *
-      arch_syscall_invoke1   0   inlined, *
-      z_impl_k_thread_start   0   *
-      k_thread_join   0   inlined, *
-      z_syscall_trap   0   inlined, *
-      arch_is_user_context   0   inlined, *
-      arch_syscall_invoke3   0   inlined, *
-      z_impl_k_thread_join   0   *
-      get_test_duration_ms   0   inlined, *
-      k_cycle_get_32   0   inlined, *
-      arch_k_cycle_get_32   0   inlined, *
-      sys_clock_cycle_get_32   0   *
-      sys_clock_hw_cycles_per_sec_runtime_get   0   inlined, *
-      z_syscall_trap   0   inlined, *
-      arch_is_user_context   0   inlined, *
-      arch_syscall_invoke0   0   inlined, *
-      z_impl_sys_clock_hw_cycles_per_sec_runtime_get   0   inlined, *
-      sys_clock_hw_cycles_per_sec_runtime_get   0   inlined, *
-      z_syscall_trap   0   inlined, *
-      arch_is_user_context   0   inlined, *
-      arch_syscall_invoke0   0   inlined, *
-      z_impl_sys_clock_hw_cycles_per_sec_runtime_get   0   inlined, *
-      __udivdi3   0
-      cleanup_test   0   inlined, *
-         +test   0   pointer, *
-      k_thread_abort   16   dynamic,bounded
-      get_final_test_result   0   inlined, *
-         +test   0   pointer, *
-      strcmp   0   *
-      strcmp   0   *
-      TC_RESULT_TO_STR   0   inlined, *
-      printk   0   *
-      __ztest_set_test_phase   12   static
-         +arch_syscall_invoke1   0   inlined, *
-         z_syscall_trap   0   inlined, *
-         arch_is_user_context   0   inlined, *
-         z_impl___ztest_set_test_phase   8   inlined, static
-      NA   0
-         +z_syscall_trap   0   inlined, *
-         arch_is_user_context   0   inlined, *
-         arch_syscall_invoke2   0   inlined, *
-         k_object_access_grant   20   inlined, dynamic,bounded
-         z_impl_k_object_access_grant   0   *
-      NA   0
-         +z_syscall_trap   0   inlined, *
-         arch_is_user_context   0   inlined, *
-         arch_syscall_invoke2   0   inlined, *
-         k_object_access_grant   20   inlined, dynamic,bounded
-         z_impl_k_object_access_grant   0   *
-      NA   0
-         +z_syscall_trap   0   inlined, *
-         arch_is_user_context   0   inlined, *
-         arch_syscall_invoke2   0   inlined, *
-         k_object_access_grant   20   inlined, dynamic,bounded
-         z_impl_k_object_access_grant   0   *
-      __ztest_set_test_phase   12   static
-         +arch_syscall_invoke1   0   inlined, *
-         z_syscall_trap   0   inlined, *
-         arch_is_user_context   0   inlined, *
-         z_impl___ztest_set_test_phase   8   inlined, static
-      run_test_rules   32   dynamic,bounded
-         +test   0   pointer, *
-      __ztest_set_test_phase   12   static
-         +arch_syscall_invoke1   0   inlined, *
-         z_syscall_trap   0   inlined, *
-         arch_is_user_context   0   inlined, *
-         z_impl___ztest_set_test_phase   8   inlined, static
-      printk   0   *
-      printk   0   *
-      z_ztest_get_next_test   20   dynamic,bounded
-         +test   0   pointer, *
-         test   0   pointer, *
-         strcmp   0   *
-      k_object_access_all_grant   0   *
-      printk   0   *
-      printk   0   *
-      __ztest_set_test_result   12   static
-         +arch_syscall_invoke1   0   inlined, *
-         z_syscall_trap   0   inlined, *
-         arch_is_user_context   0   inlined, *
-         z_impl___ztest_set_test_result   8   inlined, static
-      __ztest_set_test_phase   12   static
-         +arch_syscall_invoke1   0   inlined, *
-         z_syscall_trap   0   inlined, *
-         arch_is_user_context   0   inlined, *
-         z_impl___ztest_set_test_phase   8   inlined, static
-      printk   0   *
-      __ztest_set_test_phase   12   static
-         +arch_syscall_invoke1   0   inlined, *
-         z_syscall_trap   0   inlined, *
-         arch_is_user_context   0   inlined, *
-         z_impl___ztest_set_test_phase   8   inlined, static
+
 +z_mrsh_z_test_1cpu_stop   4   static   MAX MEMORY USAGE: 4
+
 +z_vrfy_z_test_1cpu_stop   4   static   MAX MEMORY USAGE: 4
+
 +z_mrsh_z_test_1cpu_start   4   static   MAX MEMORY USAGE: 4
+
 +z_vrfy_z_test_1cpu_start   4   static   MAX MEMORY USAGE: 4
+
 +z_impl_z_test_1cpu_stop   4   static   MAX MEMORY USAGE: 4
+
 +z_impl_z_test_1cpu_start   4   static   MAX MEMORY USAGE: 4
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/subsys/testsuite/ztest/src/ztest_error_hook.c
+
 +z_mrsh_ztest_set_fault_valid   12   dynamic,bounded   MAX MEMORY USAGE: 20
-   +z_vrfy_ztest_set_fault_valid   0   inlined, *
-   z_impl_ztest_set_fault_valid   8   static
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/subsys/testsuite/ztest/src/ztest_defaults.c
-+z_impl_ztest_run_test_suites   0   *   MAX MEMORY USAGE: 0
 
++z_impl_ztest_run_test_suites   36   external   MAX MEMORY USAGE: 36
+
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/drivers/interrupt_controller/intc_ioapic.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/drivers/interrupt_controller/intc_loapic.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/drivers/interrupt_controller/intc_system_apic.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/drivers/console/uart_console.c
-+z_impl_device_is_ready   0   *   MAX MEMORY USAGE: 0
-+z_impl_uart_poll_out   0   *   MAX MEMORY USAGE: 0
-   +poll_in   0   pointer, *
-   poll_out   0   pointer, *
-   err_check   0   pointer, *
-   configure   0   pointer, *
-   config_get   0   pointer, *
 
++z_impl_device_is_ready   8   external   MAX MEMORY USAGE: 8
+
++z_impl_uart_poll_out   0   external   MAX MEMORY USAGE: 0
+
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/drivers/serial/uart_ns16550.c
-+z_impl_device_is_ready   0   *   MAX MEMORY USAGE: 0
 
++z_impl_device_is_ready   8   external   MAX MEMORY USAGE: 8
+
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/drivers/serial/uart_handlers.c
+
 +z_mrsh_uart_configure   40   dynamic,bounded   MAX MEMORY USAGE: 40
-   +z_vrfy_uart_configure   0   inlined, *
-      +poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_log_minimal_printk   0   *
-   z_log_minimal_printk   0   *
-   arch_buffer_validate   0   *
-   z_impl_uart_configure   0   inlined, *
-      +poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-   arch_syscall_oops   0   *
+
 +z_mrsh_uart_config_get   40   dynamic,bounded   MAX MEMORY USAGE: 40
-   +z_vrfy_uart_config_get   0   inlined, *
-      +poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_log_minimal_printk   0   *
-   z_log_minimal_printk   0   *
-   arch_buffer_validate   0   *
-   z_impl_uart_config_get   0   inlined, *
-      +poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-   arch_syscall_oops   0   *
+
 +z_mrsh_uart_poll_out_u16   32   dynamic,bounded   MAX MEMORY USAGE: 32
-   +z_vrfy_uart_poll_out_u16   0   inlined, *
-      +poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_log_minimal_printk   0   *
-   arch_syscall_oops   0   *
+
 +z_mrsh_uart_poll_out   36   dynamic,bounded   MAX MEMORY USAGE: 36
-   +z_vrfy_uart_poll_out   0   inlined, *
-      +poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_log_minimal_printk   0   *
-   z_impl_uart_poll_out   0   inlined, *
-      +poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-   arch_syscall_oops   0   *
+
 +z_mrsh_uart_poll_in_u16   40   dynamic,bounded   MAX MEMORY USAGE: 40
-   +z_vrfy_uart_poll_in_u16   0   inlined, *
-      +poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_log_minimal_printk   0   *
-   z_log_minimal_printk   0   *
-   arch_buffer_validate   0   *
-   arch_syscall_oops   0   *
+
 +z_mrsh_uart_poll_in   40   dynamic,bounded   MAX MEMORY USAGE: 40
-   +z_vrfy_uart_poll_in   0   inlined, *
-      +poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_log_minimal_printk   0   *
-   z_log_minimal_printk   0   *
-   arch_buffer_validate   0   *
-   z_impl_uart_poll_in   0   inlined, *
-      +poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-   arch_syscall_oops   0   *
+
 +z_mrsh_uart_err_check   32   dynamic,bounded   MAX MEMORY USAGE: 32
-   +z_vrfy_uart_err_check   0   inlined, *
-      +poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-      poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_log_minimal_printk   0   *
-   z_impl_uart_err_check   0   inlined, *
-      +poll_in   0   pointer, *
-      poll_out   0   pointer, *
-      err_check   0   pointer, *
-      configure   0   pointer, *
-      config_get   0   pointer, *
-   arch_syscall_oops   0   *
+
 +z_impl_uart_poll_out_u16   0   *   MAX MEMORY USAGE: 0
+
 +z_impl_uart_poll_in_u16   0   *   MAX MEMORY USAGE: 0
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/drivers/timer/hpet.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/device.c
-+z_impl_device_is_ready   8   static   MAX MEMORY USAGE: 8
-+z_mrsh_device_is_ready   32   dynamic,bounded   MAX MEMORY USAGE: 40
-   +z_vrfy_device_is_ready   0   inlined, *
-   k_object_validation_check   0   inlined, *
-   k_object_validate   0   *
-   k_object_dump_error   0   *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   arch_syscall_oops   0   *
-   z_impl_device_is_ready   8   static
-+z_mrsh_device_get_binding   72   dynamic,bounded   MAX MEMORY USAGE: 112
-   +z_vrfy_device_get_binding   0   inlined, *
-   k_usermode_string_copy   0   *
-   z_impl_device_get_binding   32   dynamic,bounded
-      +assert_print   0   *
-      assert_print   0   *
-      z_impl_device_is_ready   8   static
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      z_impl_device_is_ready   8   static
-      strcmp   0   *
 
++z_impl_device_is_ready   8   static   MAX MEMORY USAGE: 8
+
++z_mrsh_device_is_ready   32   dynamic,bounded   MAX MEMORY USAGE: 40
+
++z_mrsh_device_get_binding   72   dynamic,bounded   MAX MEMORY USAGE: 112
+
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/errno.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/fatal.c
-+z_impl_k_thread_abort   0   *   MAX MEMORY USAGE: 0
 
++z_impl_k_thread_abort   28   external   MAX MEMORY USAGE: 28
+
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/init.c
-+z_impl_k_thread_start   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_object_access_grant   0   *   MAX MEMORY USAGE: 0
-+z_mrsh_device_init   32   dynamic,bounded   MAX MEMORY USAGE: 72
-   +z_vrfy_device_init   0   inlined, *
-   k_object_validation_check   0   inlined, *
-   k_object_validate   0   *
-   k_object_dump_error   0   *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   arch_syscall_oops   0   *
-   z_impl_device_init   24   dynamic,bounded
-      +do_device_init   16   dynamic,bounded
 
++z_impl_k_thread_start   0   external   MAX MEMORY USAGE: 0
+
++z_impl_k_object_access_grant   0   external   MAX MEMORY USAGE: 0
+
++z_mrsh_device_init   32   dynamic,bounded   MAX MEMORY USAGE: 72
+
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/init_static.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/idle.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/mutex.c
-+z_mrsh_k_mutex_unlock   24   dynamic,bounded   MAX MEMORY USAGE: 56
-   +z_vrfy_k_mutex_unlock   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_mutex_unlock   32   dynamic,bounded
-      +arch_is_in_isr   0   inlined, *
-      k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      arch_thread_return_value_set   0   inlined, *
-      k_spin_unlock   0   inlined, *
-      arch_irq_unlock   0   inlined, *
-      z_spin_unlock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      NA   0
-         +z_thread_prio_set   0   *
-      z_unpend_first_thread   0   *
-      z_ready_thread   0   *
-      z_reschedule   0   *
-+z_mrsh_k_mutex_lock   32   dynamic,bounded   MAX MEMORY USAGE: 72
-   +z_vrfy_k_mutex_lock   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_mutex_lock   40   dynamic,bounded
-      +z_waitq_head   0   inlined, *
-      rb_get_min   0   inlined, *
-      z_rb_get_minmax   0   *
-      new_prio_for_inheritance   0   inlined, *
-      z_get_new_prio_with_ceiling   0   inlined, *
-      NA   0
-         +z_thread_prio_set   0   *
-      arch_is_in_isr   0   inlined, *
-      k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      k_spin_unlock   0   inlined, *
-      arch_irq_unlock   0   inlined, *
-      z_spin_unlock_valid   0   *
-      k_spin_unlock   0   inlined, *
-      arch_irq_unlock   0   inlined, *
-      z_spin_unlock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      new_prio_for_inheritance   0   inlined, *
-      z_get_new_prio_with_ceiling   0   inlined, *
-      k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      k_spin_unlock   0   inlined, *
-      arch_irq_unlock   0   inlined, *
-      z_spin_unlock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      NA   0
-         +z_thread_prio_set   0   *
-      z_pend_curr   0   *
-      z_reschedule   0   *
+
++z_mrsh_k_mutex_unlock   24   dynamic,bounded   MAX MEMORY USAGE: 128
+
++z_mrsh_k_mutex_lock   32   dynamic,bounded   MAX MEMORY USAGE: 144
+
 +z_mrsh_k_mutex_init   24   dynamic,bounded   MAX MEMORY USAGE: 40
-   +z_vrfy_k_mutex_init   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_mutex_init   16   dynamic,bounded
-      +z_waitq_init   0   inlined, *
-      k_object_init   0   *
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/queue.c
+
 +z_mrsh_k_queue_peek_tail   24   dynamic,bounded   MAX MEMORY USAGE: 56
-   +z_vrfy_k_queue_peek_tail   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_queue_peek_tail   16   dynamic,bounded
-      +sys_sflist_peek_tail   0   inlined, *
-      z_queue_node_peek   16   dynamic,bounded
+
 +z_mrsh_k_queue_peek_head   24   dynamic,bounded   MAX MEMORY USAGE: 56
-   +z_vrfy_k_queue_peek_head   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_queue_peek_head   16   dynamic,bounded
-      +sys_sflist_peek_head   0   inlined, *
-      z_queue_node_peek   16   dynamic,bounded
+
 +z_mrsh_k_queue_is_empty   24   dynamic,bounded   MAX MEMORY USAGE: 24
-   +z_vrfy_k_queue_is_empty   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_impl_k_queue_is_empty   0   inlined, *
-   sys_sflist_is_empty   0   inlined, *
-   sys_sflist_peek_head   0   inlined, *
-   arch_syscall_oops   0   *
+
 +z_mrsh_k_queue_get   32   dynamic,bounded   MAX MEMORY USAGE: 92
-   +z_vrfy_k_queue_get   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_queue_get   44   dynamic,bounded
-      +sys_sflist_get_not_empty   0   inlined, *
-      z_sfnode_next_peek   0   inlined, *
-      z_sflist_head_set   0   inlined, *
-      sys_sflist_peek_tail   0   inlined, *
-      z_sflist_tail_set   0   inlined, *
-      k_spin_unlock   0   inlined, *
-      z_spin_unlock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      z_queue_node_peek   16   dynamic,bounded
-      k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      sys_sflist_is_empty   0   inlined, *
-      sys_sflist_peek_head   0   inlined, *
-      k_spin_unlock   0   inlined, *
-      arch_irq_unlock   0   inlined, *
-      z_pend_curr   0   *
-+z_mrsh_k_queue_alloc_prepend   24   dynamic,bounded   MAX MEMORY USAGE: 84
-   +z_vrfy_k_queue_alloc_prepend   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_queue_alloc_prepend   8   static
-      +queue_insert   52   dynamic,bounded
-         +z_thread_malloc   0   inlined, *
-         z_thread_aligned_alloc   0   *
-         k_spin_unlock   0   inlined, *
-         arch_irq_unlock   0   inlined, *
-         z_spin_unlock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         assert_post_action   0   *
-         sys_sfnode_init   0   inlined, *
-         k_spin_lock   0   inlined, *
-         arch_irq_lock   0   inlined, *
-         z_spinlock_validate_pre   0   inlined, *
-         z_spin_lock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         z_spinlock_validate_post   0   inlined, *
-         z_spin_lock_set_owner   0   *
-         sys_sflist_peek_tail   0   inlined, *
-         prepare_thread_to_run   0   inlined, *
-         z_thread_return_value_set_with_data   0   inlined, *
-         arch_thread_return_value_set   0   inlined, *
-         z_ready_thread   0   *
-         sys_sfnode_init   0   inlined, *
-         sys_sflist_insert   0   inlined, *
-         sys_sflist_prepend   0   inlined, *
-         z_sfnode_next_set   0   inlined, *
-         sys_sfnode_flags_get   0   inlined, *
-         sys_sflist_peek_head   0   inlined, *
-         z_sflist_head_set   0   inlined, *
-         sys_sflist_peek_tail   0   inlined, *
-         z_sfnode_next_peek   0   inlined, *
-         sys_sflist_append   0   inlined, *
-         z_sfnode_next_set   0   inlined, *
-         sys_sflist_peek_tail   0   inlined, *
-         z_sflist_tail_set   0   inlined, *
-         z_sflist_head_set   0   inlined, *
-         z_sfnode_next_set   0   inlined, *
-         sys_sfnode_flags_get   0   inlined, *
-         z_sflist_tail_set   0   inlined, *
-         z_sfnode_next_set   0   inlined, *
-         z_sfnode_next_set   0   inlined, *
-         sys_sfnode_flags_get   0   inlined, *
-         z_unpend_first_thread   0   *
-         z_reschedule   0   *
-+z_mrsh_k_queue_alloc_append   24   dynamic,bounded   MAX MEMORY USAGE: 84
-   +z_vrfy_k_queue_alloc_append   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_queue_alloc_append   8   static
-      +queue_insert   52   dynamic,bounded
-         +z_thread_malloc   0   inlined, *
-         z_thread_aligned_alloc   0   *
-         k_spin_unlock   0   inlined, *
-         arch_irq_unlock   0   inlined, *
-         z_spin_unlock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         assert_post_action   0   *
-         sys_sfnode_init   0   inlined, *
-         k_spin_lock   0   inlined, *
-         arch_irq_lock   0   inlined, *
-         z_spinlock_validate_pre   0   inlined, *
-         z_spin_lock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         z_spinlock_validate_post   0   inlined, *
-         z_spin_lock_set_owner   0   *
-         sys_sflist_peek_tail   0   inlined, *
-         prepare_thread_to_run   0   inlined, *
-         z_thread_return_value_set_with_data   0   inlined, *
-         arch_thread_return_value_set   0   inlined, *
-         z_ready_thread   0   *
-         sys_sfnode_init   0   inlined, *
-         sys_sflist_insert   0   inlined, *
-         sys_sflist_prepend   0   inlined, *
-         z_sfnode_next_set   0   inlined, *
-         sys_sfnode_flags_get   0   inlined, *
-         sys_sflist_peek_head   0   inlined, *
-         z_sflist_head_set   0   inlined, *
-         sys_sflist_peek_tail   0   inlined, *
-         z_sfnode_next_peek   0   inlined, *
-         sys_sflist_append   0   inlined, *
-         z_sfnode_next_set   0   inlined, *
-         sys_sflist_peek_tail   0   inlined, *
-         z_sflist_tail_set   0   inlined, *
-         z_sflist_head_set   0   inlined, *
-         z_sfnode_next_set   0   inlined, *
-         sys_sfnode_flags_get   0   inlined, *
-         z_sflist_tail_set   0   inlined, *
-         z_sfnode_next_set   0   inlined, *
-         z_sfnode_next_set   0   inlined, *
-         sys_sfnode_flags_get   0   inlined, *
-         z_unpend_first_thread   0   *
-         z_reschedule   0   *
-+z_mrsh_k_queue_cancel_wait   24   dynamic,bounded   MAX MEMORY USAGE: 60
-   +z_vrfy_k_queue_cancel_wait   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_queue_cancel_wait   36   dynamic,bounded
-      +k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      prepare_thread_to_run   0   inlined, *
-      z_thread_return_value_set_with_data   0   inlined, *
-      arch_thread_return_value_set   0   inlined, *
-      z_ready_thread   0   *
-      z_unpend_first_thread   0   *
-      z_reschedule   0   *
+
++z_mrsh_k_queue_alloc_prepend   24   dynamic,bounded   MAX MEMORY USAGE: 116
+
++z_mrsh_k_queue_alloc_append   24   dynamic,bounded   MAX MEMORY USAGE: 116
+
++z_mrsh_k_queue_cancel_wait   24   dynamic,bounded   MAX MEMORY USAGE: 92
+
 +z_mrsh_k_queue_init   24   dynamic,bounded   MAX MEMORY USAGE: 36
-   +z_vrfy_k_queue_init   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_queue_init   12   static
-      +sys_sflist_init   0   inlined, *
-      z_waitq_init   0   inlined, *
-      k_object_init   0   *
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/sem.c
-+z_mrsh_k_sem_count_get   24   dynamic,bounded   MAX MEMORY USAGE: 24
-   +z_vrfy_k_sem_count_get   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_impl_k_sem_count_get   0   inlined, *
-   arch_syscall_oops   0   *
-+z_mrsh_k_sem_reset   24   dynamic,bounded   MAX MEMORY USAGE: 56
-   +z_vrfy_k_sem_reset   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_sem_reset   32   dynamic,bounded
-      +k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      arch_thread_return_value_set   0   inlined, *
-      z_unpend_first_thread   0   *
-      z_ready_thread   0   *
-      z_reschedule   0   *
-+z_mrsh_k_sem_take   32   dynamic,bounded   MAX MEMORY USAGE: 72
-   +z_vrfy_k_sem_take   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_sem_take   40   dynamic,bounded
-      +arch_is_in_isr   0   inlined, *
-      k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      k_spin_unlock   0   inlined, *
-      arch_irq_unlock   0   inlined, *
-      z_spin_unlock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      k_spin_unlock   0   inlined, *
-      arch_irq_unlock   0   inlined, *
-      z_spin_unlock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      z_pend_curr   0   *
-+z_mrsh_k_sem_give   24   dynamic,bounded   MAX MEMORY USAGE: 56
-   +z_vrfy_k_sem_give   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_sem_give   32   dynamic,bounded
-      +k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      arch_thread_return_value_set   0   inlined, *
-      k_spin_unlock   0   inlined, *
-      arch_irq_unlock   0   inlined, *
-      z_spin_unlock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      z_unpend_first_thread   0   *
-      z_ready_thread   0   *
-      z_reschedule   0   *
-+z_mrsh_k_sem_init   20   dynamic,bounded   MAX MEMORY USAGE: 52
-   +z_vrfy_k_sem_init   32   dynamic,bounded
-      +k_object_find   0   *
-      NA   0
-         +k_object_validate   0   *
-         k_object_dump_error   0   *
-+z_impl_k_sem_init   16   dynamic,bounded   MAX MEMORY USAGE: 16
-   +z_waitq_init   0   inlined, *
-   k_object_init   0   *
 
++z_mrsh_k_sem_count_get   24   dynamic,bounded   MAX MEMORY USAGE: 24
+
++z_mrsh_k_sem_reset   24   dynamic,bounded   MAX MEMORY USAGE: 88
+
++z_mrsh_k_sem_take   32   dynamic,bounded   MAX MEMORY USAGE: 72
+
++z_mrsh_k_sem_give   24   dynamic,bounded   MAX MEMORY USAGE: 88
+
++z_mrsh_k_sem_init   20   dynamic,bounded   MAX MEMORY USAGE: 52
+
++z_impl_k_sem_init   16   dynamic,bounded   MAX MEMORY USAGE: 16
+
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/priority_queues.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/thread.c
-+z_impl_k_object_access_grant   0   *   MAX MEMORY USAGE: 0
+
++z_impl_k_object_access_grant   0   external   MAX MEMORY USAGE: 0
+
 +z_mrsh_k_thread_timeout_expires_ticks   0   *   MAX MEMORY USAGE: 0
-   +z_log_minimal_printk   0   *
-   arch_buffer_validate   0   *
-   z_vrfy_k_thread_timeout_expires_ticks   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   k_object_validation_check   0   *
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_impl_k_thread_timeout_expires_ticks   0   inlined, *
-   z_timeout_expires   0   *
-   arch_syscall_oops   0   *
+
 +z_mrsh_k_thread_timeout_remaining_ticks   0   *   MAX MEMORY USAGE: 0
-   +z_log_minimal_printk   0   *
-   arch_buffer_validate   0   *
-   z_vrfy_k_thread_timeout_remaining_ticks   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   k_object_validation_check   0   *
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_impl_k_thread_timeout_remaining_ticks   0   inlined, *
-   z_timeout_remaining   0   *
-   arch_syscall_oops   0   *
-+z_mrsh_k_thread_create   0   *   MAX MEMORY USAGE: 0
-   +z_log_minimal_printk   0   *
-   arch_buffer_validate   0   *
-   arch_syscall_oops   0   *
-   z_vrfy_k_thread_create   0   *
-      +k_object_find   0   *
-      k_object_validation_check   0   *
-         +k_object_validate   0   *
-         k_object_dump_error   0   *
-      k_object_validation_check   0   *
-         +k_object_validate   0   *
-         k_object_dump_error   0   *
-      z_log_minimal_printk   0   *
-      size_add_overflow   0   inlined, *
-      _is_valid_prio   0   inlined, *
-      z_log_minimal_printk   0   *
-      thread_schedule_new   0   inlined, *
-      k_thread_start   0   inlined, *
-      z_impl_k_thread_start   0   inlined, *
-      z_sched_start   0   *
-      z_add_thread_timeout   0   inlined, *
-      z_add_timeout   0   *
-      k_object_find   0   *
-      arch_syscall_oops   0   *
-      z_setup_new_thread   0   *
-         +z_is_idle_thread_entry   0   inlined, *
-         k_object_access_grant   0   inlined, *
-         z_impl_k_object_access_grant   0   *
-         z_waitq_init   0   inlined, *
-         z_init_thread_base   0   inlined, *
-         z_init_thread_timeout   0   inlined, *
-         z_init_timeout   0   inlined, *
-         sys_dnode_init   0   inlined, *
-         setup_thread_stack   0   inlined, *
-         K_THREAD_STACK_BUFFER   0   inlined, *
-         z_stack_is_user_capable   0   *
-            +k_object_find   0   *
-         k_mem_map_phys_guard   0   *
-         assert_print   0   *
-         z_stack_is_user_capable   0   *
-            +k_object_find   0   *
-         arch_tls_stack_setup   0   *
-         assert_print   0   *
-         assert_print   0   *
-         k_thread_abort_cleanup_check_reuse   0   *
-            +k_spin_lock   0   inlined, *
-            arch_irq_lock   0   inlined, *
-            z_spinlock_validate_pre   0   inlined, *
-            z_spin_lock_valid   0   *
-            assert_print   0   *
-            assert_print   0   *
-            z_spinlock_validate_post   0   inlined, *
-            z_spin_lock_set_owner   0   *
-            k_spin_unlock   0   inlined, *
-            arch_irq_unlock   0   inlined, *
-            z_spin_unlock_valid   0   *
-            assert_print   0   *
-            assert_print   0   *
-            assert_post_action   0   *
-            do_thread_cleanup   0   *
-               +k_mem_unmap_phys_guard   0   *
-         z_stack_is_user_capable   0   *
-            +k_object_find   0   *
-         assert_print   0   *
-         assert_print   0   *
-         assert_post_action   0   *
-         k_object_init   0   *
-         k_object_init   0   *
-         arch_new_thread   0   *
-         strncpy   0   *
-         z_mem_domain_init_thread   0   *
-         k_thread_perms_inherit   0   *
-+z_impl_k_thread_create   0   *   MAX MEMORY USAGE: 0
-   +arch_is_in_isr   0   inlined, *
-   thread_schedule_new   0   inlined, *
-   k_thread_start   0   inlined, *
-   z_impl_k_thread_start   0   inlined, *
-   z_sched_start   0   *
-   z_add_thread_timeout   0   inlined, *
-   z_add_timeout   0   *
-   assert_print   0   *
-   assert_print   0   *
-   assert_post_action   0   *
-   z_setup_new_thread   0   *
-      +z_is_idle_thread_entry   0   inlined, *
-      k_object_access_grant   0   inlined, *
-      z_impl_k_object_access_grant   0   *
-      z_waitq_init   0   inlined, *
-      z_init_thread_base   0   inlined, *
-      z_init_thread_timeout   0   inlined, *
-      z_init_timeout   0   inlined, *
-      sys_dnode_init   0   inlined, *
-      setup_thread_stack   0   inlined, *
-      K_THREAD_STACK_BUFFER   0   inlined, *
-      z_stack_is_user_capable   0   *
-         +k_object_find   0   *
-      k_mem_map_phys_guard   0   *
-      assert_print   0   *
-      z_stack_is_user_capable   0   *
-         +k_object_find   0   *
-      arch_tls_stack_setup   0   *
-      assert_print   0   *
-      assert_print   0   *
-      k_thread_abort_cleanup_check_reuse   0   *
-         +k_spin_lock   0   inlined, *
-         arch_irq_lock   0   inlined, *
-         z_spinlock_validate_pre   0   inlined, *
-         z_spin_lock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         z_spinlock_validate_post   0   inlined, *
-         z_spin_lock_set_owner   0   *
-         k_spin_unlock   0   inlined, *
-         arch_irq_unlock   0   inlined, *
-         z_spin_unlock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         assert_post_action   0   *
-         do_thread_cleanup   0   *
-            +k_mem_unmap_phys_guard   0   *
-      z_stack_is_user_capable   0   *
-         +k_object_find   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      k_object_init   0   *
-      k_object_init   0   *
-      arch_new_thread   0   *
-      strncpy   0   *
-      z_mem_domain_init_thread   0   *
-      k_thread_perms_inherit   0   *
+
++z_mrsh_k_thread_create   0   *   MAX MEMORY USAGE: 20
+
++z_impl_k_thread_create   0   external   MAX MEMORY USAGE: 20
+
 +z_mrsh_k_thread_start   0   *   MAX MEMORY USAGE: 0
-   +z_vrfy_k_thread_start   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   k_object_validation_check   0   *
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_impl_k_thread_start   0   inlined, *
-   z_sched_start   0   *
-   arch_syscall_oops   0   *
+
 +z_mrsh_k_thread_name_copy   0   *   MAX MEMORY USAGE: 0
-   +z_vrfy_k_thread_name_copy   0   inlined, *
-   z_log_minimal_printk   0   *
-   arch_buffer_validate   0   *
-   k_object_find   0   *
-   strlen   0   *
-   k_usermode_to_copy   0   *
+
 +z_impl_k_thread_name_copy   0   *   MAX MEMORY USAGE: 0
-   +strncpy   0   *
+
 +z_mrsh_k_thread_name_set   0   *   MAX MEMORY USAGE: 0
-   +z_vrfy_k_thread_name_set   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   k_object_validation_check   0   *
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   k_usermode_string_copy   0   *
-   z_impl_k_thread_name_set   0   *
-      +strncpy   0   *
+
 +z_mrsh_k_thread_priority_get   0   *   MAX MEMORY USAGE: 0
-   +z_vrfy_k_thread_priority_get   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   k_object_validation_check   0   *
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_impl_k_thread_priority_get   0   inlined, *
-   arch_syscall_oops   0   *
+
 +z_mrsh_k_is_preempt_thread   0   *   MAX MEMORY USAGE: 0
-   +z_vrfy_k_is_preempt_thread   0   inlined, *
-   z_impl_k_is_preempt_thread   0   *
-      +arch_is_in_isr   0   inlined, *
-      thread_is_preemptible   0   inlined, *
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/sched.c
-+z_mrsh_k_thread_abort   28   dynamic,bounded   MAX MEMORY USAGE: 60
-   +z_vrfy_k_thread_abort   0   inlined, *
-   z_is_thread_essential   0   inlined, *
-   z_log_minimal_printk   0   *
-   thread_obj_validate   32   dynamic,bounded
-      +k_object_find   0   *
-      k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_impl_k_thread_abort   28   dynamic,bounded
-   arch_syscall_oops   0   *
-+z_mrsh_k_thread_join   28   dynamic,bounded   MAX MEMORY USAGE: 156
-   +z_vrfy_k_thread_join   0   inlined, *
-   thread_obj_validate   32   dynamic,bounded
-      +k_object_find   0   *
-      k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_impl_k_thread_join   40   dynamic,bounded
-      +k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      arch_is_in_isr   0   inlined, *
-      add_thread_timeout   0   inlined, *
-      z_add_thread_timeout   0   inlined, *
-      z_add_timeout   0   *
-      z_swap   0   inlined, *
-      k_spin_release   0   inlined, *
-      z_spin_unlock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      z_swap_irqlock   0   inlined, *
-      arch_swap   0   *
-      k_spin_unlock   0   inlined, *
-      arch_irq_unlock   0   inlined, *
-      z_spin_unlock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      add_to_waitq_locked   60   dynamic
-         +z_mark_thread_as_pending   0   inlined, *
-         z_priq_rb_add   0   inlined, *
-         z_rb_foreach_next   0   *
-         rb_insert   0   *
-         unready_thread   28   dynamic,bounded
-+z_mrsh_k_sched_current_thread_query   4   static   MAX MEMORY USAGE: 4
-+z_vrfy_k_sched_current_thread_query   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_sched_current_thread_query   4   static   MAX MEMORY USAGE: 4
-+z_mrsh_k_wakeup   24   dynamic,bounded   MAX MEMORY USAGE: 56
-   +z_vrfy_k_wakeup   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_wakeup   32   dynamic,bounded
-+z_mrsh_k_usleep   12   dynamic,bounded   MAX MEMORY USAGE: 192
-   +z_vrfy_k_usleep   0   inlined, *
-   z_impl_k_usleep   24   dynamic,bounded
-      +__udivdi3   0
-      z_tick_sleep   40   dynamic,bounded
-         +arch_is_in_isr   0   inlined, *
-         k_yield   0   inlined, *
-         z_impl_k_yield   68   dynamic
-            +arch_is_in_isr   0   inlined, *
-            k_spin_lock   0   inlined, *
-            arch_irq_lock   0   inlined, *
-            z_spinlock_validate_pre   0   inlined, *
-            z_spin_lock_valid   0   *
-            assert_print   0   *
-            assert_print   0   *
-            assert_post_action   0   *
-            z_spinlock_validate_post   0   inlined, *
-            z_spin_lock_set_owner   0   *
-            dequeue_thread   0   inlined, *
-            runq_remove   0   inlined, *
-            z_is_idle_thread_object   0   inlined, *
-            z_priq_rb_remove   0   inlined, *
-            rb_remove   0   *
-            assert_print   0   *
-            queue_thread   0   inlined, *
-            runq_add   0   inlined, *
-            z_is_idle_thread_object   0   inlined, *
-            z_priq_rb_add   0   inlined, *
-            z_rb_foreach_next   0   *
-            rb_insert   0   *
-            assert_print   0   *
-            z_swap   0   inlined, *
-            k_spin_release   0   inlined, *
-            z_spin_unlock_valid   0   *
-            assert_print   0   *
-            assert_print   0   *
-            z_swap_irqlock   0   inlined, *
-            arch_swap   0   *
-            assert_print   0   *
-            assert_print   0   *
-            update_cache   32   dynamic,bounded
-               +next_up   0   inlined, *
-               runq_best   0   inlined, *
-               z_priq_rb_best   0   inlined, *
-               rb_get_min   16   dynamic,bounded
-                  +z_rb_get_minmax   0   *
-               should_preempt   0   inlined, *
-               z_is_thread_prevented_from_running   0   inlined, *
-               thread_is_preemptible   0   inlined, *
-               assert_print   0   *
-               assert_print   0   *
-               assert_post_action   0   *
-               z_reset_time_slice   0   *
-         k_spin_lock   0   inlined, *
-         arch_irq_lock   0   inlined, *
-         z_spinlock_validate_pre   0   inlined, *
-         z_spin_lock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         assert_post_action   0   *
-         z_spinlock_validate_post   0   inlined, *
-         z_spin_lock_set_owner   0   *
-         z_add_thread_timeout   0   inlined, *
-         z_add_timeout   0   *
-         z_mark_thread_as_suspended   0   inlined, *
-         z_swap   0   inlined, *
-         k_spin_release   0   inlined, *
-         z_spin_unlock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         z_swap_irqlock   0   inlined, *
-         arch_swap   0   *
-         z_is_thread_state_set   0   inlined, *
-         assert_print   0   *
-         assert_print   0   *
-         sys_clock_tick_get_32   0   *
-         unready_thread   28   dynamic,bounded
-         assert_print   0   *
-         assert_print   0   *
-         sys_clock_tick_get_32   0   *
-+z_mrsh_k_sleep   16   dynamic,bounded   MAX MEMORY USAGE: 40
-   +z_vrfy_k_sleep   0   inlined, *
-   z_impl_k_sleep   24   dynamic,bounded
-+z_mrsh_k_yield   8   static   MAX MEMORY USAGE: 124
-   +z_vrfy_k_yield   0   inlined, *
-   z_impl_k_yield   68   dynamic
-      +arch_is_in_isr   0   inlined, *
-      k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      dequeue_thread   0   inlined, *
-      runq_remove   0   inlined, *
-      z_is_idle_thread_object   0   inlined, *
-      z_priq_rb_remove   0   inlined, *
-      rb_remove   0   *
-      assert_print   0   *
-      queue_thread   0   inlined, *
-      runq_add   0   inlined, *
-      z_is_idle_thread_object   0   inlined, *
-      z_priq_rb_add   0   inlined, *
-      z_rb_foreach_next   0   *
-      rb_insert   0   *
-      assert_print   0   *
-      z_swap   0   inlined, *
-      k_spin_release   0   inlined, *
-      z_spin_unlock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      z_swap_irqlock   0   inlined, *
-      arch_swap   0   *
-      assert_print   0   *
-      assert_print   0   *
-      update_cache   32   dynamic,bounded
-         +next_up   0   inlined, *
-         runq_best   0   inlined, *
-         z_priq_rb_best   0   inlined, *
-         rb_get_min   16   dynamic,bounded
-            +z_rb_get_minmax   0   *
-         should_preempt   0   inlined, *
-         z_is_thread_prevented_from_running   0   inlined, *
-         thread_is_preemptible   0   inlined, *
-         assert_print   0   *
-         assert_print   0   *
-         assert_post_action   0   *
-         z_reset_time_slice   0   *
-+z_mrsh_k_thread_priority_set   36   dynamic,bounded   MAX MEMORY USAGE: 184
-   +z_vrfy_k_thread_priority_set   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   _is_valid_prio   0   inlined, *
-   z_log_minimal_printk   0   *
-   z_log_minimal_printk   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_thread_priority_set   28   dynamic,bounded
-      +arch_is_in_isr   0   inlined, *
-      z_reschedule_unlocked   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_reschedule_irqlock   8   static
-         +resched   0   inlined, *
-         arch_irq_unlocked   0   inlined, *
-         arch_is_in_isr   0   inlined, *
-         need_swap   0   inlined, *
-         z_swap_irqlock   0   inlined, *
-         arch_swap   0   *
-         arch_irq_unlock   0   inlined, *
-      assert_print   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      z_thread_prio_set   72   dynamic
-         +k_spin_lock   0   inlined, *
-         arch_irq_lock   0   inlined, *
-         z_spinlock_validate_pre   0   inlined, *
-         z_spin_lock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         z_spinlock_validate_post   0   inlined, *
-         z_spin_lock_set_owner   0   *
-         z_is_thread_ready   0   inlined, *
-         z_is_thread_prevented_from_running   0   inlined, *
-         z_is_thread_timeout_active   0   inlined, *
-         z_is_inactive_timeout   0   inlined, *
-         sys_dnode_is_linked   0   inlined, *
-         dequeue_thread   0   inlined, *
-         runq_remove   0   inlined, *
-         z_is_idle_thread_object   0   inlined, *
-         z_priq_rb_remove   0   inlined, *
-         rb_remove   0   *
-         assert_print   0   *
-         assert_post_action   0   *
-         queue_thread   0   inlined, *
-         runq_add   0   inlined, *
-         z_priq_rb_add   0   inlined, *
-         z_rb_foreach_next   0   *
-         rb_insert   0   *
-         k_spin_unlock   0   inlined, *
-         arch_irq_unlock   0   inlined, *
-         z_spin_unlock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         update_cache   32   dynamic,bounded
-            +next_up   0   inlined, *
-            runq_best   0   inlined, *
-            z_priq_rb_best   0   inlined, *
-            rb_get_min   16   dynamic,bounded
-               +z_rb_get_minmax   0   *
-            should_preempt   0   inlined, *
-            z_is_thread_prevented_from_running   0   inlined, *
-            thread_is_preemptible   0   inlined, *
-            assert_print   0   *
-            assert_print   0   *
-            assert_post_action   0   *
-            z_reset_time_slice   0   *
-+z_mrsh_k_thread_resume   24   dynamic,bounded   MAX MEMORY USAGE: 112
-   +z_vrfy_k_thread_resume   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_thread_resume   32   dynamic,bounded
-      +k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      z_is_thread_suspended   0   inlined, *
-      k_spin_unlock   0   inlined, *
-      arch_irq_unlock   0   inlined, *
-      z_spin_unlock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      z_mark_thread_as_not_suspended   0   inlined, *
-      ready_thread   56   dynamic
-      z_reschedule   32   dynamic,bounded
-         +resched   0   inlined, *
-         arch_is_in_isr   0   inlined, *
-         need_swap   0   inlined, *
-         z_swap   0   inlined, *
-         k_spin_release   0   inlined, *
-         z_spin_unlock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         z_swap_irqlock   0   inlined, *
-         arch_swap   0   *
-         k_spin_unlock   0   inlined, *
-         arch_irq_unlock   0   inlined, *
-         z_spin_unlock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         assert_post_action   0   *
-         z_spin_unlock_valid   0   *
-+z_mrsh_k_thread_suspend   24   dynamic,bounded   MAX MEMORY USAGE: 188
-   +z_vrfy_k_thread_suspend   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_thread_suspend   32   dynamic,bounded
-      +z_abort_thread_timeout   0   inlined, *
-      z_abort_timeout   0   *
-      k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      k_spin_unlock   0   inlined, *
-      arch_irq_unlock   0   inlined, *
-      z_spin_unlock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      z_thread_halt   44   dynamic,bounded
-         +halt_thread   0   inlined, *
-         dequeue_thread   0   inlined, *
-         runq_remove   0   inlined, *
-         z_is_idle_thread_object   0   inlined, *
-         z_priq_rb_remove   0   inlined, *
-         rb_remove   0   *
-         assert_print   0   *
-         clear_halting   0   inlined, *
-         z_abort_thread_timeout   0   inlined, *
-         z_abort_timeout   0   *
-         unpend_all   0   inlined, *
-         z_waitq_head   0   inlined, *
-         z_waitq_head   0   inlined, *
-         rb_get_min   16   dynamic,bounded
-            +z_rb_get_minmax   0   *
-         z_abort_thread_timeout   0   inlined, *
-         z_abort_timeout   0   *
-         arch_thread_return_value_set   0   inlined, *
-         unpend_thread_no_timeout   32   dynamic,bounded
-            +pended_on_thread   0   inlined, *
-            assert_print   0   *
-            assert_post_action   0   *
-            z_priq_rb_remove   0   inlined, *
-            rb_remove   0   *
-            z_mark_thread_as_not_pending   0   inlined, *
-         ready_thread   56   dynamic
-         arch_is_in_isr   0   inlined, *
-         z_dummy_thread_init   0   inlined, *
-         clear_halting   0   inlined, *
-         update_cache   32   dynamic,bounded
-            +next_up   0   inlined, *
-            runq_best   0   inlined, *
-            z_priq_rb_best   0   inlined, *
-            rb_get_min   16   dynamic,bounded
-               +z_rb_get_minmax   0   *
-            should_preempt   0   inlined, *
-            z_is_thread_prevented_from_running   0   inlined, *
-            thread_is_preemptible   0   inlined, *
-            assert_print   0   *
-            assert_print   0   *
-            assert_post_action   0   *
-            z_reset_time_slice   0   *
-         unpend_thread_no_timeout   32   dynamic,bounded
-            +pended_on_thread   0   inlined, *
-            assert_print   0   *
-            assert_post_action   0   *
-            z_priq_rb_remove   0   inlined, *
-            rb_remove   0   *
-            z_mark_thread_as_not_pending   0   inlined, *
-         update_cache   32   dynamic,bounded
-            +next_up   0   inlined, *
-            runq_best   0   inlined, *
-            z_priq_rb_best   0   inlined, *
-            rb_get_min   16   dynamic,bounded
-               +z_rb_get_minmax   0   *
-            should_preempt   0   inlined, *
-            z_is_thread_prevented_from_running   0   inlined, *
-            thread_is_preemptible   0   inlined, *
-            assert_print   0   *
-            assert_print   0   *
-            assert_post_action   0   *
-            z_reset_time_slice   0   *
-         update_cache   32   dynamic,bounded
-            +next_up   0   inlined, *
-            runq_best   0   inlined, *
-            z_priq_rb_best   0   inlined, *
-            rb_get_min   16   dynamic,bounded
-               +z_rb_get_minmax   0   *
-            should_preempt   0   inlined, *
-            z_is_thread_prevented_from_running   0   inlined, *
-            thread_is_preemptible   0   inlined, *
-            assert_print   0   *
-            assert_print   0   *
-            assert_post_action   0   *
-            z_reset_time_slice   0   *
-         z_mem_domain_exit_thread   0   *
-         k_thread_perms_all_clear   0   *
-         k_object_uninit   0   *
-         k_object_uninit   0   *
-         k_thread_abort_cleanup   0   *
-         arch_is_in_isr   0   inlined, *
-         z_swap   0   inlined, *
-         k_spin_release   0   inlined, *
-         z_spin_unlock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         assert_post_action   0   *
-         z_swap_irqlock   0   inlined, *
-         arch_swap   0   *
-         k_spin_unlock   0   inlined, *
-         arch_irq_unlock   0   inlined, *
-         z_spin_unlock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         assert_print   0   *
-         assert_print   0   *
 
++z_mrsh_k_thread_abort   28   dynamic,bounded   MAX MEMORY USAGE: 60
+
++z_mrsh_k_thread_join   28   dynamic,bounded   MAX MEMORY USAGE: 156
+
++z_mrsh_k_sched_current_thread_query   4   static   MAX MEMORY USAGE: 4
+
++z_vrfy_k_sched_current_thread_query   0   *   MAX MEMORY USAGE: 0
+
++z_impl_k_sched_current_thread_query   4   static   MAX MEMORY USAGE: 4
+
++z_mrsh_k_wakeup   24   dynamic,bounded   MAX MEMORY USAGE: 56
+
++z_mrsh_k_usleep   12   dynamic,bounded   MAX MEMORY USAGE: 192
+
++z_mrsh_k_sleep   16   dynamic,bounded   MAX MEMORY USAGE: 40
+
++z_mrsh_k_yield   8   static   MAX MEMORY USAGE: 124
+
++z_mrsh_k_thread_priority_set   36   dynamic,bounded   MAX MEMORY USAGE: 184
+
++z_mrsh_k_thread_resume   24   dynamic,bounded   MAX MEMORY USAGE: 112
+
++z_mrsh_k_thread_suspend   24   dynamic,bounded   MAX MEMORY USAGE: 188
+
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/timeslicing.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/spinlock_validate.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/timeout.c
-+z_vrfy_sys_clock_tick_set   8   static   MAX MEMORY USAGE: 8
-+z_impl_sys_clock_tick_set   8   static   MAX MEMORY USAGE: 8
-+z_mrsh_k_uptime_ticks   44   dynamic,bounded   MAX MEMORY USAGE: 88
-   +z_log_minimal_printk   0   *
-   arch_buffer_validate   0   *
-   z_vrfy_k_uptime_ticks   0   inlined, *
-   z_impl_k_uptime_ticks   4   inlined, static
-   sys_clock_tick_get   40   dynamic,bounded
-      +k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      k_spin_unlock   0   inlined, *
-      arch_irq_unlock   0   inlined, *
-      z_spin_unlock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      elapsed   4   static
-         +sys_clock_elapsed   0   *
-   arch_syscall_oops   0   *
-+z_mrsh_sys_clock_hw_cycles_per_sec_runtime_get   4   static   MAX MEMORY USAGE: 4
-   +z_vrfy_sys_clock_hw_cycles_per_sec_runtime_get   0   inlined, *
-   z_impl_sys_clock_hw_cycles_per_sec_runtime_get   0   inlined, *
 
++z_vrfy_sys_clock_tick_set   8   static   MAX MEMORY USAGE: 8
+
++z_impl_sys_clock_tick_set   8   static   MAX MEMORY USAGE: 8
+
++z_mrsh_k_uptime_ticks   44   dynamic,bounded   MAX MEMORY USAGE: 88
+
++z_mrsh_sys_clock_hw_cycles_per_sec_runtime_get   4   static   MAX MEMORY USAGE: 4
+
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/mmu.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/mempool.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/futex.c
-+z_mrsh_k_futex_wait   44   dynamic,bounded   MAX MEMORY USAGE: 84
-   +z_vrfy_k_futex_wait   0   inlined, *
-   z_log_minimal_printk   0   *
-   arch_buffer_validate   0   *
-   z_impl_k_futex_wait   40   dynamic,bounded
-      +k_futex_find_data   0   inlined, *
-      k_object_find   0   *
-      atomic_get   0   inlined, *
-      k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      z_pend_curr   0   *
-+z_mrsh_k_futex_wake   40   dynamic,bounded   MAX MEMORY USAGE: 84
-   +z_vrfy_k_futex_wake   0   inlined, *
-   z_log_minimal_printk   0   *
-   arch_buffer_validate   0   *
-   z_impl_k_futex_wake   44   dynamic,bounded
-      +k_futex_find_data   0   inlined, *
-      k_object_find   0   *
-      k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      arch_thread_return_value_set   0   inlined, *
-      z_unpend_first_thread   0   *
-      z_ready_thread   0   *
-      z_reschedule   0   *
 
++z_mrsh_k_futex_wait   44   dynamic,bounded   MAX MEMORY USAGE: 84
+
++z_mrsh_k_futex_wake   40   dynamic,bounded   MAX MEMORY USAGE: 116
+
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/mem_domain.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/userspace.c
-+z_mrsh_k_object_release   0   *   MAX MEMORY USAGE: 0
-+z_mrsh_k_object_alloc   0   *   MAX MEMORY USAGE: 0
-+z_mrsh_k_object_access_grant   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_object_release   0   *   MAX MEMORY USAGE: 0
-   +k_object_access_revoke   0   *
-      +k_object_find   0   *
-      k_thread_perms_clear   0   *
-         +sys_clear_bit   0   inlined, *
-         thread_index_get   0   *
-            +k_object_find   0   *
-         unref_check   0   *
-            +k_spin_lock   0   inlined, *
-            arch_irq_lock   0   inlined, *
-            z_spinlock_validate_pre   0   inlined, *
-            z_spin_lock_valid   0   *
-            assert_print   0   *
-            assert_print   0   *
-            z_spinlock_validate_post   0   inlined, *
-            z_spin_lock_set_owner   0   *
-            sys_clear_bit   0   inlined, *
-            sys_dlist_remove   0   inlined, *
-            sys_dnode_init   0   inlined, *
-            k_spin_unlock   0   inlined, *
-            arch_irq_unlock   0   inlined, *
-            z_spin_unlock_valid   0   *
-            assert_print   0   *
-            assert_print   0   *
-            k_stack_cleanup   0   *
-            assert_print   0   *
-            assert_print   0   *
-            assert_post_action   0   *
-            k_msgq_cleanup   0   *
-            k_free   0   *
-            k_free   0   *
-+z_impl_k_object_access_grant   0   *   MAX MEMORY USAGE: 0
-   +k_object_find   0   *
-   k_thread_perms_set   0   *
-      +sys_set_bit   0   inlined, *
-      thread_index_get   0   *
-         +k_object_find   0   *
-+z_impl_k_object_alloc_size   0   *   MAX MEMORY USAGE: 0
-   +z_object_alloc   0   *
-      +z_log_minimal_printk   0   *
-      otype_to_str   0   *
-      z_log_minimal_printk   0   *
-      thread_idx_alloc   0   inlined, *
-      find_lsb_set   0   inlined, *
-      k_object_wordlist_foreach   0   *
-         +k_spin_lock   0   inlined, *
-         arch_irq_lock   0   inlined, *
-         z_spinlock_validate_pre   0   inlined, *
-         z_spin_lock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         z_spinlock_validate_post   0   inlined, *
-         z_spin_lock_set_owner   0   *
-         sys_dlist_peek_head   0   inlined, *
-         sys_dlist_is_empty   0   inlined, *
-         sys_dlist_peek_next   0   inlined, *
-         sys_dlist_peek_next_no_check   0   inlined, *
-         sys_dlist_peek_next   0   inlined, *
-         sys_dlist_peek_next_no_check   0   inlined, *
-         k_spin_unlock   0   inlined, *
-         arch_irq_unlock   0   inlined, *
-         z_spin_unlock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         assert_post_action   0   *
-         z_object_gperf_wordlist_foreach   0   *
-      dynamic_object_create   0   *
-         +k_free   0   *
-         z_thread_aligned_alloc   0   *
-         obj_size_get   0   inlined, *
-         k_spin_lock   0   inlined, *
-         arch_irq_lock   0   inlined, *
-         z_spinlock_validate_pre   0   inlined, *
-         z_spin_lock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         z_spinlock_validate_post   0   inlined, *
-         z_spin_lock_set_owner   0   *
-         sys_dlist_append   0   inlined, *
-         k_spin_unlock   0   inlined, *
-         arch_irq_unlock   0   inlined, *
-         z_spin_unlock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         assert_post_action   0   *
-         z_thread_aligned_alloc   0   *
-         z_thread_aligned_alloc   0   *
-      thread_idx_free   0   *
-         +k_object_wordlist_foreach   0   *
-            +k_spin_lock   0   inlined, *
-            arch_irq_lock   0   inlined, *
-            z_spinlock_validate_pre   0   inlined, *
-            z_spin_lock_valid   0   *
-            assert_print   0   *
-            assert_print   0   *
-            z_spinlock_validate_post   0   inlined, *
-            z_spin_lock_set_owner   0   *
-            sys_dlist_peek_head   0   inlined, *
-            sys_dlist_is_empty   0   inlined, *
-            sys_dlist_peek_next   0   inlined, *
-            sys_dlist_peek_next_no_check   0   inlined, *
-            sys_dlist_peek_next   0   inlined, *
-            sys_dlist_peek_next_no_check   0   inlined, *
-            k_spin_unlock   0   inlined, *
-            arch_irq_unlock   0   inlined, *
-            z_spin_unlock_valid   0   *
-            assert_print   0   *
-            assert_print   0   *
-            assert_post_action   0   *
-            z_object_gperf_wordlist_foreach   0   *
-      k_thread_perms_set   0   *
-         +sys_set_bit   0   inlined, *
-         thread_index_get   0   *
-            +k_object_find   0   *
-+z_impl_k_object_alloc   0   *   MAX MEMORY USAGE: 0
-   +z_object_alloc   0   *
-      +z_log_minimal_printk   0   *
-      otype_to_str   0   *
-      z_log_minimal_printk   0   *
-      thread_idx_alloc   0   inlined, *
-      find_lsb_set   0   inlined, *
-      k_object_wordlist_foreach   0   *
-         +k_spin_lock   0   inlined, *
-         arch_irq_lock   0   inlined, *
-         z_spinlock_validate_pre   0   inlined, *
-         z_spin_lock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         z_spinlock_validate_post   0   inlined, *
-         z_spin_lock_set_owner   0   *
-         sys_dlist_peek_head   0   inlined, *
-         sys_dlist_is_empty   0   inlined, *
-         sys_dlist_peek_next   0   inlined, *
-         sys_dlist_peek_next_no_check   0   inlined, *
-         sys_dlist_peek_next   0   inlined, *
-         sys_dlist_peek_next_no_check   0   inlined, *
-         k_spin_unlock   0   inlined, *
-         arch_irq_unlock   0   inlined, *
-         z_spin_unlock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         assert_post_action   0   *
-         z_object_gperf_wordlist_foreach   0   *
-      dynamic_object_create   0   *
-         +k_free   0   *
-         z_thread_aligned_alloc   0   *
-         obj_size_get   0   inlined, *
-         k_spin_lock   0   inlined, *
-         arch_irq_lock   0   inlined, *
-         z_spinlock_validate_pre   0   inlined, *
-         z_spin_lock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         z_spinlock_validate_post   0   inlined, *
-         z_spin_lock_set_owner   0   *
-         sys_dlist_append   0   inlined, *
-         k_spin_unlock   0   inlined, *
-         arch_irq_unlock   0   inlined, *
-         z_spin_unlock_valid   0   *
-         assert_print   0   *
-         assert_print   0   *
-         assert_post_action   0   *
-         z_thread_aligned_alloc   0   *
-         z_thread_aligned_alloc   0   *
-      thread_idx_free   0   *
-         +k_object_wordlist_foreach   0   *
-            +k_spin_lock   0   inlined, *
-            arch_irq_lock   0   inlined, *
-            z_spinlock_validate_pre   0   inlined, *
-            z_spin_lock_valid   0   *
-            assert_print   0   *
-            assert_print   0   *
-            z_spinlock_validate_post   0   inlined, *
-            z_spin_lock_set_owner   0   *
-            sys_dlist_peek_head   0   inlined, *
-            sys_dlist_is_empty   0   inlined, *
-            sys_dlist_peek_next   0   inlined, *
-            sys_dlist_peek_next_no_check   0   inlined, *
-            sys_dlist_peek_next   0   inlined, *
-            sys_dlist_peek_next_no_check   0   inlined, *
-            k_spin_unlock   0   inlined, *
-            arch_irq_unlock   0   inlined, *
-            z_spin_unlock_valid   0   *
-            assert_print   0   *
-            assert_print   0   *
-            assert_post_action   0   *
-            z_object_gperf_wordlist_foreach   0   *
-      k_thread_perms_set   0   *
-         +sys_set_bit   0   inlined, *
-         thread_index_get   0   *
-            +k_object_find   0   *
 
++z_mrsh_k_object_release   24   external   MAX MEMORY USAGE: 24
+
++z_mrsh_k_object_alloc   12   external   MAX MEMORY USAGE: 12
+
++z_mrsh_k_object_access_grant   32   external   MAX MEMORY USAGE: 32
+
++z_impl_k_object_release   0   external   MAX MEMORY USAGE: 0
+
++z_impl_k_object_access_grant   0   external   MAX MEMORY USAGE: 0
+
++z_impl_k_object_alloc_size   0   external   MAX MEMORY USAGE: 0
+
++z_impl_k_object_alloc   0   external   MAX MEMORY USAGE: 0
+
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/banner.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/kheap.c
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/msg_q.c
+
 +z_mrsh_k_msgq_num_used_get   24   dynamic,bounded   MAX MEMORY USAGE: 24
-   +z_vrfy_k_msgq_num_used_get   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_impl_k_msgq_num_used_get   0   inlined, *
-   arch_syscall_oops   0   *
+
 +z_mrsh_k_msgq_num_free_get   24   dynamic,bounded   MAX MEMORY USAGE: 24
-   +z_vrfy_k_msgq_num_free_get   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_impl_k_msgq_num_free_get   0   inlined, *
-   arch_syscall_oops   0   *
-+z_mrsh_k_msgq_purge   24   dynamic,bounded   MAX MEMORY USAGE: 60
-   +z_vrfy_k_msgq_purge   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_msgq_purge   36   dynamic,bounded
-      +k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      arch_thread_return_value_set   0   inlined, *
-      z_unpend_first_thread   0   *
-      z_ready_thread   0   *
-      z_reschedule   0   *
+
++z_mrsh_k_msgq_purge   24   dynamic,bounded   MAX MEMORY USAGE: 92
+
 +z_mrsh_k_msgq_peek_at   40   dynamic,bounded   MAX MEMORY USAGE: 80
-   +z_vrfy_k_msgq_peek_at   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_log_minimal_printk   0   *
-   arch_buffer_validate   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_msgq_peek_at   40   dynamic,bounded
-      +k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      k_spin_unlock   0   inlined, *
-      arch_irq_unlock   0   inlined, *
-      z_spin_unlock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
+
 +z_mrsh_k_msgq_peek   40   dynamic,bounded   MAX MEMORY USAGE: 80
-   +z_vrfy_k_msgq_peek   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_log_minimal_printk   0   *
-   arch_buffer_validate   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_msgq_peek   40   dynamic,bounded
-      +k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      k_spin_unlock   0   inlined, *
-      arch_irq_unlock   0   inlined, *
-      z_spin_unlock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-+z_mrsh_k_msgq_get   40   dynamic,bounded   MAX MEMORY USAGE: 92
-   +z_vrfy_k_msgq_get   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_log_minimal_printk   0   *
-   arch_buffer_validate   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_msgq_get   52   dynamic,bounded
-      +arch_is_in_isr   0   inlined, *
-      k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      arch_thread_return_value_set   0   inlined, *
-      k_spin_unlock   0   inlined, *
-      arch_irq_unlock   0   inlined, *
-      z_spin_unlock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_print   0   *
-      z_unpend_first_thread   0   *
-      assert_print   0   *
-      z_ready_thread   0   *
-      z_reschedule   0   *
-      z_pend_curr   0   *
+
++z_mrsh_k_msgq_get   40   dynamic,bounded   MAX MEMORY USAGE: 124
+
 +z_mrsh_k_msgq_get_attrs   40   dynamic,bounded   MAX MEMORY USAGE: 48
-   +z_vrfy_k_msgq_get_attrs   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_log_minimal_printk   0   *
-   arch_buffer_validate   0   *
-   z_impl_k_msgq_get_attrs   8   inlined, static
-   arch_syscall_oops   0   *
-+z_mrsh_k_msgq_put   44   dynamic,bounded   MAX MEMORY USAGE: 96
-   +z_vrfy_k_msgq_put   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_log_minimal_printk   0   *
-   arch_buffer_validate   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_msgq_put   52   dynamic,bounded
-      +arch_is_in_isr   0   inlined, *
-      k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      arch_thread_return_value_set   0   inlined, *
-      k_spin_unlock   0   inlined, *
-      arch_irq_unlock   0   inlined, *
-      z_spin_unlock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_print   0   *
-      z_unpend_first_thread   0   *
-      z_ready_thread   0   *
-      z_reschedule   0   *
-      assert_print   0   *
-      z_pend_curr   0   *
+
++z_mrsh_k_msgq_put   44   dynamic,bounded   MAX MEMORY USAGE: 128
+
 +z_mrsh_k_msgq_alloc_init   20   dynamic,bounded   MAX MEMORY USAGE: 52
-   +z_vrfy_k_msgq_alloc_init   32   dynamic,bounded
-      +k_object_find   0   *
-      NA   0
-         +k_object_validate   0   *
-         k_object_dump_error   0   *
+
 +z_impl_k_msgq_alloc_init   36   dynamic,bounded   MAX MEMORY USAGE: 52
-   +size_mul_overflow   0   inlined, *
-   z_thread_malloc   0   inlined, *
-   z_thread_aligned_alloc   0   *
-   k_msgq_init   16   static
-      +z_waitq_init   0   inlined, *
-      k_object_init   0   *
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/stack.c
+
 +z_mrsh_k_stack_pop   44   dynamic,bounded   MAX MEMORY USAGE: 84
-   +z_vrfy_k_stack_pop   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_log_minimal_printk   0   *
-   arch_buffer_validate   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_stack_pop   40   dynamic,bounded
-      +k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      k_spin_unlock   0   inlined, *
-      arch_irq_unlock   0   inlined, *
-      z_spin_unlock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      k_spin_unlock   0   inlined, *
-      arch_irq_unlock   0   inlined, *
-      z_spin_unlock_valid   0   *
-      z_pend_curr   0   *
-+z_mrsh_k_stack_push   24   dynamic,bounded   MAX MEMORY USAGE: 60
-   +z_vrfy_k_stack_push   0   inlined, *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_stack_push   36   dynamic,bounded
-      +k_spin_lock   0   inlined, *
-      arch_irq_lock   0   inlined, *
-      z_spinlock_validate_pre   0   inlined, *
-      z_spin_lock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      z_spinlock_validate_post   0   inlined, *
-      z_spin_lock_set_owner   0   *
-      z_thread_return_value_set_with_data   0   inlined, *
-      arch_thread_return_value_set   0   inlined, *
-      k_spin_unlock   0   inlined, *
-      arch_irq_unlock   0   inlined, *
-      z_spin_unlock_valid   0   *
-      assert_print   0   *
-      assert_print   0   *
-      assert_post_action   0   *
-      z_unpend_first_thread   0   *
-      z_ready_thread   0   *
-      z_reschedule   0   *
+
++z_mrsh_k_stack_push   24   dynamic,bounded   MAX MEMORY USAGE: 92
+
 +z_mrsh_k_stack_alloc_init   28   dynamic,bounded   MAX MEMORY USAGE: 72
-   +z_vrfy_k_stack_alloc_init   0   inlined, *
-   k_object_find   0   *
-   NA   0
-      +k_object_validate   0   *
-      k_object_dump_error   0   *
-   size_mul_overflow   0   inlined, *
-   z_log_minimal_printk   0   *
-   arch_syscall_oops   0   *
-   z_impl_k_stack_alloc_init   28   dynamic,bounded
-      +z_thread_malloc   0   inlined, *
-      z_thread_aligned_alloc   0   *
-      k_stack_init   16   static
-         +z_waitq_init   0   inlined, *
-         k_object_init   0   *
 
+--------------------------------------------------
 File: /home/awest/zephyrproject/zephyr/kernel/userspace_handler.c
-+z_impl_k_object_alloc_size   0   *   MAX MEMORY USAGE: 0
-+z_impl_k_object_alloc   0   *   MAX MEMORY USAGE: 0
-+z_mrsh_k_object_alloc_size   16   dynamic,bounded   MAX MEMORY USAGE: 16
-   +z_vrfy_k_object_alloc_size   0   inlined, *
-   z_impl_k_object_alloc_size   0   *
-+z_mrsh_k_object_alloc   12   dynamic,bounded   MAX MEMORY USAGE: 12
-   +z_vrfy_k_object_alloc   0   inlined, *
-   z_impl_k_object_alloc   0   *
-+z_mrsh_k_object_release   24   dynamic,bounded   MAX MEMORY USAGE: 24
-   +z_vrfy_k_object_release   0   inlined, *
-   validate_any_object   0   inlined, *
-   NA   0
-      +k_object_find   0   *
-      k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_log_minimal_printk   0   *
-   arch_syscall_oops   0   *
-   k_thread_perms_clear   0   *
-+z_mrsh_k_object_access_grant   32   dynamic,bounded   MAX MEMORY USAGE: 32
-   +z_vrfy_k_object_access_grant   0   inlined, *
-   k_object_validation_check   0   inlined, *
-   k_object_validate   0   *
-   k_object_dump_error   0   *
-   z_log_minimal_printk   0   *
-   k_object_find   0   *
-   validate_any_object   0   inlined, *
-   NA   0
-      +k_object_find   0   *
-      k_object_validate   0   *
-      k_object_dump_error   0   *
-   z_log_minimal_printk   0   *
-   arch_syscall_oops   0   *
-   k_thread_perms_set   0   *
 
++z_impl_k_object_alloc_size   0   external   MAX MEMORY USAGE: 0
+
++z_impl_k_object_alloc   0   external   MAX MEMORY USAGE: 0
+
++z_mrsh_k_object_alloc_size   16   dynamic,bounded   MAX MEMORY USAGE: 16
+
++z_mrsh_k_object_alloc   12   dynamic,bounded   MAX MEMORY USAGE: 12
+
++z_mrsh_k_object_release   24   dynamic,bounded   MAX MEMORY USAGE: 24
+
++z_mrsh_k_object_access_grant   32   dynamic,bounded   MAX MEMORY USAGE: 32
+
+--------------------------------------------------
