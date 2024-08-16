@@ -1,13 +1,40 @@
-from elftools.elf.elffile import ELFFile # pip install pyelftools
-import os # pip install os
-import sys # pip install sys
+# A script that outputs an estimation on maximum stack usage 
+# (on the fixed-size privilege elevation stack in kernel space) 
+# for each syscall found through the DWARF information in the ELF file.
 
-# Get the ELF file
+# When you call the script, you must specify the output file name 
+# as the first argument.
+
+# Optional flags:
+# -n: Get memory usage by function name 
+# (useful for functions that have multiple instances across several object files)
+# -v: Include full call tree with individual memory usage and informational flags
+# -h: Get help message 
+
+# Output is a text file that contains file names, 
+# syscalls that each call to and the maximum stack usage used by that syscall 
+# given information generated from CONFIG_STACK_USAGE being enabled.
+
+# Requires CONFIG_USERSPACE and CONFIG_STACK_USAGE to be enabled.
+
+from elftools.elf.elffile import ELFFile
+import os
+import sys
+
+# This function uses pyelftools to extract the DWARF information from the ELF file.
+
+# Input is the path to the ELF file.
+
+# Output is a structure organized the same way as the output of:
+# readelf -w <elffile> > <outputfile.txt>
+# Documentation on the structure and available functions can be found at:
+# https://github.com/eliben/pyelftools
+
 def getElf(elffile):
     with open(elffile, 'rb') as f:
-        elffile = ELFFile(f) # Parse the elf file
+        elffile = ELFFile(f)
 
-        if not elffile.has_dwarf_info(): # Check if the elf file has DWARF info
+        if not elffile.has_dwarf_info():
             print('no DWARF info')
             return
 
@@ -16,23 +43,35 @@ def getElf(elffile):
         return dwarf_info
 
 
-# Get a list of syscalls for each file (either mrsh, vrfy or impl functions)
+# This function extracts all syscalls specified by the prefixes 
+# z_mrsh, z_vrfy, and z_impl, from the DWARF information 
+# (organized by object file).
+
+# Input is the DWARF information returned from getElf(), 
+# a dictionary to store the compilation unit offsets, 
+# and a variable to store the privilege elevation stack size if found.
+
+# Output is a dictionary organized by object file that contains a list of syscalls.
+
 def get_syscalls(dwarf_info, cuOffsets, stack):
-    syscall_table = {} # Key = file name, Value = list of syscalls within that file
+    syscall_table = {}
 
-    for CU in dwarf_info.iter_CUs(): # Iterate over the compilation units
+    for CU in dwarf_info.iter_CUs():
         
-        cuOffset = CU.cu_offset # Get the compilation unit offset
+        cuOffset = CU.cu_offset
 
-        # Get the file name and use it as a key for the syscall_table and cuOffsets dictionaries
+        # The first debugging entry in a compilation unit contains 
+        # the object file the consequent entries belong to.
         top_DIE = CU.get_top_DIE()
         file_name = top_DIE.attributes['DW_AT_name'].value.decode('utf-8')
         syscall_table[file_name] = []
         cuOffsets[file_name] = cuOffset
 
-        for DIE in CU.iter_DIEs(): # Iterate over the debug information entries
+        for DIE in CU.iter_DIEs():
 
-            # Find the stack size using the thread_stack_header structure in userspace.c (CONFIG_USERSPACE has to be enabled)
+            # When CONFIG_USERSPACE is enabled, the stack size is found 
+            # in a structure named z_<arch_name>_thread_stack_header under the 
+            # userspace.c file.
             if DIE.tag == 'DW_TAG_structure_type' and 'userspace.c' in file_name:
                 try:
                     func_name = DIE.attributes['DW_AT_name'].value.decode('utf-8')
@@ -40,18 +79,19 @@ def get_syscalls(dwarf_info, cuOffsets, stack):
                     continue
 
                 if 'thread_stack_header' in func_name:
-                    stack.append(DIE.attributes['DW_AT_byte_size'].value) # Won't update value if I do stack = DIE.attributes['DW_AT_byte_size'].value
+                    stack.append(DIE.attributes['DW_AT_byte_size'].value)
 
-            elif DIE.tag == 'DW_TAG_subprogram': # subprogram essentially means function
+            elif DIE.tag == 'DW_TAG_subprogram':
                 
                 try:
-                    func_name = DIE.attributes['DW_AT_name'].value.decode('utf-8') # Get the name of the subprogram
+                    func_name = DIE.attributes['DW_AT_name'].value.decode('utf-8')
                 except KeyError:
                     continue
 
-                address = DIE.offset # Get memory address of the function within the elf file
+                # Addresses are relative to their space in the ELF file.
+                address = DIE.offset
 
-                if func_name.startswith(('z_mrsh', 'z_vrfy', 'z_impl')): # Only want the syscalls which are made up of these prefixes
+                if func_name.startswith(('z_mrsh', 'z_vrfy', 'z_impl')):
 
                     if func_name not in syscall_table[file_name]:
                         syscall_table[file_name].append([func_name, address])
@@ -59,41 +99,64 @@ def get_syscalls(dwarf_info, cuOffsets, stack):
     return syscall_table
 
 
-# Get the call tree for each syscall
-def get_call_tree(dwarf_info, syscall_table, flags, cuOffsets):
-    call_tree = {} # Key = file name, Value = list of functions within that file in the form of: [function address, depth], [function address, depth], ...
+# This function generates a call tree for each syscall 
+# defined in the syscall_table.
 
-    for key in syscall_table: # Iterate over the files in the syscall_table
+# Input is the DWARF information, the syscall_table dictionary, 
+# a dictionary to store informational flags, and the dictionary of 
+# compilation unit offsets.
+
+# Output is a dictionary organized by object file that contains 
+# a list of syscalls and their call tree.
+
+def get_call_tree(dwarf_info, syscall_table, flags, cuOffsets):
+
+    # call_tree dictionary structure: 
+    # Key = object file
+    # Value = [[function_address, depth_of_function_call], [function_address, depth_of_function_call], [...], ...]
+    call_tree = {}
+
+    for key in syscall_table:
 
         call_tree[key] = [] 
 
         cuOffset = cuOffsets[key]
 
-        for i in range(0, len(syscall_table[key])): # For each syscall in the file
+        for i in range(0, len(syscall_table[key])):
             address = syscall_table[key][i][1]
 
-            DIE = dwarf_info.get_DIE_from_refaddr(address) # Get the debug information entry for the syscall
+            DIE = dwarf_info.get_DIE_from_refaddr(address)
 
-            if address in [entry[0] for entry in call_tree[key]]: # If the syscall is already in the call tree, continue
+            if address in [entry[0] for entry in call_tree[key]]:
+                # If the syscall is already in the call tree, continue.
                 continue
 
-            call_tree[key].append([address, 0]) # Add the syscall to the call tree as the root
+            # Add the syscall to the call tree as the root.
+            call_tree[key].append([address, 0])
 
             if DIE.has_children:
-                check_call_sites(dwarf_info, DIE, cuOffset, call_tree, key, 1, flags) # Check the call sites/inlined subroutines/pointers for the syscall
-
-        # print(f'File: {key}, Call Tree: {call_tree[key]}')
+                check_call_sites(dwarf_info, DIE, cuOffset, call_tree, key, 1, flags)
 
     return call_tree
 
 
-# Recursively check the call sites for each function
+# This function recursively checks a function for 
+# call sites, inlined subroutines and function pointers.
+
+# Input is the DWARF information, the current DIE (debugging entry), 
+# the compilation unit offset dictionary, the call_tree dictionary, 
+# the key (object file), the current function call depth, 
+# and the informational flags dictionary.
+
+# No output but the call_tree dictionary is updated with the call tree.
+
+# Note: 'DW_AT_abstract_origin' + compilation unit offset of object file = function address in ELF file
+
 def check_call_sites(dwarf_info, DIE, cuOffset, call_tree, key, depth, flags):
     for child in DIE.iter_children(): 
-
-        # print(f'Key: {key}, Child: {child}')
         
-        if child.tag == 'DW_TAG_GNU_call_site': # Check for call sites
+        # GNU_call_sites are 'regularly' called functions. Not inlined or a pointer.
+        if child.tag == 'DW_TAG_GNU_call_site':
             try:
                 target_address = child.attributes['DW_AT_abstract_origin'].value + cuOffset
                 target_DIE = dwarf_info.get_DIE_from_refaddr(target_address) 
@@ -102,7 +165,8 @@ def check_call_sites(dwarf_info, DIE, cuOffset, call_tree, key, depth, flags):
             except KeyError:
                 target_address = ""
         
-        elif child.tag == 'DW_TAG_inlined_subroutine': # Check for inlined functions
+        # Inlined_subroutines are inlined functions.
+        elif child.tag == 'DW_TAG_inlined_subroutine':
             try:
                 target_address = child.attributes['DW_AT_abstract_origin'].value + cuOffset
                 target_DIE = dwarf_info.get_DIE_from_refaddr(target_address)
@@ -113,26 +177,42 @@ def check_call_sites(dwarf_info, DIE, cuOffset, call_tree, key, depth, flags):
             except KeyError:
                 target_address = ""
         
+        # Function pointers can be found in structures, variables and pointer types.
+        # This block checks if a tag not specified as inlined or a call site might trace
+        # to a pointer type pointing to a subroutine type.
         else:
-            # child_address = child.offset
             ptr_addresses = []
-            tags(dwarf_info, call_tree, flags, child, cuOffset, ptr_addresses, 0) # Check for pointers
+            tags(dwarf_info, call_tree, flags, child, cuOffset, ptr_addresses, 0)
             for ptr in ptr_addresses:
                 if ptr != 0:
                     call_tree[key].append([ptr, depth])
                 if ptr not in flags:
                     flags[ptr] = 'pointer'
-            
+        
+        # Debugging entries can nest other debugging entries.
         if child.has_children:
             check_call_sites(dwarf_info, child, cuOffset, call_tree, key, depth, flags)
 
 
+# This function recursively traces through debugging entries with specific tags
+# that could lead to an entry tagged 'DW_TAG_subroutine_type'. In which case,
+# means the first debugging entry that was traced through is a function pointer.
+
+# Input is the DWARF information, the call_tree dictionary, the informational flags dictionary,
+# the current debugging entry, the compilation unit offset dictionary, 
+# a list to store function pointer addresses, and the address of the original debugging entry 
+# that was traced through if the ending debugging entry is tagged with 'DW_AT_subroutine_type'.
+
+# No output but the pointer addresses list is updated 
+# with the found function pointer address, if any.
+
 def tags(dwarf_info, call_tree, flags, DIE, cuOffset, ptr_addresses, at_name_addr):
     try:
         try:
+            # While at_name is not used, if getting the at_name attribute fails 
+            # then I do not want to store the address.
             at_name = DIE.attributes['DW_AT_name'].value.decode('utf-8')
             at_name_addr = DIE.offset
-            # print(f'Name: {at_name}')
         except KeyError:
             at_name = ""
         at_type = DIE.attributes['DW_AT_type'].value + cuOffset
@@ -148,28 +228,34 @@ def tags(dwarf_info, call_tree, flags, DIE, cuOffset, ptr_addresses, at_name_add
                 if c.tag == 'DW_TAG_member':
                     tags(dwarf_info, call_tree, flags, c, cuOffset, ptr_addresses, at_name_addr)
         elif target_DIE.tag == 'DW_TAG_subroutine_type':
-            # print(f'at_name_addr: {at_name_addr}')
             ptr_addresses.append(at_name_addr)
     except KeyError:
         return
     
 
+# This function extracts the maximum stack usage for each function 
+# using the .su files generated with CONFIG_STACK_USAGE enabled.
 
-# Get the memory usage for each function
+# Input is the DWARF information, the call_tree dictionary and
+# the informational flags dictionary.
+
+# Output is a dictionary organized by function address that contains
+# the maximum stack usage for that function if found. 
+# If not found, the function's max memory usage is set to 0 
+# and is flagged with '*'.
+
 def get_memory_usage(dwarf_info, call_tree, flags):
-    mem_usage_dict = {} # Key = function address, Value = max stack usage
+    mem_usage_dict = {}
 
     for key in call_tree:
         mem_usage = 0
         for i in range(0, len(call_tree[key])):
             address = call_tree[key][i][0]
-            # print(f'Address: {address}')
+
             DIE = dwarf_info.get_DIE_from_refaddr(address)
             
             try:
                 name = DIE.attributes['DW_AT_name'].value.decode('utf-8')
-                # if name not in mem_usage_dict:
-                    # mem_usage_dict[name] = []
             except KeyError:
                 continue
 
@@ -180,21 +266,31 @@ def get_memory_usage(dwarf_info, call_tree, flags):
                 continue
 
             if address not in mem_usage_dict:
-                mem_usage = su_files(key, decl_line, decl_column, name, address, flags) # Get the memory usage for the function
-                mem_usage_dict[address] = mem_usage # Store the memory usage
-                '''
-                if get_by_name:
-                    if name not in mem_by_name:
-                        mem_by_name[name] = mem_usage
-                    else:
-                        mem_by_name[name] = max(int(mem_by_name[name]), int(mem_usage))
-                '''
+                mem_usage = su_files(key, decl_line, decl_column, name, address, flags)
+                mem_usage_dict[address] = mem_usage
             
             else:
                 continue
 
     return mem_usage_dict
 
+
+# This function rewrites the memory usage dictionary to account 
+# for multiple instances of a function.
+# It will go through the dictionary of memory usage and change the
+# value of a function's usage to the maximum usage found across all instances.
+
+# Input is the DWARF information, the memory usage dictionary generated
+# from get_memory_usage and the dictionary of memory usage by function name.
+
+# No output but the memory usage dictionary is updated with the new values.
+
+# Note: This function is only called if the -n flag is used.
+
+# The structures of both memory dictionaries are as follows:
+# original_mem: Key = function address, Value = memory usage found in .su file
+# mem_by_name: Key = function name, Value = list of memory usages found in 
+# all .su files that included that function name
 
 def redo_memory(dwarf_info, original_mem, mem_by_name):
     new_mem = {}
@@ -220,18 +316,27 @@ def redo_memory(dwarf_info, original_mem, mem_by_name):
         new_memory = new_mem[name]
         original_mem[key] = new_memory
 
-    # print(f'New Memory: {new_mem}')
 
+# This function searches for the .su file that 
+# corresponds to the .c or object file.
 
-# Find and store the .su file's path
+# Input is the object file name, the line number of the function call,
+# the column number of the function call, the name of the function,
+# the address of the function and the informational flags dictionary.
+
+# Output is the maximum stack usage of the function 
+# if found in the specific .su file.
+
+# Note: if the function is not found in the .su file,
+# the function's max memory usage is set to 0 and is flagged with '*'.
+
 def su_files(c_file, line, column, name, address, flags):
-    home_path = os.path.expanduser('~') # Get the home path
-    search_path = 'zephyrproject/zephyr/build' # Path to search for the .su files. It always starts from the build directory
-    root_search = os.path.join(home_path, search_path) # Join the home path and the search path
+    home_path = os.path.expanduser('~')
+    search_path = 'zephyrproject/zephyr/build' # .su files will always start from the build directory
+    root_search = os.path.join(home_path, search_path)
 
-    # original_c_file = c_file
-    c_file = c_file.split('/')[-1] # Get just the file name without the path
-    su_file = c_file + '.su' # Add the .su extension to the file name
+    c_file = c_file.split('/')[-1]
+    su_file = c_file + '.su' # .su files will be the name of the object file with .su appended to it
 
     for root, dirs, files in os.walk(root_search):
         if su_file in files:
@@ -239,7 +344,7 @@ def su_files(c_file, line, column, name, address, flags):
             target_line = str(line) + ':' + str(column) + ':' + name
 
             found_path = os.path.join(root, su_file)
-            mem = confirm_su_file(found_path, target_line, address, flags) # Check if the function's stack usage is in the .su file
+            mem = confirm_su_file(found_path, target_line, address, flags)
 
             break
 
@@ -249,7 +354,15 @@ def su_files(c_file, line, column, name, address, flags):
     return mem
 
 
-# A possible .su file is passed in. This checks if the function's stack usage is in that file
+# This function is a helper function to see if the function is
+# in the specified .su file and extract the stack usage.
+
+# Input is the path to the specified .su file,
+# the line number of the function call, the address of the function,
+# and the informational flags dictionary.
+
+# Output is the stack usage of the function if found in the .su file.
+
 def confirm_su_file(file_name, find_line, address, flags):
     with open(file_name, 'r') as file:
         
@@ -273,7 +386,17 @@ def confirm_su_file(file_name, find_line, address, flags):
         return 0
 
 
-# Get the names of the functions for printing output
+# This function converts the addresses of functions
+# to their respective names for printing output and
+# easier readability.
+
+# Input is the call_tree dictionary, the DWARF information
+# and the memory usage dictionary.
+
+# No output but the call_tree dictionary is updated to this format:
+# Key = object file
+# Value = [[function_name, depth_of_function_call, function_address, memory_usage], [...], ...]
+
 def get_names(call_tree, dwarf_info, mem_usage):
     for key in call_tree:
         for i in range(0, len(call_tree[key])):
@@ -289,29 +412,33 @@ def get_names(call_tree, dwarf_info, mem_usage):
             call_tree[key][i].append(address)
 
             if address in mem_usage:
-            # if name in mem_usage:
                 call_tree[key][i].append(mem_usage[address])
-                # call_tree[key][i].append(mem_usage[name])
             else:
                 call_tree[key][i].append(0)
 
 
+# This function calculates the maximum memory usage path of a syscall.
+
+# Input is the call_tree dictionary and an empty max_usage dictionary.
+
+# No output but the max_usage dictionary is updated with the
+# maximum memory usage amount for the specific syscall.
+
+# Note: max_usage dictionary structure:
+# Key = object file
+# Value = [[root_address, max_memory_usage], [root_address, max_memory_usage], [...], ...]
+# with the root_addresses being the root syscall addresses.
 
 def max_mem_usage(call_tree, max_usage):
     for key in call_tree:
-        # print(f'Call_tree: {call_tree[key]}')
+
         curr_stack = []
         max_stack = []
         root = 0
         max_mem_used = 0
         max_usage[key] = []
         for i in range(0, len(call_tree[key])):
-            # print(f'Key: {key}, call_tree: {call_tree[key][i]}')
-            '''
-            if len(call_tree[key][i]) <= 2:
-                call_tree[key][i] = ["NA", 0, 0, 0]
-                continue
-            '''
+
             curr_name = call_tree[key][i][0]
             curr_depth = call_tree[key][i][1]
             curr_address = call_tree[key][i][2]
@@ -330,16 +457,12 @@ def max_mem_usage(call_tree, max_usage):
                 continue
 
             curr_stack.append([curr_name, curr_depth, curr_address, curr_usage])
-            # print(f'Key: {key} Stack: {curr_stack}')
-            # print(f'Key: {key} Max_stack: {max_stack}')
 
             if curr_depth >= next_depth:
-                # print(f'Current stack: {curr_stack}')
-                # print(f'Max stack: {max_stack}')
                 max_stack = check_stacks(curr_stack, max_stack)
-                # print(f'Max stack usage for {key}: {max_stack}')
+                
                 if next_depth == -1 or next_depth == 0:
-                    # print(f'Key: {key} Max_stack: {max_stack}')
+
                     for max in max_stack:
                         max_mem_used += max[3]
                     max_usage[key].append([root, max_mem_used])
@@ -351,12 +474,19 @@ def max_mem_usage(call_tree, max_usage):
                 else:
                     for func in curr_stack:
                         if func[1] >= next_depth:
-                            # print(f'Key: {key} Function: {func[0]}')
                             curr_stack.remove(func)
                 
 
+# This function is a helper function to max_mem_usage that
+# checks the current stack against the maximum stack to see
+# if the current stack has a higher memory usage.
+
+# Input is the current call stack and the maximum call stack
+# found so far.
+
+# Output is the maximum call stack of the two stacks.
+
 def check_stacks(curr_s, max_s):
-    # print(f'Max_s: {max_s}')
     max_mem = 0
     curr_mem = 0
 
@@ -366,22 +496,30 @@ def check_stacks(curr_s, max_s):
     for i in max_s:
         max_mem += i[3]
     
-    # print(f'curr_mem: {curr_mem}, max_mem: {max_mem}')
     if curr_mem >= max_mem:
             max_s = curr_s.copy()
     
-    # print(f'Max stack: {max_s}')
     return max_s
 
 
-# Print the call tree with stack usage and informational flags
+# This function prints the final result of the script
+# to a text file specified by the user.
+
+# Input is the call_tree dictionary, the informational flags dictionary,
+# the maximum memory usage dictionary, the privileged elevation stack size, 
+# the memory usage dictionary (organized by function name),
+# the boolean flag to get memory usage by function name (determined by the -n input flag), 
+# and the output file name specified by the user in the first argument of the script call.
+
+# No direct return but the output is a text file with the script's results.
+
 def print_tree(call_tree, flags, max_usage, stack_size, mem_by_name, get_by_name, output_file):
     f = open(output_file, 'w')
     for key in call_tree:
         f.write(f'File: {key}\n')
-        # print(f'File: {key}\n')
+
         prev_depth = -1
-        # print(f'Memory Usage: {memory_usage}\n')
+
         for function, depth, address, mem in call_tree[key]:
             print_string = '   ' * depth
 
@@ -405,7 +543,6 @@ def print_tree(call_tree, flags, max_usage, stack_size, mem_by_name, get_by_name
                             print_string += '   ' + 'WARNING: STACK USAGE EXCEEDS 90% OF STACK SIZE'
 
             f.write(print_string + '\n')
-            # print(print_string)
             
             prev_depth = depth
         
@@ -413,6 +550,11 @@ def print_tree(call_tree, flags, max_usage, stack_size, mem_by_name, get_by_name
     
     f.close()
     
+
+# This is the main function of the script.
+# It calls all the other functions to generate the output
+# and checks for input flags and arguments when the
+# script is called.
 
 def main():
 
@@ -454,11 +596,16 @@ def main():
             print('Optional flags:')
             print('-n: Get memory usage by function name')
 
-    # get_by_name = True
+    # flags structure:
+    # Key = function address
+    # Value = [flag1, flag2, ...]
+    # Note: values can be 'inlined', 'pointer', 'external', 'dyanamic,bounded', 'static' or '*'
+    flags = {}
 
-    flags = {} # Key = function address, Value = informational flags (string concatenation of all flags)
-
-    cuOffsets = {} # Key = file name, Value = compilation unit offset for that file
+    # cuOffsets structure:
+    # Key = file name
+    # Value = compilation unit offset for that file
+    cuOffsets = {}
 
     max_usage = {}
 
@@ -466,8 +613,9 @@ def main():
 
     stack_size = [0]
 
-    info = getElf('build/zephyr/zephyr.elf') # Get the DWARF info
-    table = get_syscalls(info, cuOffsets, stack_size) # Get the syscalls
+    # If ELF file is located elsewhere, please change the path here.
+    info = getElf('build/zephyr/zephyr.elf')
+    table = get_syscalls(info, cuOffsets, stack_size)
     full_call_tree = get_call_tree(info, table, flags, cuOffsets)
     memory = get_memory_usage(info, full_call_tree, flags)
     
