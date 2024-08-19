@@ -174,6 +174,46 @@ config STACK_USAGE
 	  Generate an extra file that specifies the maximum amount of stack used,
 	  on a per-function basis.
 
+config SYSCALL_STACK_USAGE
+	bool "Generate syscall stack usage information"
+	depends on STACK_USAGE
+	depends on USERSPACE
+	default n
+	help
+		Generate an extra text file that specifies the maximum
+		stack usage of each syscall found in the ELF file.
+
+		Optional flags can be passed through CONFIG_SYSCALL_STACK_USAGE_OPTIONS.
+
+		Organized by file, each line below the file name represents a function call - if any.
+		If verbose option is turned off, output will be the top-most syscall - usually a z_mrsh function - 
+		followed by its maximum memory usage according to files generated with CONFIG_STACK_USAGE enabled.
+		If verbose option is turned on, output will include the full call tree 
+		on a per-syscall basis with individual memory usage and informational flags.
+    	
+		Indentation and + symbols indicate depth of function calls. 
+		Depth is determined by how the function is linked in the ELF file.
+    
+		A function may be called within an inlined function but because the 
+		parent function was inlined, the function call will be linked to the 
+		root function who inlined the parent function.
+		As such, the depth of the function call will be under the root function, 
+		not its parent function in source code.
+    
+		If there are no function calls under a file, it means that the file does not contain any syscalls.
+   		Memory usage is in bytes. If a function has multiple instances across several object files, 
+		the memory usage will be the maximum usage found across all instances.
+
+config SYSCALL_STACK_USAGE_OPTIONS
+	string "Flags for syscall stack usage analysis"
+	depends on SYSCALL_STACK_USAGE
+	default ""
+	help
+	  This allows users to pass additional options to the stack usage
+	  analysis tool. Options available are "-v" for verbose output and
+	  "-h" for help. For information on verbose output, see
+	  CONFIG_SYSCALL_STACK_USAGE.
+
 config STACK_SENTINEL
 	bool "Stack sentinel"
 	select THREAD_STACK_INFO

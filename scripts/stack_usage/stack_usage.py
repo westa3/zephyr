@@ -20,6 +20,7 @@
 from elftools.elf.elffile import ELFFile
 import os
 import sys
+import argparse
 
 # This function uses pyelftools to extract the DWARF information from the ELF file.
 
@@ -603,38 +604,56 @@ def print_help():
 
 def main():
 
-    verbose = False
+    parser = argparse.ArgumentParser(description='Analyze syscall stack usage.')
+    parser.add_argument('--elf-file', type=str, required=True, default='', help='ELF file to process')
+    parser.add_argument('--output-file', type=str, required=True, default='', help='Output file name')
+    parser.add_argument('--input-flags', type=str, required=False, default='', help='Include full call tree with individual memory usage and informational flags')
 
-    out_file = ''
+    args = parser.parse_args()
 
+    elf_file_path = args.elf_file
+    output_file_path = args.output_file
+    input_flags = args.input_flags
+
+    if elf_file_path == '':
+        # ELF file should be specified as the first argument passed in
+        # from the CMakeLists.txt in the highest level of the project.
+        # If not specified, the script will attempt to use the ZEPHYR_BASE.
+        zephyr_base = os.getenv('ZEPHYR_BASE')
+        elf_dest = os.path.join(zephyr_base, 'build/zephyr/zephyr.elf')
+        try:
+            with open(elf_dest):
+                pass
+        except FileNotFoundError:
+            print('ELF file not found. Exiting...')
+            return -1
+        elf_file_path = elf_dest
+
+    if output_file_path == '':
+        print('Output file not found. Exiting...')
+        return -1
+    
+    if input_flags == '':
+        verbose = False
+    elif input_flags == '-v':
+        verbose = True
+    else:
+        print('Invalid input flag. Exiting...')
+        return -1
+
+    # For if the user invokes the script without menuconfig
+    # If done without menuconfig, CONFIG_USERSPACE is not checked.
     len_args = len(sys.argv)
 
-    for i in range(1, len_args):
+    if len_args > 1:
+        for i in range(1, len_args):
 
-        if sys.argv[i] == '-h':
-            print_help()
-            return
-
-        elif sys.argv[i] == '-v':
-            verbose = True
-
-        elif '-' not in sys.argv[i]:
-            out_file = sys.argv[i]
-            if not out_file.endswith('.txt'):
-                print('Output file must be a .txt file')
+            if sys.argv[i] == '-h':
                 print_help()
-                return
-            if '.txt' in out_file and len(out_file) == 4:
-                print('Please specify output file name')
-                print_help()
-                return
-            if '/' not in out_file:
-                print('Path not specified, output file will be saved in the current directory')
+                return -1
 
-    if out_file == '':
-        print('Please specify a .txt output file')
-        print_help()
-        return
+            elif sys.argv[i] == '-v':
+                verbose = True 
 
     # flags structure:
     # Key = function address
@@ -653,8 +672,7 @@ def main():
 
     stack_size = [0]
 
-    # If ELF file is located elsewhere, please change the path here.
-    info = getElf('build/zephyr/zephyr.elf')
+    info = getElf(elf_file_path)
     table = get_syscalls(info, cuOffsets, stack_size)
     full_call_tree = get_call_tree(info, table, flags, cuOffsets)
     memory = get_memory_usage(info, full_call_tree, flags)
@@ -666,6 +684,8 @@ def main():
 
     stack_size = stack_size[-1]
 
-    print_tree(full_call_tree, flags, max_usage, stack_size, mem_by_name, out_file, verbose)
+    print_tree(full_call_tree, flags, max_usage, stack_size, mem_by_name, output_file_path, verbose)
+
+    return 0
 
 main()
