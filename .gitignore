@@ -8,10 +8,6 @@
 *.swo
 *~
 
-# Testing Output
-syscallsTree.txt
-dwarf.txt
-
 # Emacs
 \#*\#
 
@@ -95,3 +91,7 @@ ModulesMaintainers.txt
 Nits.txt
 Pylint.txt
 YAMLLint.txt
+
+# from syscall stack usage report
+syscall_stack_usage.txt
+dwarf.txt

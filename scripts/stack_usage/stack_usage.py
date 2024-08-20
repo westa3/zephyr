@@ -2,18 +2,16 @@
 # (on the fixed-size privilege elevation stack in kernel space)
 # for each syscall found through the DWARF information in the ELF file.
 
-# When you call the script, you must specify the output file name
-# as the first argument.
+# A path to the output file and the Zephyr ELF file are required.
 
 # Optional flags:
-# -n: Get memory usage by function name
-# (useful for functions that have multiple instances across several object files)
 # -v: Include full call tree with individual memory usage and informational flags
 # -h: Get help message
 
 # Output is a text file that contains file names,
-# syscalls that each call to and the maximum stack usage used by that syscall
-# given information generated from CONFIG_STACK_USAGE being enabled.
+# syscalls that each file call to and the maximum stack usage
+# used by that syscall given information generated from
+# CONFIG_STACK_USAGE being enabled.
 
 # Requires CONFIG_USERSPACE and CONFIG_STACK_USAGE to be enabled.
 
@@ -21,6 +19,7 @@ from elftools.elf.elffile import ELFFile
 import os
 import sys
 import argparse
+
 
 # This function uses pyelftools to extract the DWARF information from the ELF file.
 
@@ -210,7 +209,7 @@ def check_call_sites(dwarf_info, DIE, cuOffset, call_tree, key, depth, flags):
 def tags(dwarf_info, call_tree, flags, DIE, cuOffset, ptr_addresses, at_name_addr):
     try:
         try:
-            # While at_name is not used, if getting the at_name attribute fails
+            # If getting the at_name attribute fails
             # then I do not want to store the address.
             at_name = DIE.attributes['DW_AT_name'].value.decode('utf-8')
         except KeyError:
@@ -283,7 +282,7 @@ def get_memory_usage(dwarf_info, call_tree, flags):
 # value of a function's usage to the maximum usage found across all instances.
 
 # Input is the DWARF information, the memory usage dictionary generated
-# from get_memory_usage and the dictionary of memory usage by function name.
+# from get_memory_usage() and the dictionary of memory usage by function name.
 
 # No output but the memory usage dictionary is updated with the new values.
 
@@ -514,11 +513,13 @@ def check_stacks(curr_s, max_s):
 
 # Input is the call_tree dictionary, the informational flags dictionary,
 # the maximum memory usage dictionary, the privileged elevation stack size,
-# the memory usage dictionary (organized by function name),
-# the boolean flag to get memory usage by function name (determined by the -n input flag),
-# and the output file name specified by the user in the first argument of the script call.
+# the memory dictionary (organized by function name) that indicates if there
+# were 'copies' of the same function across different object files,
+# the output file path and a boolean flag inidicating if the user wants
+# the verbose option to be printed or not.
 
-# No direct return but the output is a text file with the script's results.
+# No direct return to main but the output
+# is a text file with the script's results.
 
 def print_tree(call_tree, flags, max_usage, stack_size, mem_by_name, output_file, verbose):
     f = open(output_file, 'w')
@@ -556,8 +557,9 @@ def print_tree(call_tree, flags, max_usage, stack_size, mem_by_name, output_file
                 for entry in max_usage[key]:
                     if address == entry[0]:
                         print_string += '   ' + 'MAX MEMORY USAGE: ' + str(entry[1])
-                        if entry[1] > (.9 * stack_size):
-                            print_string += '   ' + 'WARNING: STACK USAGE EXCEEDS 90% OF STACK SIZE'
+                        if stack_size != 0:
+                            if entry[1] > (.9 * stack_size):
+                                print_string += '   ' + 'WARNING: STACK USAGE EXCEEDS 90% OF STACK SIZE'
 
             f.write(print_string + '\n')
             prev_depth = depth
@@ -574,8 +576,8 @@ def print_tree(call_tree, flags, max_usage, stack_size, mem_by_name, output_file
 # how to use the script and what the generated output means.
 
 def print_help():
-    print('Usage: python3 syscallsTree.py <output_file.txt> [flags]' + '\n')
-    print('\t' + '<output_file.txt>: Specify the output file name as a .txt file. Ex. output.txt' + '\n')
+    print('Usage: stack_usage.py [-h] --elf-file ELF_FILE --output-file OUTPUT_FILE [--input-flags INPUT_FLAGS]' + '\n')
+    print('\t' + 'OUTPUT_FILE: Specify the output file name as a .txt file. Ex. output.txt' + '\n')
     print('Optional flags:' + '\n')
     print('\t' + '-v: Include full call tree with individual memory usage and informational flags')
     print('\t' + '-h: Get help message' + '\n')
@@ -597,11 +599,6 @@ def print_help():
     print('\t' + '*: Function was not found in any .su file and has no data on maximum stack usage' + '\n')
 
 
-# This is the main function of the script.
-# It calls all the other functions to generate the output
-# and checks for input flags and arguments when the
-# script is called.
-
 def main():
 
     parser = argparse.ArgumentParser(description='Analyze syscall stack usage.')
@@ -615,11 +612,12 @@ def main():
     output_file_path = args.output_file
     input_flags = args.input_flags
 
+    zephyr_base = os.getenv('ZEPHYR_BASE')
+
     if elf_file_path == '':
         # ELF file should be specified as the first argument passed in
         # from the CMakeLists.txt in the highest level of the project.
         # If not specified, the script will attempt to use the ZEPHYR_BASE.
-        zephyr_base = os.getenv('ZEPHYR_BASE')
         elf_dest = os.path.join(zephyr_base, 'build/zephyr/zephyr.elf')
         try:
             with open(elf_dest):
@@ -630,30 +628,33 @@ def main():
         elf_file_path = elf_dest
 
     if output_file_path == '':
-        print('Output file not found. Exiting...')
-        return -1
-    
+        output_file_path = os.path.join(zephyr_base, 'scripts/stack_usage/syscall_stack_usage.txt')
+
     if input_flags == '':
         verbose = False
     elif input_flags == '-v':
         verbose = True
+    elif input_flags == '-h':
+        print_help()
+        return -1
     else:
         print('Invalid input flag. Exiting...')
         return -1
 
     # For if the user invokes the script without menuconfig
     # If done without menuconfig, CONFIG_USERSPACE is not checked.
+    # CONFIG_STACK_USAGE is not checked either if run without menuconfig.
     len_args = len(sys.argv)
 
-    if len_args > 1:
-        for i in range(1, len_args):
+    for i in range(1, len_args):
 
-            if sys.argv[i] == '-h':
-                print_help()
-                return -1
+        if sys.argv[i] == '-h':
+            print_help()
+            return -1
 
-            elif sys.argv[i] == '-v':
-                verbose = True 
+        if len_args > 1:
+            if sys.argv[i] == '-v':
+                verbose = True
 
     # flags structure:
     # Key = function address
