@@ -576,7 +576,7 @@ def print_tree(call_tree, flags, max_usage, stack_size, mem_by_name, output_file
 # how to use the script and what the generated output means.
 
 def print_help():
-    print('Usage: stack_usage.py [-h] --elf-file ELF_FILE --output-file OUTPUT_FILE [--input-flags INPUT_FLAGS]' + '\n')
+    print('Usage: stack_usage.py [-h] --elf-file ELF_FILE --output-file OUTPUT_FILE --input-flags=INPUT_FLAGS' + '\n')
     print('\t' + 'OUTPUT_FILE: Specify the output file name as a .txt file. Ex. output.txt' + '\n')
     print('Optional flags:' + '\n')
     print('\t' + '-v: Include full call tree with individual memory usage and informational flags')
@@ -599,9 +599,12 @@ def print_help():
     print('\t' + '*: Function was not found in any .su file and has no data on maximum stack usage' + '\n')
 
 
-def main():
+def main(): 
+    class CustomArgumentParser(argparse.ArgumentParser):
+        def print_help(self):
+            print_help()
 
-    parser = argparse.ArgumentParser(description='Analyze syscall stack usage.')
+    parser = CustomArgumentParser(description='Analyze syscall stack usage.')
     parser.add_argument('--elf-file', type=str, required=True, default='', help='ELF file to process')
     parser.add_argument('--output-file', type=str, required=True, default='', help='Output file name')
     parser.add_argument('--input-flags', type=str, required=False, default='', help='Include full call tree with individual memory usage and informational flags')
@@ -636,25 +639,10 @@ def main():
         verbose = True
     elif input_flags == '-h':
         print_help()
-        return -1
+        return 0
     else:
         print('Invalid input flag. Exiting...')
         return -1
-
-    # For if the user invokes the script without menuconfig
-    # If done without menuconfig, CONFIG_USERSPACE is not checked.
-    # CONFIG_STACK_USAGE is not checked either if run without menuconfig.
-    len_args = len(sys.argv)
-
-    for i in range(1, len_args):
-
-        if sys.argv[i] == '-h':
-            print_help()
-            return -1
-
-        if len_args > 1:
-            if sys.argv[i] == '-v':
-                verbose = True
 
     # flags structure:
     # Key = function address
@@ -689,4 +677,5 @@ def main():
 
     return 0
 
-main()
+if __name__ == '__main__':
+    main()

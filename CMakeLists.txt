@@ -1896,7 +1896,7 @@ if (CONFIG_SYSCALL_STACK_USAGE)
     post_build_commands
     COMMAND ${PYTHON_EXECUTABLE} ${ZEPHYR_BASE}/scripts/stack_usage/stack_usage.py
     --elf-file=${KERNEL_ELF_NAME}
-    --output-file=${ZEPHYR_BASE}/scripts/stack_usage/syscall_stack_usage.txt
+    --output-file=${PROJECT_BINARY_DIR}/syscall_stack_usage.txt
     --input-flags=${CONFIG_SYSCALL_STACK_USAGE_OPTIONS}
     )
   list(APPEND
